@@ -37,11 +37,10 @@ interface Course {
 const initialCourses: Course[] = [
   {
     id: "1",
-    title: "Introduction to AI Software Development",
-    description:
-      "Master the essentials of AI-assisted development, from foundational skills to advanced prompting frameworks and identifying bad practices.",
-    category: "AI Development",
-    duration: "4 hours",
+    title: "Software Development with AI",
+    description: "Learn the fundamentals of HTML, CSS, and JavaScript to build modern websites.",
+    category: "Web Development",
+    duration: "6 hours",
     lessons: [
       {
         id: "1-1",

@@ -1,19 +1,16 @@
-# LearnHub - Learning Platform
+# LearnHub - Modular Learning App Design
 
 ## Overview
-LearnHub is a React-based learning management system built with Vite, TypeScript, and Tailwind CSS. It provides an interface for tracking learning progress, browsing courses, and viewing lessons.
+A React + TypeScript learning platform UI built with Vite, Tailwind CSS, and shadcn/ui components. This is a frontend-only application showcasing a course management and learning tracking interface.
 
-## Project Architecture
-
-### Tech Stack
-- **Frontend Framework**: React 18.3.1
+## Tech Stack
+- **Framework**: React 18.3.1 with TypeScript
 - **Build Tool**: Vite 6.3.5
-- **Styling**: Tailwind CSS 4.x with @tailwindcss/vite plugin
-- **UI Components**: Radix UI primitives + shadcn/ui
-- **Icons**: Lucide React, MUI Icons
-- **Charts**: Recharts
+- **Styling**: Tailwind CSS 4.1.12 with @tailwindcss/vite plugin
+- **UI Components**: shadcn/ui (Radix UI primitives), Material UI
+- **Additional Libraries**: react-dnd, recharts, embla-carousel, react-hook-form, date-fns
 
-### Directory Structure
+## Project Structure
 ```
 src/
 ├── app/
