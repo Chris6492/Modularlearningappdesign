@@ -5,6 +5,8 @@ import {
   LayoutDashboard,
   Search,
   User,
+  BookOpen,
+  Clock,
 } from "lucide-react";
 import { Button } from "./components/ui/button";
 import { Input } from "./components/ui/input";
@@ -588,7 +590,7 @@ export default function App() {
               <div className="flex items-center gap-6 text-sm text-muted-foreground">
                 <div className="flex items-center gap-2">
                   <BookOpen className="h-4 w-4" />
-                  <span>{selectedCourse.lessons.length} lessons</span>
+                  <span>{selectedCourse.lessons.length} Modules</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Clock className="h-4 w-4" />
@@ -611,13 +613,13 @@ export default function App() {
                 </div>
                 <p className="text-sm text-muted-foreground mt-2">
                   {selectedCourse.lessons.filter((l) => l.completed).length} of{" "}
-                  {selectedCourse.lessons.length} lessons completed
+                  {selectedCourse.lessons.length} modules completed
                 </p>
               </div>
             </div>
 
             <div className="space-y-3">
-              <h3 className="font-semibold text-lg">Course Lessons</h3>
+              <h3 className="font-semibold text-lg">Course Modules</h3>
               {selectedCourse.lessons.map((lesson) => (
                 <LessonItem
                   key={lesson.id}
