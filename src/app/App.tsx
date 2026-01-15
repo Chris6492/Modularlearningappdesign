@@ -21,7 +21,6 @@ interface Lesson {
   title: string;
   duration: string;
   content: string;
-  image?: string;
   objectives: string[];
   completed: boolean;
 }
@@ -48,9 +47,8 @@ const initialCourses: Course[] = [
         id: "1-1",
         title: "AI Foundational Skills",
         duration: "60 min",
-        image: "/attached_assets/stock_images/artificial_intellige_0a9d4a08.jpg",
         content:
-          "Large Language Models (LLMs) are the backbone of modern AI software development. At their core, they are massive neural networks trained on vast amounts of code and text data.\n\nKey Concepts:\n- **Tokenization**: Breaking down text into smaller units that the model can process.\n- **Neural Networks**: The architectural foundation that allows models to learn patterns in data.\n- **Context Window**: The limited amount of information the model can \"remember\" at any given time.\n- **Inference**: The process of the model generating a response based on your prompt.\n\nUnderstanding these fundamentals is crucial for effectively integrating AI into your development workflow and knowing when to trust its suggestions.",
+          "Explore the core concepts of AI in software development. Understand how Large Language Models work, their capabilities, and how to integrate them into your development workflow effectively.",
         objectives: [
           "Understand LLM basics for developers",
           "Set up AI development tools",
@@ -63,9 +61,8 @@ const initialCourses: Course[] = [
         id: "1-2",
         title: "AI Bad Coding Practices",
         duration: "45 min",
-        image: "/attached_assets/stock_images/data_flow_logic_diag_aa929319.jpg",
         content:
-          "While AI is a powerful tool, it's easy to fall into traps that can compromise your code quality and security.\n\nCommon Pitfalls to Avoid:\n- **Over-reliance**: Blindly copying AI code without understanding its logic.\n- **Hallucinations**: AI generating incorrect or non-existent library calls or logic.\n- **Security Vulnerabilities**: AI-generated code might include outdated patterns or insecure practices.\n- **Code Bloat**: Accepting unnecessarily complex solutions from the AI.\n\nAlways treat AI suggestions as a first draft that requires rigorous human review and testing.",
+          "Learn to identify and avoid common pitfalls when using AI for coding. We'll cover over-reliance, hallucination checks, security risks in AI-generated code, and maintaining code quality.",
         objectives: [
           "Identify AI-generated code smells",
           "Understand security risks in AI suggestions",
@@ -78,9 +75,8 @@ const initialCourses: Course[] = [
         id: "1-3",
         title: "AI C.A.R. Prompting Framework",
         duration: "75 min",
-        image: "/attached_assets/stock_images/llm_prompting_framew_2cb42edc.jpg",
         content:
-          "Mastering the C.A.R. (Context, Action, Result) framework will transform how you interact with AI.\n\n**C - Context**: Provide the background information, relevant code snippets, and specific libraries being used.\n**A - Action**: Clearly state what you want the AI to do (e.g., 'Refactor this function' or 'Write unit tests').\n**R - Result**: Define how you want the output to be formatted (e.g., 'Return only the code block' or 'Explain the changes step-by-step').\n\nBy following this framework, you significantly reduce ambiguity and increase the accuracy of the AI's responses.",
+          "Master the C.A.R. (Context, Action, Result) prompting framework to get high-quality, relevant code from AI. Learn how to structure your requests for maximum efficiency and accuracy.",
         objectives: [
           "Master the Context-Action-Result structure",
           "Write precise technical prompts",
@@ -653,7 +649,6 @@ export default function App() {
             <LessonContent
               title={selectedLesson.title}
               content={selectedLesson.content}
-              image={selectedLesson.image}
               objectives={selectedLesson.objectives}
               completed={selectedLesson.completed}
               hasNext={

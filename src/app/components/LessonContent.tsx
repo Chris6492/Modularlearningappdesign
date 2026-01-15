@@ -1,4 +1,4 @@
-import { CheckCircle2, ChevronLeft, ChevronRight, Image as ImageIcon } from "lucide-react";
+import { CheckCircle2, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "./ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
 import { Separator } from "./ui/separator";
@@ -7,7 +7,6 @@ import { Badge } from "./ui/badge";
 interface LessonContentProps {
   title: string;
   content: string;
-  image?: string;
   objectives: string[];
   completed: boolean;
   hasNext: boolean;
@@ -21,7 +20,6 @@ interface LessonContentProps {
 export function LessonContent({
   title,
   content,
-  image,
   objectives,
   completed,
   hasNext,
@@ -51,16 +49,6 @@ export function LessonContent({
           </div>
         </CardHeader>
         <CardContent className="space-y-6">
-          {image && (
-            <div className="relative w-full aspect-video rounded-lg overflow-hidden border bg-muted">
-              <img 
-                src={image} 
-                alt={title} 
-                className="object-cover w-full h-full"
-              />
-            </div>
-          )}
-          
           <div>
             <h3 className="font-semibold mb-3">Learning Objectives</h3>
             <ul className="space-y-2">
