@@ -108,6 +108,24 @@ const initialCourses: Course[] = [
         completed: false,
       },
       {
+        id: "1-2-1",
+        title: "Identify AI-generated code smells",
+        duration: "15 min",
+        content:
+          "AI-generated code often exhibits specific 'smells' that differ from human-written errors. These include overly verbose logic, the use of deprecated library patterns, or perfectly syntactical code that is logically detached from the rest of the application. Developers must learn to recognize these patterns to prevent 'code bloat' and maintain a clean, readable codebase while leveraging AI assistance.\n\nCommon signs of AI-generated smells include repetitive variable naming and the inclusion of unnecessary utility functions that already exist in the project's standard library. By developing an eye for these specific issues, you can quickly filter out low-quality AI suggestions and focus on refining the outputs that actually add value to your project.",
+        objectives: ["Redundancy Detection", "Pattern Consistency"],
+        completed: false,
+      },
+      {
+        id: "1-2-2",
+        title: "Understand security risks in AI suggestions",
+        duration: "20 min",
+        content:
+          "AI models can inadvertently suggest code that contains well-known security vulnerabilities, such as SQL injection points, insecure cryptographic defaults, or hardcoded secrets. Because the AI doesn't 'understand' security in the same way a human expert does, it might provide a solution that works but leaves the application exposed to attacks.\n\nIt is the developer's responsibility to perform a security audit on every piece of AI-suggested code before it is merged. This involves using automated linting tools and manual reviews focused on data validation and sanitization. Understanding these risks ensures that you use AI as a productivity booster without compromising the safety and integrity of your user data.",
+        objectives: ["Vulnerability Auditing", "Secure Coding Standards"],
+        completed: false,
+      },
+      {
         id: "1-3",
         title: "AI C.A.R. Prompting Framework",
         duration: "75 min",
@@ -119,6 +137,24 @@ const initialCourses: Course[] = [
           "Refine AI output through iterative prompting",
           "Build a library of effective developer prompts",
         ],
+        completed: false,
+      },
+      {
+        id: "1-3-1",
+        title: "Master the Context-Action-Result structure",
+        duration: "20 min",
+        content:
+          "The C.A.R. framework is designed to provide the AI with the three essential components it needs for high-quality output. 'Context' sets the stage by explaining the project environment and constraints; 'Action' defines exactly what the AI should do (e.g., 'Refactor this function'); and 'Result' specifies the desired format and characteristics of the final output.\n\nBy consistently using this structure, developers can eliminate the ambiguity that leads to poor AI performance. This systematic approach transforms prompting from a trial-and-error process into a predictable engineering discipline, ensuring that the AI understands not just 'what' to build, but 'how' it fits into your broader technical goals.",
+        objectives: ["Component Breakdown", "Framework Application"],
+        completed: false,
+      },
+      {
+        id: "1-3-2",
+        title: "Write precise technical prompts",
+        duration: "15 min",
+        content:
+          "Precision in technical prompting is about using specific terminology and providing clear constraints. Instead of asking for 'a list', specify 'a React component that renders a virtualized list of items with search functionality'. Providing examples of desired inputs and outputs within the prompt can also significantly improve the AI's accuracy.\n\nTechnical precision also includes specifying the libraries and versions you are using, as well as any specific coding standards or design patterns required. This level of detail prevents the AI from making incorrect assumptions and ensures that the generated code is immediately compatible with your existing project structure.",
+        objectives: ["Constraint Specification", "Terminology Accuracy"],
         completed: false,
       },
     ],
