@@ -58,6 +58,42 @@ const initialCourses: Course[] = [
         completed: false,
       },
       {
+        id: "1-1-1",
+        title: "Understand LLM basics for developers",
+        duration: "15 min",
+        content:
+          "Large Language Models (LLMs) are a type of artificial intelligence trained on vast amounts of text data. For developers, understanding LLMs means recognizing they are probabilistic next-token predictors, not reasoning engines with consciousness. This fundamental distinction is crucial for setting realistic expectations and designing effective AI-integrated systems.\n\nWhen working with LLMs, developers should focus on their ability to handle unstructured data, perform translation tasks, and assist in code generation while being mindful of their limitations, such as hallucinations and context window constraints. Mastering the interface between deterministic code and probabilistic AI outputs is the key to building robust AI-enhanced applications.",
+        objectives: ["Neural Network Foundations", "Tokenization and Embeddings"],
+        completed: false,
+      },
+      {
+        id: "1-1-2",
+        title: "Set up AI development tools",
+        duration: "20 min",
+        content:
+          "Setting up your AI development environment is the first step toward boosting your productivity. This process involves selecting the right IDE extensions, such as GitHub Copilot or Cursor, and configuring your API keys securely. It is essential to understand the privacy settings of these tools to ensure that sensitive company code is not used for training models without explicit consent.\n\nOnce the basic tools are installed, developers should experiment with custom instructions and system prompts to tailor the AI's behavior to their specific project needs. Learning how to manage context—by choosing which files the AI can see—will significantly improve the relevance and accuracy of the code suggestions you receive during development.",
+        objectives: ["IDE Extensions Configuration", "API Key Security"],
+        completed: false,
+      },
+      {
+        id: "1-1-3",
+        title: "Learn core AI interaction patterns",
+        duration: "25 min",
+        content:
+          "Effective interaction with AI requires moving beyond simple questions to structured interaction patterns. Patterns like 'Chain of Thought' prompting, where you ask the AI to explain its reasoning step-by-step, can lead to much more reliable complex code outputs. Another powerful pattern is the 'Flipped Interaction', where you ask the AI to interview you about your requirements before it generates any code.\n\nUnderstanding these interaction patterns allows developers to treat the AI as a junior partner rather than just a search engine. By providing clear constraints and using iterative refinement, you can guide the AI to produce production-ready code that adheres to your specific design patterns and architectural standards.",
+        objectives: ["Chain of Thought Prompting", "Iterative Refinement"],
+        completed: false,
+      },
+      {
+        id: "1-1-4",
+        title: "Identify best use cases for AI assistance",
+        duration: "15 min",
+        content:
+          "Not every task is suitable for AI assistance, and learning where to apply it is a critical skill. AI excels at boilerplate generation, writing unit tests for pure functions, and explaining legacy code. It is also highly effective for refactoring tasks, such as converting a component from class-based to functional or updating library versions across a codebase.\n\nConversely, developers should be cautious when using AI for complex architectural decisions, security-critical code, or novel algorithms where training data might be sparse. The best use cases are those where the developer can easily verify the output's correctness. By focusing AI on 'low-risk, high-reward' tasks, you maximize productivity while maintaining high code quality.",
+        objectives: ["Boilerplate and Test Generation", "Refactoring and Documentation"],
+        completed: false,
+      },
+      {
         id: "1-2",
         title: "AI Bad Coding Practices",
         duration: "45 min",
@@ -666,16 +702,23 @@ export default function App() {
               onNext={handleNextLesson}
               onPrevious={handlePreviousLesson}
               onObjectiveClick={(objective) => {
-                // Find a lesson that matches the objective or has it in its objectives
+                // Find a lesson that matches the objective
                 const targetLesson = selectedCourse.lessons.find(
-                  (l) =>
-                    l.title.toLowerCase().includes(objective.toLowerCase()) ||
-                    l.objectives.some((obj) =>
-                      obj.toLowerCase().includes(objective.toLowerCase()),
-                    ),
+                  (l) => l.title.toLowerCase() === objective.toLowerCase(),
                 );
+                
                 if (targetLesson) {
                   setSelectedLessonId(targetLesson.id);
+                  setCurrentView("lesson");
+                } else {
+                  // Fallback to partial match if exact match not found
+                  const partialMatch = selectedCourse.lessons.find(
+                    (l) => l.title.toLowerCase().includes(objective.toLowerCase())
+                  );
+                  if (partialMatch) {
+                    setSelectedLessonId(partialMatch.id);
+                    setCurrentView("lesson");
+                  }
                 }
               }}
             />
