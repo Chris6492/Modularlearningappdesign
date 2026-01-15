@@ -66,15 +66,7 @@ const initialCourses: Course[] = [
         objectives: ["Neural Network Foundations", "Tokenization and Embeddings"],
         completed: false,
       },
-      {
-        id: "1-1-2",
-        title: "Set up AI development tools",
-        duration: "20 min",
-        content:
-          "Setting up your AI development environment is the first step toward boosting your productivity. This process involves selecting the right IDE extensions, such as GitHub Copilot or Cursor, and configuring your API keys securely. It is essential to understand the privacy settings of these tools to ensure that sensitive company code is not used for training models without explicit consent.\n\nOnce the basic tools are installed, developers should experiment with custom instructions and system prompts to tailor the AI's behavior to their specific project needs. Learning how to manage context—by choosing which files the AI can see—will significantly improve the relevance and accuracy of the code suggestions you receive during development.",
-        objectives: ["IDE Extensions Configuration", "API Key Security"],
-        completed: false,
-      },
+      
       {
         id: "1-1-3",
         title: "Learn core AI interaction patterns",
@@ -85,15 +77,7 @@ const initialCourses: Course[] = [
         completed: false,
       },
       {
-        id: "1-1-4",
-        title: "Identify best use cases for AI assistance",
-        duration: "15 min",
-        content:
-          "Not every task is suitable for AI assistance, and learning where to apply it is a critical skill. AI excels at boilerplate generation, writing unit tests for pure functions, and explaining legacy code. It is also highly effective for refactoring tasks, such as converting a component from class-based to functional or updating library versions across a codebase.\n\nConversely, developers should be cautious when using AI for complex architectural decisions, security-critical code, or novel algorithms where training data might be sparse. The best use cases are those where the developer can easily verify the output's correctness. By focusing AI on 'low-risk, high-reward' tasks, you maximize productivity while maintaining high code quality.",
-        objectives: ["Boilerplate and Test Generation", "Refactoring and Documentation"],
-        completed: false,
-      },
-      {
+        
         id: "1-2",
         title: "AI Bad Coding Practices",
         duration: "45 min",
@@ -209,34 +193,6 @@ const initialCourses: Course[] = [
         ],
         completed: false,
       },
-      {
-        id: "2-4",
-        title: "Handling Events",
-        duration: "45 min",
-        content:
-          "Learn how to handle user interactions in React applications, from simple clicks to complex form submissions.\n\nWhat you'll learn:\n- Event handling in React\n- Synthetic events\n- Event binding\n- Form handling\n- Controlled components\n- Event pooling\n\nEvent handling in React is slightly different from vanilla JavaScript, but more consistent and powerful once you understand the patterns.",
-        objectives: [
-          "Handle various user events",
-          "Create controlled form components",
-          "Manage form state effectively",
-          "Implement event handlers properly",
-        ],
-        completed: false,
-      },
-      {
-        id: "2-5",
-        title: "Building a React App",
-        duration: "120 min",
-        content:
-          "Apply everything you've learned to build a complete React application. This project will incorporate components, state, props, and event handling.\n\nProject features:\n- Multi-component architecture\n- State management\n- User interactions\n- Data flow patterns\n- Styling React components\n- Deployment basics\n\nThis comprehensive project will tie together all the concepts you've learned and give you practical experience building a real-world React application.",
-        objectives: [
-          "Build a complete React application",
-          "Implement proper component architecture",
-          "Manage application state",
-          "Style and deploy a React app",
-        ],
-        completed: false,
-      },
     ],
   },
   {
@@ -289,34 +245,6 @@ const initialCourses: Course[] = [
         ],
         completed: false,
       },
-      {
-        id: "3-4",
-        title: "Data Structures",
-        duration: "80 min",
-        content:
-          "Master Python's powerful built-in data structures: lists, tuples, dictionaries, and sets.\n\nCoverage includes:\n- Lists and list methods\n- Tuples and their uses\n- Dictionaries for key-value storage\n- Sets for unique collections\n- Choosing the right data structure\n- Common operations and patterns\n\nUnderstanding data structures is crucial for solving programming problems efficiently and writing performant code.",
-        objectives: [
-          "Work with lists, tuples, and dictionaries",
-          "Understand when to use each structure",
-          "Perform common data operations",
-          "Solve problems with appropriate structures",
-        ],
-        completed: false,
-      },
-      {
-        id: "3-5",
-        title: "Python Project: Data Analysis",
-        duration: "150 min",
-        content:
-          "Build a complete Python project that analyzes data, creates visualizations, and generates reports.\n\nProject scope:\n- Reading data from files\n- Processing and analyzing data\n- Using libraries like pandas\n- Creating visualizations\n- Generating reports\n- Best practices and code organization\n\nThis hands-on project will give you practical experience and demonstrate how Python is used in real-world data analysis scenarios.",
-        objectives: [
-          "Build a complete Python application",
-          "Work with external libraries",
-          "Process and analyze data",
-          "Create meaningful visualizations",
-        ],
-        completed: false,
-      },
     ],
   },
   {
@@ -366,34 +294,6 @@ const initialCourses: Course[] = [
           "Apply composition principles",
           "Create responsive layouts",
           "Balance visual elements",
-        ],
-        completed: false,
-      },
-      {
-        id: "4-4",
-        title: "User Research and Testing",
-        duration: "50 min",
-        content:
-          "Great design is based on understanding real users. Learn research methods and testing techniques to validate your designs.\n\nMethods covered:\n- User interviews\n- Surveys and questionnaires\n- Usability testing\n- A/B testing\n- Analytics and metrics\n- Iterative design process\n\nUser research removes guesswork from design decisions and ensures you're building something people actually need and want.",
-        objectives: [
-          "Conduct user research",
-          "Perform usability testing",
-          "Analyze user feedback",
-          "Iterate based on data",
-        ],
-        completed: false,
-      },
-      {
-        id: "4-5",
-        title: "Design Project: Mobile App",
-        duration: "120 min",
-        content:
-          "Apply all your UI/UX knowledge to design a complete mobile app from concept to high-fidelity mockups.\n\nProject phases:\n- User research and personas\n- Information architecture\n- Wireframing\n- Visual design\n- Prototyping\n- Presentation and documentation\n\nThis comprehensive project will give you a portfolio-ready case study demonstrating your UI/UX design skills.",
-        objectives: [
-          "Complete a full design project",
-          "Apply research methods",
-          "Create wireframes and mockups",
-          "Build an interactive prototype",
         ],
         completed: false,
       },
