@@ -1,6 +1,12 @@
 import { CheckCircle2, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "./ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "./ui/card";
 import { Separator } from "./ui/separator";
 import { Badge } from "./ui/badge";
 
@@ -8,6 +14,7 @@ interface LessonContentProps {
   title: string;
   content: string;
   objectives: string[];
+  activities: string[];
   completed: boolean;
   hasNext: boolean;
   hasPrevious: boolean;
@@ -20,6 +27,7 @@ export function LessonContent({
   title,
   content,
   objectives,
+  activities,
   completed,
   hasNext,
   hasPrevious,
@@ -39,7 +47,10 @@ export function LessonContent({
               </CardDescription>
             </div>
             {completed && (
-              <Badge variant="default" className="bg-green-500 hover:bg-green-600">
+              <Badge
+                variant="default"
+                className="bg-green-500 hover:bg-green-600"
+              >
                 <CheckCircle2 className="h-4 w-4 mr-1" />
                 Completed
               </Badge>
@@ -47,6 +58,7 @@ export function LessonContent({
           </div>
         </CardHeader>
         <CardContent className="space-y-6">
+          {/* Learning Objectives */}
           <div>
             <h3 className="font-semibold mb-3">Learning Objectives</h3>
             <ul className="space-y-2">
@@ -54,6 +66,19 @@ export function LessonContent({
                 <li key={index} className="flex items-start gap-2">
                   <span className="text-primary mt-1">•</span>
                   <span className="text-muted-foreground">{objective}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Learning Activities */}
+          <div>
+            <h3 className="font-semibold mb-3">Learning Activities</h3>
+            <ul className="space-y-2">
+              {activities?.map((activity, index) => (
+                <li key={index} className="flex items-start gap-2">
+                  <span className="text-primary mt-1">•</span>
+                  <span className="text-muted-foreground">{activity}</span>
                 </li>
               ))}
             </ul>
@@ -70,11 +95,7 @@ export function LessonContent({
       </Card>
 
       <div className="flex items-center justify-between gap-4">
-        <Button
-          variant="outline"
-          onClick={onPrevious}
-          disabled={!hasPrevious}
-        >
+        <Button variant="outline" onClick={onPrevious} disabled={!hasPrevious}>
           <ChevronLeft className="h-4 w-4 mr-2" />
           Previous
         </Button>
@@ -94,11 +115,7 @@ export function LessonContent({
           )}
         </Button>
 
-        <Button
-          variant="outline"
-          onClick={onNext}
-          disabled={!hasNext}
-        >
+        <Button variant="outline" onClick={onNext} disabled={!hasNext}>
           Next
           <ChevronRight className="h-4 w-4 ml-2" />
         </Button>

@@ -22,6 +22,7 @@ interface Lesson {
   duration: string;
   content: string;
   objectives: string[];
+  activities: string[];
   completed: boolean;
 }
 
@@ -37,9 +38,9 @@ interface Course {
 const initialCourses: Course[] = [
   {
     id: "1",
-    title: "Software Development with AI",
-    description: "Learn the fundamentals of HTML, CSS, and JavaScript to build modern websites.",
-    category: "Web Development",
+    title: "Development with AI",
+    description: "Learn how to incorporate AI into your development workflow.",
+    category: "Software Development",
     duration: "6 hours",
     lessons: [
       {
@@ -54,20 +55,22 @@ const initialCourses: Course[] = [
           "Learn core AI interaction patterns",
           "Identify best use cases for AI assistance",
         ],
+        activities: ["activity goes here"],
         completed: false,
       },
       {
         id: "1-2",
-        title: "AI Bad Coding Practices",
+        title: "Bad AI Coding Practices",
         duration: "45 min",
         content:
-          "Learn to identify and avoid common pitfalls when using AI for coding. We'll cover over-reliance, hallucination checks, security risks in AI-generated code, and maintaining code quality.",
+          "Learn to identify and avoid common pitfalls when using AI for coding. We'll cover over-reliance, hallucination checks, legal risks , and maintaining code quality.",
         objectives: [
-          "Identify AI-generated code smells",
-          "Understand security risks in AI suggestions",
-          "Implement effective verification strategies",
-          "Maintain architectural integrity with AI",
+          "Blindly trusting AI-generated code",
+          "Bad Prompting and Lack of Context",
+          "Over-Reliance",
+          "Licensing & ip risk",
         ],
+        activities: ["activity goes here"],
         completed: false,
       },
       {
@@ -82,6 +85,7 @@ const initialCourses: Course[] = [
           "Refine AI output through iterative prompting",
           "Build a library of effective developer prompts",
         ],
+        activities: ["activity goes here"],
         completed: false,
       },
     ],
@@ -106,6 +110,7 @@ const initialCourses: Course[] = [
           "Learn JSX syntax and its benefits",
           "Create your first React component",
         ],
+        activities: ["activity goes here"],
         completed: false,
       },
       {
@@ -120,6 +125,7 @@ const initialCourses: Course[] = [
           "Compose components effectively",
           "Implement conditional rendering",
         ],
+        activities: ["activity goes here"],
         completed: false,
       },
       {
@@ -134,6 +140,7 @@ const initialCourses: Course[] = [
           "Use useEffect for side effects",
           "Handle component lifecycle properly",
         ],
+        activities: ["activity goes here"],
         completed: false,
       },
       {
@@ -148,6 +155,7 @@ const initialCourses: Course[] = [
           "Manage form state effectively",
           "Implement event handlers properly",
         ],
+        activities: ["activity goes here"],
         completed: false,
       },
       {
@@ -162,6 +170,7 @@ const initialCourses: Course[] = [
           "Manage application state",
           "Style and deploy a React app",
         ],
+        activities: ["activity goes here"],
         completed: false,
       },
     ],
@@ -186,6 +195,7 @@ const initialCourses: Course[] = [
           "Work with variables and data types",
           "Write your first Python programs",
         ],
+        activities: ["activity goes here"],
         completed: false,
       },
       {
@@ -200,6 +210,7 @@ const initialCourses: Course[] = [
           "Apply boolean logic",
           "Write efficient list comprehensions",
         ],
+        activities: ["activity goes here"],
         completed: false,
       },
       {
@@ -214,6 +225,7 @@ const initialCourses: Course[] = [
           "Import and use modules",
           "Create custom modules",
         ],
+        activities: ["activity goes here"],
         completed: false,
       },
       {
@@ -228,6 +240,7 @@ const initialCourses: Course[] = [
           "Perform common data operations",
           "Solve problems with appropriate structures",
         ],
+        activities: ["activity goes here"],
         completed: false,
       },
       {
@@ -242,6 +255,7 @@ const initialCourses: Course[] = [
           "Process and analyze data",
           "Create meaningful visualizations",
         ],
+        activities: ["activity goes here"],
         completed: false,
       },
     ],
@@ -266,6 +280,7 @@ const initialCourses: Course[] = [
           "Identify user needs",
           "Recognize good design principles",
         ],
+        activities: ["activity goes here"],
         completed: false,
       },
       {
@@ -280,6 +295,7 @@ const initialCourses: Course[] = [
           "Choose appropriate typography",
           "Ensure accessibility",
         ],
+        activities: ["activity goes here"],
         completed: false,
       },
       {
@@ -294,6 +310,7 @@ const initialCourses: Course[] = [
           "Create responsive layouts",
           "Balance visual elements",
         ],
+        activities: ["activity goes here"],
         completed: false,
       },
       {
@@ -308,6 +325,7 @@ const initialCourses: Course[] = [
           "Analyze user feedback",
           "Iterate based on data",
         ],
+        activities: ["activity goes here"],
         completed: false,
       },
       {
@@ -322,6 +340,7 @@ const initialCourses: Course[] = [
           "Create wireframes and mockups",
           "Build an interactive prototype",
         ],
+        activities: ["activity goes here"],
         completed: false,
       },
     ],
@@ -649,6 +668,7 @@ export default function App() {
               title={selectedLesson.title}
               content={selectedLesson.content}
               objectives={selectedLesson.objectives}
+              activities={selectedLesson.activities}
               completed={selectedLesson.completed}
               hasNext={
                 selectedCourse.lessons.findIndex(
