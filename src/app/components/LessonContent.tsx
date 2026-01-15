@@ -58,7 +58,6 @@ export function LessonContent({
           </div>
         </CardHeader>
         <CardContent className="space-y-6">
-          {/* Learning Objectives */}
           <div>
             <h3 className="font-semibold mb-3">Learning Objectives</h3>
             <ul className="space-y-2">
@@ -70,8 +69,6 @@ export function LessonContent({
               ))}
             </ul>
           </div>
-
-          {/* Learning Activities */}
           <div>
             <h3 className="font-semibold mb-3">Learning Activities</h3>
             <ul className="space-y-2">
