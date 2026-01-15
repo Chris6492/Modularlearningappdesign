@@ -592,16 +592,18 @@ export default function App() {
 
             <div className="space-y-3">
               <h3 className="font-semibold text-lg">Course Modules</h3>
-              {selectedCourse.lessons.map((lesson) => (
-                <LessonItem
-                  key={lesson.id}
-                  title={lesson.title}
-                  duration={lesson.duration}
-                  completed={lesson.completed}
-                  isActive={lesson.id === selectedLessonId}
-                  onClick={() => handleLessonClick(lesson.id)}
-                />
-              ))}
+              {selectedCourse.lessons
+                .filter((lesson) => lesson.id === "1-1" || lesson.id === "1-2" || lesson.id === "1-3" || (selectedCourse.id !== "1" && lesson.id.split("-").length === 2))
+                .map((lesson) => (
+                  <LessonItem
+                    key={lesson.id}
+                    title={lesson.title}
+                    duration={lesson.duration}
+                    completed={lesson.completed}
+                    isActive={lesson.id === selectedLessonId}
+                    onClick={() => handleLessonClick(lesson.id)}
+                  />
+                ))}
             </div>
           </div>
         )}
