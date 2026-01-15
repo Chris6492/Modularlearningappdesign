@@ -14,6 +14,7 @@ interface LessonContentProps {
   onComplete: () => void;
   onNext: () => void;
   onPrevious: () => void;
+  onObjectiveClick: (objective: string) => void;
 }
 
 export function LessonContent({
@@ -26,6 +27,7 @@ export function LessonContent({
   onComplete,
   onNext,
   onPrevious,
+  onObjectiveClick,
 }: LessonContentProps) {
   return (
     <div className="space-y-6">
@@ -53,7 +55,12 @@ export function LessonContent({
               {objectives.map((objective, index) => (
                 <li key={index} className="flex items-start gap-2">
                   <span className="text-primary mt-1">•</span>
-                  <span className="text-muted-foreground">{objective}</span>
+                  <button
+                    onClick={() => onObjectiveClick(objective)}
+                    className="text-muted-foreground hover:text-primary hover:underline text-left transition-colors duration-200"
+                  >
+                    {objective}
+                  </button>
                 </li>
               ))}
             </ul>

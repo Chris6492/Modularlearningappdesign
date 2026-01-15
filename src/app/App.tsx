@@ -665,6 +665,9 @@ export default function App() {
               onComplete={handleLessonComplete}
               onNext={handleNextLesson}
               onPrevious={handlePreviousLesson}
+              onObjectiveClick={(objective) => {
+                console.log("Objective clicked:", objective);
+              }}
             />
           </div>
         )}
