@@ -666,7 +666,17 @@ export default function App() {
               onNext={handleNextLesson}
               onPrevious={handlePreviousLesson}
               onObjectiveClick={(objective) => {
-                console.log("Objective clicked:", objective);
+                // Find a lesson that matches the objective or has it in its objectives
+                const targetLesson = selectedCourse.lessons.find(
+                  (l) =>
+                    l.title.toLowerCase().includes(objective.toLowerCase()) ||
+                    l.objectives.some((obj) =>
+                      obj.toLowerCase().includes(objective.toLowerCase()),
+                    ),
+                );
+                if (targetLesson) {
+                  setSelectedLessonId(targetLesson.id);
+                }
               }}
             />
           </div>
