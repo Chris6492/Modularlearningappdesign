@@ -79,21 +79,11 @@ const initialCourses: Course[] = [
         completed: false,
       },
       {
-        
         id: "1-2",
         title: "AI Bad Coding Practices",
         duration: "45 min",
         content:
-          "Learn to identify and avoid common pitfalls when using AI for coding. We'll cover over-reliance, hallucination checks, security risks in AI-generated code, and maintaining code quality.",
-        objectives: [
-          "Identify AI-generated code smells",
-          "Understand security risks in AI suggestions",
-          "Implement effective verification strategies",
-          "Maintain architectural integrity with AI",
-        title: "Bad AI Coding Practices",
-        duration: "45 min",
-        content:
-          "Learn to identify and avoid common pitfalls when using AI for coding. We'll cover over-reliance, hallucination checks, legal risks , and maintaining code quality.",
+          "Learn to identify and avoid common pitfalls when using AI for coding. We'll cover over-reliance, hallucination checks, legal risks, and maintaining code quality.",
         objectives: [
           "Blindly trusting AI-generated code",
           "Bad Prompting and Lack of Context",
