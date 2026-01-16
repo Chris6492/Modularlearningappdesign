@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import {
   ArrowLeft,
   GraduationCap,
@@ -38,10 +38,11 @@ interface Course {
 const initialCourses: Course[] = [
   {
     id: "1",
-    title: "Development with AI",
-    description: "Learn how to incorporate AI into your development workflow.",
-    category: "Software Development",
-    duration: "6 hours",
+    title: "Introduction to AI Software Development",
+    description:
+      "Master the essentials of AI-assisted development, from foundational skills to advanced prompting frameworks and identifying bad practices.",
+    category: "AI Development",
+    duration: "4 hours",
     lessons: [
       {
         id: "1-1",
@@ -59,7 +60,36 @@ const initialCourses: Course[] = [
         completed: false,
       },
       {
+        id: "1-1-1",
+        title: "Understand LLM basics for developers",
+        duration: "15 min",
+        content:
+          "Large Language Models (LLMs) are a type of artificial intelligence trained on vast amounts of text data. For developers, understanding LLMs means recognizing they are probabilistic next-token predictors, not reasoning engines with consciousness. This fundamental distinction is crucial for setting realistic expectations and designing effective AI-integrated systems.\n\nWhen working with LLMs, developers should focus on their ability to handle unstructured data, perform translation tasks, and assist in code generation while being mindful of their limitations, such as hallucinations and context window constraints. Mastering the interface between deterministic code and probabilistic AI outputs is the key to building robust AI-enhanced applications.",
+        objectives: ["Neural Network Foundations", "Tokenization and Embeddings"],
+        completed: false,
+      },
+      
+      {
+        id: "1-1-3",
+        title: "Learn core AI interaction patterns",
+        duration: "25 min",
+        content:
+          "Effective interaction with AI requires moving beyond simple questions to structured interaction patterns. Patterns like 'Chain of Thought' prompting, where you ask the AI to explain its reasoning step-by-step, can lead to much more reliable complex code outputs. Another powerful pattern is the 'Flipped Interaction', where you ask the AI to interview you about your requirements before it generates any code.\n\nUnderstanding these interaction patterns allows developers to treat the AI as a junior partner rather than just a search engine. By providing clear constraints and using iterative refinement, you can guide the AI to produce production-ready code that adheres to your specific design patterns and architectural standards.",
+        objectives: ["Chain of Thought Prompting", "Iterative Refinement"],
+        completed: false,
+      },
+      {
+        
         id: "1-2",
+        title: "AI Bad Coding Practices",
+        duration: "45 min",
+        content:
+          "Learn to identify and avoid common pitfalls when using AI for coding. We'll cover over-reliance, hallucination checks, security risks in AI-generated code, and maintaining code quality.",
+        objectives: [
+          "Identify AI-generated code smells",
+          "Understand security risks in AI suggestions",
+          "Implement effective verification strategies",
+          "Maintain architectural integrity with AI",
         title: "Bad AI Coding Practices",
         duration: "45 min",
         content:
@@ -74,6 +104,24 @@ const initialCourses: Course[] = [
         completed: false,
       },
       {
+        id: "1-2-1",
+        title: "Identify AI-generated code smells",
+        duration: "15 min",
+        content:
+          "AI-generated code often exhibits specific 'smells' that differ from human-written errors. These include overly verbose logic, the use of deprecated library patterns, or perfectly syntactical code that is logically detached from the rest of the application. Developers must learn to recognize these patterns to prevent 'code bloat' and maintain a clean, readable codebase while leveraging AI assistance.\n\nCommon signs of AI-generated smells include repetitive variable naming and the inclusion of unnecessary utility functions that already exist in the project's standard library. By developing an eye for these specific issues, you can quickly filter out low-quality AI suggestions and focus on refining the outputs that actually add value to your project.",
+        objectives: ["Redundancy Detection", "Pattern Consistency"],
+        completed: false,
+      },
+      {
+        id: "1-2-2",
+        title: "Understand security risks in AI suggestions",
+        duration: "20 min",
+        content:
+          "AI models can inadvertently suggest code that contains well-known security vulnerabilities, such as SQL injection points, insecure cryptographic defaults, or hardcoded secrets. Because the AI doesn't 'understand' security in the same way a human expert does, it might provide a solution that works but leaves the application exposed to attacks.\n\nIt is the developer's responsibility to perform a security audit on every piece of AI-suggested code before it is merged. This involves using automated linting tools and manual reviews focused on data validation and sanitization. Understanding these risks ensures that you use AI as a productivity booster without compromising the safety and integrity of your user data.",
+        objectives: ["Vulnerability Auditing", "Secure Coding Standards"],
+        completed: false,
+      },
+      {
         id: "1-3",
         title: "AI C.A.R. Prompting Framework",
         duration: "75 min",
@@ -85,6 +133,24 @@ const initialCourses: Course[] = [
           "Refine AI output through iterative prompting",
           "Build a library of effective developer prompts",
         ],
+        completed: false,
+      },
+      {
+        id: "1-3-1",
+        title: "Master the Context-Action-Result structure",
+        duration: "20 min",
+        content:
+          "The C.A.R. framework is designed to provide the AI with the three essential components it needs for high-quality output. 'Context' sets the stage by explaining the project environment and constraints; 'Action' defines exactly what the AI should do (e.g., 'Refactor this function'); and 'Result' specifies the desired format and characteristics of the final output.\n\nBy consistently using this structure, developers can eliminate the ambiguity that leads to poor AI performance. This systematic approach transforms prompting from a trial-and-error process into a predictable engineering discipline, ensuring that the AI understands not just 'what' to build, but 'how' it fits into your broader technical goals.",
+        objectives: ["Component Breakdown", "Framework Application"],
+        completed: false,
+      },
+      {
+        id: "1-3-2",
+        title: "Write precise technical prompts",
+        duration: "15 min",
+        content:
+          "Precision in technical prompting is about using specific terminology and providing clear constraints. Instead of asking for 'a list', specify 'a React component that renders a virtualized list of items with search functionality'. Providing examples of desired inputs and outputs within the prompt can also significantly improve the AI's accuracy.\n\nTechnical precision also includes specifying the libraries and versions you are using, as well as any specific coding standards or design patterns required. This level of detail prevents the AI from making incorrect assumptions and ensures that the generated code is immediately compatible with your existing project structure.",
+        objectives: ["Constraint Specification", "Terminology Accuracy"],
         activities: ["activity goes here"],
         completed: false,
       },
@@ -638,16 +704,18 @@ export default function App() {
 
             <div className="space-y-3">
               <h3 className="font-semibold text-lg">Course Modules</h3>
-              {selectedCourse.lessons.map((lesson) => (
-                <LessonItem
-                  key={lesson.id}
-                  title={lesson.title}
-                  duration={lesson.duration}
-                  completed={lesson.completed}
-                  isActive={lesson.id === selectedLessonId}
-                  onClick={() => handleLessonClick(lesson.id)}
-                />
-              ))}
+              {selectedCourse.lessons
+                .filter((lesson) => lesson.id === "1-1" || lesson.id === "1-2" || lesson.id === "1-3" || (selectedCourse.id !== "1" && lesson.id.split("-").length === 2))
+                .map((lesson) => (
+                  <LessonItem
+                    key={lesson.id}
+                    title={lesson.title}
+                    duration={lesson.duration}
+                    completed={lesson.completed}
+                    isActive={lesson.id === selectedLessonId}
+                    onClick={() => handleLessonClick(lesson.id)}
+                  />
+                ))}
             </div>
           </div>
         )}
@@ -684,6 +752,26 @@ export default function App() {
               onComplete={handleLessonComplete}
               onNext={handleNextLesson}
               onPrevious={handlePreviousLesson}
+              onObjectiveClick={(objective) => {
+                // Find a lesson that matches the objective
+                const targetLesson = selectedCourse.lessons.find(
+                  (l) => l.title.toLowerCase() === objective.toLowerCase(),
+                );
+                
+                if (targetLesson) {
+                  setSelectedLessonId(targetLesson.id);
+                  setCurrentView("lesson");
+                } else {
+                  // Fallback to partial match if exact match not found
+                  const partialMatch = selectedCourse.lessons.find(
+                    (l) => l.title.toLowerCase().includes(objective.toLowerCase())
+                  );
+                  if (partialMatch) {
+                    setSelectedLessonId(partialMatch.id);
+                    setCurrentView("lesson");
+                  }
+                }
+              }}
             />
           </div>
         )}
