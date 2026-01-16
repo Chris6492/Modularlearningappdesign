@@ -22,6 +22,7 @@ interface Lesson {
   duration: string;
   content: string;
   objectives: string[];
+  activities: string[];
   completed: boolean;
 }
 
@@ -55,6 +56,7 @@ const initialCourses: Course[] = [
           "Learn core AI interaction patterns",
           "Identify best use cases for AI assistance",
         ],
+        activities: ["activity goes here"],
         completed: false,
       },
       {
@@ -88,7 +90,17 @@ const initialCourses: Course[] = [
           "Understand security risks in AI suggestions",
           "Implement effective verification strategies",
           "Maintain architectural integrity with AI",
+        title: "Bad AI Coding Practices",
+        duration: "45 min",
+        content:
+          "Learn to identify and avoid common pitfalls when using AI for coding. We'll cover over-reliance, hallucination checks, legal risks , and maintaining code quality.",
+        objectives: [
+          "Blindly trusting AI-generated code",
+          "Bad Prompting and Lack of Context",
+          "Over-Reliance",
+          "Licensing & ip risk",
         ],
+        activities: ["activity goes here"],
         completed: false,
       },
       {
@@ -139,6 +151,7 @@ const initialCourses: Course[] = [
         content:
           "Precision in technical prompting is about using specific terminology and providing clear constraints. Instead of asking for 'a list', specify 'a React component that renders a virtualized list of items with search functionality'. Providing examples of desired inputs and outputs within the prompt can also significantly improve the AI's accuracy.\n\nTechnical precision also includes specifying the libraries and versions you are using, as well as any specific coding standards or design patterns required. This level of detail prevents the AI from making incorrect assumptions and ensures that the generated code is immediately compatible with your existing project structure.",
         objectives: ["Constraint Specification", "Terminology Accuracy"],
+        activities: ["activity goes here"],
         completed: false,
       },
     ],
@@ -163,6 +176,7 @@ const initialCourses: Course[] = [
           "Learn JSX syntax and its benefits",
           "Create your first React component",
         ],
+        activities: ["activity goes here"],
         completed: false,
       },
       {
@@ -177,6 +191,7 @@ const initialCourses: Course[] = [
           "Compose components effectively",
           "Implement conditional rendering",
         ],
+        activities: ["activity goes here"],
         completed: false,
       },
       {
@@ -191,6 +206,37 @@ const initialCourses: Course[] = [
           "Use useEffect for side effects",
           "Handle component lifecycle properly",
         ],
+        activities: ["activity goes here"],
+        completed: false,
+      },
+      {
+        id: "2-4",
+        title: "Handling Events",
+        duration: "45 min",
+        content:
+          "Learn how to handle user interactions in React applications, from simple clicks to complex form submissions.\n\nWhat you'll learn:\n- Event handling in React\n- Synthetic events\n- Event binding\n- Form handling\n- Controlled components\n- Event pooling\n\nEvent handling in React is slightly different from vanilla JavaScript, but more consistent and powerful once you understand the patterns.",
+        objectives: [
+          "Handle various user events",
+          "Create controlled form components",
+          "Manage form state effectively",
+          "Implement event handlers properly",
+        ],
+        activities: ["activity goes here"],
+        completed: false,
+      },
+      {
+        id: "2-5",
+        title: "Building a React App",
+        duration: "120 min",
+        content:
+          "Apply everything you've learned to build a complete React application. This project will incorporate components, state, props, and event handling.\n\nProject features:\n- Multi-component architecture\n- State management\n- User interactions\n- Data flow patterns\n- Styling React components\n- Deployment basics\n\nThis comprehensive project will tie together all the concepts you've learned and give you practical experience building a real-world React application.",
+        objectives: [
+          "Build a complete React application",
+          "Implement proper component architecture",
+          "Manage application state",
+          "Style and deploy a React app",
+        ],
+        activities: ["activity goes here"],
         completed: false,
       },
     ],
@@ -215,6 +261,7 @@ const initialCourses: Course[] = [
           "Work with variables and data types",
           "Write your first Python programs",
         ],
+        activities: ["activity goes here"],
         completed: false,
       },
       {
@@ -229,6 +276,7 @@ const initialCourses: Course[] = [
           "Apply boolean logic",
           "Write efficient list comprehensions",
         ],
+        activities: ["activity goes here"],
         completed: false,
       },
       {
@@ -243,6 +291,37 @@ const initialCourses: Course[] = [
           "Import and use modules",
           "Create custom modules",
         ],
+        activities: ["activity goes here"],
+        completed: false,
+      },
+      {
+        id: "3-4",
+        title: "Data Structures",
+        duration: "80 min",
+        content:
+          "Master Python's powerful built-in data structures: lists, tuples, dictionaries, and sets.\n\nCoverage includes:\n- Lists and list methods\n- Tuples and their uses\n- Dictionaries for key-value storage\n- Sets for unique collections\n- Choosing the right data structure\n- Common operations and patterns\n\nUnderstanding data structures is crucial for solving programming problems efficiently and writing performant code.",
+        objectives: [
+          "Work with lists, tuples, and dictionaries",
+          "Understand when to use each structure",
+          "Perform common data operations",
+          "Solve problems with appropriate structures",
+        ],
+        activities: ["activity goes here"],
+        completed: false,
+      },
+      {
+        id: "3-5",
+        title: "Python Project: Data Analysis",
+        duration: "150 min",
+        content:
+          "Build a complete Python project that analyzes data, creates visualizations, and generates reports.\n\nProject scope:\n- Reading data from files\n- Processing and analyzing data\n- Using libraries like pandas\n- Creating visualizations\n- Generating reports\n- Best practices and code organization\n\nThis hands-on project will give you practical experience and demonstrate how Python is used in real-world data analysis scenarios.",
+        objectives: [
+          "Build a complete Python application",
+          "Work with external libraries",
+          "Process and analyze data",
+          "Create meaningful visualizations",
+        ],
+        activities: ["activity goes here"],
         completed: false,
       },
     ],
@@ -267,6 +346,7 @@ const initialCourses: Course[] = [
           "Identify user needs",
           "Recognize good design principles",
         ],
+        activities: ["activity goes here"],
         completed: false,
       },
       {
@@ -281,6 +361,7 @@ const initialCourses: Course[] = [
           "Choose appropriate typography",
           "Ensure accessibility",
         ],
+        activities: ["activity goes here"],
         completed: false,
       },
       {
@@ -295,6 +376,37 @@ const initialCourses: Course[] = [
           "Create responsive layouts",
           "Balance visual elements",
         ],
+        activities: ["activity goes here"],
+        completed: false,
+      },
+      {
+        id: "4-4",
+        title: "User Research and Testing",
+        duration: "50 min",
+        content:
+          "Great design is based on understanding real users. Learn research methods and testing techniques to validate your designs.\n\nMethods covered:\n- User interviews\n- Surveys and questionnaires\n- Usability testing\n- A/B testing\n- Analytics and metrics\n- Iterative design process\n\nUser research removes guesswork from design decisions and ensures you're building something people actually need and want.",
+        objectives: [
+          "Conduct user research",
+          "Perform usability testing",
+          "Analyze user feedback",
+          "Iterate based on data",
+        ],
+        activities: ["activity goes here"],
+        completed: false,
+      },
+      {
+        id: "4-5",
+        title: "Design Project: Mobile App",
+        duration: "120 min",
+        content:
+          "Apply all your UI/UX knowledge to design a complete mobile app from concept to high-fidelity mockups.\n\nProject phases:\n- User research and personas\n- Information architecture\n- Wireframing\n- Visual design\n- Prototyping\n- Presentation and documentation\n\nThis comprehensive project will give you a portfolio-ready case study demonstrating your UI/UX design skills.",
+        objectives: [
+          "Complete a full design project",
+          "Apply research methods",
+          "Create wireframes and mockups",
+          "Build an interactive prototype",
+        ],
+        activities: ["activity goes here"],
         completed: false,
       },
     ],
@@ -624,6 +736,7 @@ export default function App() {
               title={selectedLesson.title}
               content={selectedLesson.content}
               objectives={selectedLesson.objectives}
+              activities={selectedLesson.activities}
               completed={selectedLesson.completed}
               hasNext={
                 selectedCourse.lessons.findIndex(

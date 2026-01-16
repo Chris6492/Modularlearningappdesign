@@ -15,29 +15,44 @@ A React + TypeScript learning platform UI built with Vite, Tailwind CSS, and sha
 src/
 ├── app/
 │   ├── components/
-│   │   ├── ui/          # shadcn/ui components
-│   │   ├── figma/       # Figma-exported components
+│   │   ├── figma/        # Figma-exported components
+│   │   ├── ui/           # UI primitives (shadcn/ui style)
 │   │   ├── CourseCard.tsx
 │   │   ├── LessonContent.tsx
 │   │   ├── LessonItem.tsx
 │   │   └── StatsCard.tsx
-│   └── App.tsx          # Main application component
+│   └── App.tsx           # Main application component
 ├── styles/
 │   ├── fonts.css
 │   ├── index.css
 │   ├── tailwind.css
 │   └── theme.css
-└── main.tsx             # Application entry point
+└── main.tsx              # Application entry point
 ```
 
+### Key Files
+- `vite.config.ts` - Vite configuration with React and Tailwind plugins
+- `index.html` - HTML entry point
+- `package.json` - Dependencies and scripts
+
 ## Development
-- **Dev Server**: `npm run dev` - Runs Vite dev server on port 5000
-- **Build**: `npm run build` - Builds for production
 
-## Configuration
-- Vite configured with React and Tailwind plugins
-- Path alias `@` maps to `./src` directory
-- Dev server configured to allow all hosts for Replit compatibility
+### Running Locally
+The application runs on port 5000 with the command:
+```bash
+npm run dev
+```
 
-## Deployment
-Static site deployment - build output goes to `dist/` directory
+### Building for Production
+```bash
+npm run build
+```
+
+## Recent Changes
+- Initial import and Replit environment setup
+- Configured Vite for Replit proxy compatibility (allowedHosts: true)
+- Added TypeScript configuration (tsconfig.json, tsconfig.node.json)
+- Installed React and React-DOM as regular dependencies
+
+## User Preferences
+- None documented yet
