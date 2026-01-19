@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import {
   ArrowLeft,
   GraduationCap,
@@ -7,10 +6,13 @@ import {
   User,
   BookOpen,
   Clock,
+  Calendar as CalendarIcon,
 } from "lucide-react";
 import { Button } from "./components/ui/button";
 import { Input } from "./components/ui/input";
+import {Table} from "./components/ui/table";  
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "./components/ui/tabs";
+import { Calendar } from "./components/ui/calendar";
 import { CourseCard } from "./components/CourseCard";
 import { LessonItem } from "./components/LessonItem";
 import { LessonContent } from "./components/LessonContent";
@@ -38,7 +40,7 @@ interface Course {
 const initialCourses: Course[] = [
   {
     id: "1",
-    title: "Introduction to AI Software Development",
+    title: "What AI Is (and Isn’t) in Software Development",
     description:
       "Master the essentials of AI-assisted development, from foundational skills to advanced prompting frameworks and identifying bad practices.",
     category: "AI Development",
@@ -403,7 +405,7 @@ const initialCourses: Course[] = [
   },
 ];
 
-type View = "dashboard" | "course" | "lesson";
+type View = "dashboard" | "course" | "lesson" | "schedule";
 
 export default function App() {
   const [courses, setCourses] = useState(initialCourses);
@@ -412,6 +414,7 @@ export default function App() {
   const [selectedLessonId, setSelectedLessonId] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [activeTab, setActiveTab] = useState("all");
+  const [date, setDate] = useState<Date | undefined>(new Date());
 
   const selectedCourse = courses.find((c) => c.id === selectedCourseId);
   const selectedLesson = selectedCourse?.lessons.find(
@@ -538,6 +541,22 @@ export default function App() {
               </div>
             </div>
             <div className="flex items-center gap-2">
+              <Button
+                variant={currentView === "dashboard" ? "secondary" : "ghost"}
+                size="icon"
+                onClick={() => setCurrentView("dashboard")}
+                title="Dashboard"
+              >
+                <LayoutDashboard className="h-5 w-5" />
+              </Button>
+              <Button
+                variant={currentView === "schedule" ? "secondary" : "ghost"}
+                size="icon"
+                onClick={() => setCurrentView("schedule")}
+                title="Schedule"
+              >
+                <CalendarIcon className="h-5 w-5" />
+              </Button>
               <Button variant="ghost" size="icon">
                 <User className="h-5 w-5" />
               </Button>
@@ -630,6 +649,68 @@ export default function App() {
                 </p>
               </div>
             )}
+          </div>
+        )}
+
+        {/* Schedule View */}
+        {currentView === "schedule" && (
+          <div className="space-y-8">
+            <div className="flex items-center justify-between">
+              <div>
+                <h2 className="text-3xl font-bold mb-2">Learning Schedule</h2>
+                <p className="text-muted-foreground">Plan and track your study sessions.</p>
+              </div>
+              <Button onClick={() => setCurrentView("dashboard")}>
+                <ArrowLeft className="h-4 w-4 mr-2" />
+                Back to Dashboard
+              </Button>
+            </div>
+            
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              <div className="lg:col-span-1">
+                <div className="bg-card p-6 rounded-xl border shadow-sm">
+                  <h3 className="font-semibold mb-4">Select Date</h3>
+                  <Calendar
+                    mode="single"
+                    selected={date}
+                    onSelect={setDate}
+                    className="rounded-md border shadow mx-auto"
+                  />
+                </div>
+              </div>
+              
+              <div className="lg:col-span-2 space-y-4">
+                <div className="bg-card p-6 rounded-xl border shadow-sm">
+                  <h3 className="font-semibold mb-4">
+                    Events for {date?.toLocaleDateString()}
+                  </h3>
+                  <div className="space-y-4">
+                    <div className="flex items-start gap-4 p-4 rounded-lg bg-primary/10 border border-primary/20">
+                      <div className="bg-primary text-primary-foreground p-2 rounded-lg">
+                        <Clock className="h-4 w-4" />
+                      </div>
+                      <div>
+                        <p className="font-medium">AI Foundational Skills</p>
+                        <p className="text-sm text-muted-foreground">10:00 AM - 11:30 AM</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-4 p-4 rounded-lg bg-secondary/50 border border-border">
+                      <div className="bg-secondary text-secondary-foreground p-2 rounded-lg">
+                        <Clock className="h-4 w-4" />
+                      </div>
+                      <div>
+                        <p className="font-medium">React Hooks Deep Dive</p>
+                        <p className="text-sm text-muted-foreground">2:00 PM - 3:30 PM</p>
+                      </div>
+                    </div>
+                    <p className="text-sm text-muted-foreground italic text-center py-4">
+                      No more events scheduled for this day.
+                    </p>
+                  </div>
+                  <Button className="w-full mt-6" variant="outline">Add New Study Session</Button>
+                </div>
+              </div>
+            </div>
           </div>
         )}
 
