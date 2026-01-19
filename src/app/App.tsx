@@ -174,7 +174,7 @@ const initialCourses: Course[] = [
         title: "Components and Props",
         duration: "60 min",
         content:
-          "Components are the building blocks of React applications. Learn how to create reusable components and pass data between them using props.\n\nTopics covered:\n- Function vs Class components\n- Props and prop validation\n- Component composition\n- Children props\n- Conditional rendering\n\nUnderstanding components and props is fundamental to building React applications. You'll learn how to break down complex UIs into manageable, reusable pieces.",
+          "Components are the building blocks of React applications. Learn how to create reusable components and pass data between them using props.\n\nTopics covered:\n- Function vs Class components\n- Props and prop validation\n- Component composition\n- Children props\n- Conditional rendering\n\nUnderstanding components and props is fundamental to building more React applications. You'll learn how to break down complex UIs into manageable, reusable pieces.",
         objectives: [
           "Create functional and class components",
           "Pass and validate props",
