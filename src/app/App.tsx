@@ -120,6 +120,12 @@ const initialCourses: Course[] = [
           "Over-Reliance",
           "Licensing & ip risk",
         ],
+        objectiveDetails: {
+          "Blindly trusting AI-generated code": {
+            title: "The Trust Trap",
+            description: "Understanding why developer oversight is mandatory and how to perform effective code reviews on AI suggestions."
+          }
+        },
         activities: ["activity goes here"],
         completed: false,
       },
