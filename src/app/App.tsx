@@ -20,12 +20,18 @@ import { LessonContent } from "./components/LessonContent";
 import { StatsCard } from "./components/StatsCard";
 import { ObjectiveView } from "./components/ObjectiveView";
 
+interface ObjectiveDetail {
+  title: string;
+  description: string;
+}
+
 interface Lesson {
   id: string;
   title: string;
   duration: string;
   content: string;
   objectives: string[];
+  objectiveDetails?: Record<string, ObjectiveDetail>;
   activities: string[];
   completed: boolean;
 }
@@ -60,6 +66,24 @@ const initialCourses: Course[] = [
           "Learn core AI interaction patterns",
           "Identify best use cases for AI assistance",
         ],
+        objectiveDetails: {
+          "Understand LLM basics for developers": {
+            title: "LLM Fundamentals",
+            description: "Deep dive into how Large Language Models work, tokenization, and their probabilistic nature."
+          },
+          "Set up AI development tools": {
+            title: "Toolchain Configuration",
+            description: "Properly configuring your IDE and CLI tools to leverage AI assistance effectively."
+          },
+          "Learn core AI interaction patterns": {
+            title: "Interaction Design",
+            description: "Mastering zero-shot, few-shot, and chain-of-thought prompting for better code generation."
+          },
+          "Identify best use cases for AI assistance": {
+            title: "Value Recognition",
+            description: "Learning where AI excels and where human intervention is critical in the dev lifecycle."
+          }
+        },
         activities: ["activity goes here"],
         completed: false,
       },
@@ -848,6 +872,7 @@ export default function App() {
           <div className="space-y-6">
             <ObjectiveView
               objective={selectedObjective}
+              description={selectedLesson.objectiveDetails?.[selectedObjective]?.description || "No description available for this objective."}
               lessonTitle={selectedLesson.title}
               onBack={() => setCurrentView("lesson")}
             />

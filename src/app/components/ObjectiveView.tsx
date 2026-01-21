@@ -1,18 +1,16 @@
 import React from "react";
-import { ArrowLeft, Send } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { Button } from "./ui/button";
-import { Textarea } from "./ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "./ui/card";
 
 interface ObjectiveViewProps {
   objective: string;
+  description: string;
   lessonTitle: string;
   onBack: () => void;
 }
 
-export function ObjectiveView({ objective, lessonTitle, onBack }: ObjectiveViewProps) {
-  const [note, setNote] = React.useState("");
-
+export function ObjectiveView({ objective, description, lessonTitle, onBack }: ObjectiveViewProps) {
   return (
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
       <div className="flex items-center gap-4">
@@ -27,24 +25,15 @@ export function ObjectiveView({ objective, lessonTitle, onBack }: ObjectiveViewP
 
       <Card>
         <CardHeader>
-          <CardTitle>Take Notes</CardTitle>
+          <CardTitle>{objective}</CardTitle>
           <CardDescription>
-            Record your thoughts, questions, or key takeaways for this learning objective.
+            Detailed overview of this learning objective.
           </CardDescription>
         </CardHeader>
-        <CardContent className="space-y-4">
-          <Textarea
-            placeholder="Type your notes here..."
-            className="min-h-[300px] resize-none focus-visible:ring-primary"
-            value={note}
-            onChange={(e) => setNote(e.target.value)}
-          />
-          <div className="flex justify-end">
-            <Button className="gap-2">
-              <Send className="h-4 w-4" />
-              Save Note
-            </Button>
-          </div>
+        <CardContent className="prose prose-slate max-w-none">
+          <p className="text-muted-foreground leading-relaxed">
+            {description}
+          </p>
         </CardContent>
       </Card>
     </div>
