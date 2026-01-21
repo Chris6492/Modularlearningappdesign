@@ -130,16 +130,6 @@ const initialCourses: Course[] = [
         completed: false,
       },
       {
-        id: "1-2-2",
-        title: "Understand security risks in AI suggestions",
-        duration: "20 min",
-        content:
-          "AI models can inadvertently suggest code that contains well-known security vulnerabilities, such as SQL injection points, insecure cryptographic defaults, or hardcoded secrets. Because the AI doesn't 'understand' security in the same way a human expert does, it might provide a solution that works but leaves the application exposed to attacks.\n\nIt is the developer's responsibility to perform a security audit on every piece of AI-suggested code before it is merged. This involves using automated linting tools and manual reviews focused on data validation and sanitization. Understanding these risks ensures that you use AI as a productivity booster without compromising the safety and integrity of your user data.",
-        objectives: ["Vulnerability Auditing", "Secure Coding Standards"],
-        activities: [],
-        completed: false,
-      },
-      {
         id: "1-3",
         title: "AI C.A.R. Prompting Framework",
         duration: "75 min",
