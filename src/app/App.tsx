@@ -124,16 +124,6 @@ const initialCourses: Course[] = [
         completed: false,
       },
       {
-        id: "1-2-1",
-        title: "Identify AI-generated code smells",
-        duration: "15 min",
-        content:
-          "AI-generated code often exhibits specific 'smells' that differ from human-written errors. These include overly verbose logic, the use of deprecated library patterns, or perfectly syntactical code that is logically detached from the rest of the application. Developers must learn to recognize these patterns to prevent 'code bloat' and maintain a clean, readable codebase while leveraging AI assistance.\n\nCommon signs of AI-generated smells include repetitive variable naming and the inclusion of unnecessary utility functions that already exist in the project's standard library. By developing an eye for these specific issues, you can quickly filter out low-quality AI suggestions and focus on refining the outputs that actually add value to your project.",
-        objectives: ["Redundancy Detection", "Pattern Consistency"],
-        activities: [],
-        completed: false,
-      },
-      {
         id: "1-2-2",
         title: "Understand security risks in AI suggestions",
         duration: "20 min",
