@@ -25,7 +25,7 @@ interface Lesson {
   duration: string;
   content: string;
   objectives: string[];
-  activities: string[];
+  activities?: string[];
   completed: boolean;
 }
 
@@ -69,6 +69,7 @@ const initialCourses: Course[] = [
         content:
           "Large Language Models (LLMs) are a type of artificial intelligence trained on vast amounts of text data. For developers, understanding LLMs means recognizing they are probabilistic next-token predictors, not reasoning engines with consciousness. This fundamental distinction is crucial for setting realistic expectations and designing effective AI-integrated systems.\n\nWhen working with LLMs, developers should focus on their ability to handle unstructured data, perform translation tasks, and assist in code generation while being mindful of their limitations, such as hallucinations and context window constraints. Mastering the interface between deterministic code and probabilistic AI outputs is the key to building robust AI-enhanced applications.",
         objectives: ["Neural Network Foundations", "Tokenization and Embeddings"],
+        activities: ["activity goes here"],
         completed: false,
       },
       
@@ -79,6 +80,7 @@ const initialCourses: Course[] = [
         content:
           "Effective interaction with AI requires moving beyond simple questions to structured interaction patterns. Patterns like 'Chain of Thought' prompting, where you ask the AI to explain its reasoning step-by-step, can lead to much more reliable complex code outputs. Another powerful pattern is the 'Flipped Interaction', where you ask the AI to interview you about your requirements before it generates any code.\n\nUnderstanding these interaction patterns allows developers to treat the AI as a junior partner rather than just a search engine. By providing clear constraints and using iterative refinement, you can guide the AI to produce production-ready code that adheres to your specific design patterns and architectural standards.",
         objectives: ["Chain of Thought Prompting", "Iterative Refinement"],
+        activities: ["activity goes here"],
         completed: false,
       },
       {
@@ -103,6 +105,7 @@ const initialCourses: Course[] = [
         content:
           "AI-generated code often exhibits specific 'smells' that differ from human-written errors. These include overly verbose logic, the use of deprecated library patterns, or perfectly syntactical code that is logically detached from the rest of the application. Developers must learn to recognize these patterns to prevent 'code bloat' and maintain a clean, readable codebase while leveraging AI assistance.\n\nCommon signs of AI-generated smells include repetitive variable naming and the inclusion of unnecessary utility functions that already exist in the project's standard library. By developing an eye for these specific issues, you can quickly filter out low-quality AI suggestions and focus on refining the outputs that actually add value to your project.",
         objectives: ["Redundancy Detection", "Pattern Consistency"],
+        activities: ["activity goes here"],
         completed: false,
       },
       {
@@ -112,6 +115,7 @@ const initialCourses: Course[] = [
         content:
           "AI models can inadvertently suggest code that contains well-known security vulnerabilities, such as SQL injection points, insecure cryptographic defaults, or hardcoded secrets. Because the AI doesn't 'understand' security in the same way a human expert does, it might provide a solution that works but leaves the application exposed to attacks.\n\nIt is the developer's responsibility to perform a security audit on every piece of AI-suggested code before it is merged. This involves using automated linting tools and manual reviews focused on data validation and sanitization. Understanding these risks ensures that you use AI as a productivity booster without compromising the safety and integrity of your user data.",
         objectives: ["Vulnerability Auditing", "Secure Coding Standards"],
+        activities: ["activity goes here"],
         completed: false,
       },
       {
@@ -126,6 +130,7 @@ const initialCourses: Course[] = [
           "Refine AI output through iterative prompting",
           "Build a library of effective developer prompts",
         ],
+        activities: ["activity goes here"],
         completed: false,
       },
       {
@@ -135,6 +140,7 @@ const initialCourses: Course[] = [
         content:
           "The C.A.R. framework is designed to provide the AI with the three essential components it needs for high-quality output. 'Context' sets the stage by explaining the project environment and constraints; 'Action' defines exactly what the AI should do (e.g., 'Refactor this function'); and 'Result' specifies the desired format and characteristics of the final output.\n\nBy consistently using this structure, developers can eliminate the ambiguity that leads to poor AI performance. This systematic approach transforms prompting from a trial-and-error process into a predictable engineering discipline, ensuring that the AI understands not just 'what' to build, but 'how' it fits into your broader technical goals.",
         objectives: ["Component Breakdown", "Framework Application"],
+        activities: ["activity goes here"],
         completed: false,
       },
       {
