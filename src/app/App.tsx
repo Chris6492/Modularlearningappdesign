@@ -182,9 +182,17 @@ const initialCourses: Course[] = [
         duration: "20 min",
         content:"",
         objectives: ["Constraint Specification", "Terminology Accuracy"],
+        objectiveDetails: {
+          "Understand LLM basics for developers": {
+            title: "LLM Fundamentals",
+            description:
+              "Deep dive into how Large Language Models work, tokenization, and their probabilistic nature.",
+          },
+        },
             activities: ["activity goes here"],
             completed: false,
       },
+      
       {
         id:"1-4-1",
         title: "esa",
@@ -596,6 +604,7 @@ export default function App() {
                     lesson.id === "1-1" ||
                     lesson.id === "1-2" ||
                     lesson.id === "1-3" ||
+                    lesson.id === "1-4" ||
                     (selectedCourse.id !== "1" &&
                       lesson.id.split("-").length === 2),
                 )
