@@ -169,7 +169,7 @@ const initialCourses: Course[] = [
           "Master the Context-Action-Result structure": {
             title: "LLM Fundamentals",
             description:
-              "Deep dive into how Large Language Models work, tokenization, and their probabilistic nature.",
+              "zzzzzzzDeep dive into how Large Language Models work, tokenization, and their probabilistic nature.",
           },
           "Write precise technical prompts": {
             title: "LLM Fundamentals",
@@ -187,26 +187,6 @@ const initialCourses: Course[] = [
           },
         },
         activities: [],
-        completed: false,
-      },
-      {
-        id: "1-3-1",
-        title: "Master the Context-Action-Result structure",
-        duration: "20 min",
-        content:
-          "The C.A.R. framework is designed to provide the AI with the three essential components it needs for high-quality output. 'Context' sets the stage by explaining the project environment and constraints; 'Action' defines exactly what the AI should do (e.g., 'Refactor this function'); and 'Result' specifies the desired format and characteristics of the final output.\n\nBy consistently using this structure, developers can eliminate the ambiguity that leads to poor AI performance. This systematic approach transforms prompting from a trial-and-error process into a predictable engineering discipline, ensuring that the AI understands not just 'what' to build, but 'how' it fits into your broader technical goals.",
-        objectives: ["Component Breakdown", "Framework Application"],
-        activities: [],
-        completed: false,
-      },
-      {
-        id: "1-3-2",
-        title: "Write precise technical prompts",
-        duration: "15 min",
-        content:
-          "Precision in technical prompting is about using specific terminology and providing clear constraints. Instead of asking for 'a list', specify 'a React component that renders a virtualized list of items with search functionality'. Providing examples of desired inputs and outputs within the prompt can also significantly improve the AI's accuracy.\n\nTechnical precision also includes specifying the libraries and versions you are using, as well as any specific coding standards or design patterns required. This level of detail prevents the AI from making incorrect assumptions and ensures that the generated code is immediately compatible with your existing project structure.",
-        objectives: ["Constraint Specification", "Terminology Accuracy"],
-        activities: ["activity goes here"],
         completed: false,
       },
       {
