@@ -8,6 +8,7 @@ import {
   BookOpen,
   Clock,
   Calendar as CalendarIcon,
+  Avatar,
 } from "lucide-react";
 import { Button } from "./components/ui/button";
 import { Input } from "./components/ui/input";
@@ -15,6 +16,7 @@ import {Table} from "./components/ui/table";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "./components/ui/tabs";
 import { Calendar } from "./components/ui/calendar";
 import { CourseCard } from "./components/CourseCard";
+import {avatar} from "./components/ui/avatar"
 import { LessonItem } from "./components/LessonItem";
 import { LessonContent } from "./components/LessonContent";
 import { StatsCard } from "./components/StatsCard";
@@ -147,263 +149,31 @@ const initialCourses: Course[] = [
         activities: ["activity goes here"],
         completed: false,
       },
-    ],
-  },
-  {
-    id: "2",
-    title: "React for Beginners",
-    description:
-      "Master the popular React library and build dynamic, interactive user interfaces.",
-    category: "Frontend Framework",
-    duration: "8 hours",
-    lessons: [
       {
-        id: "2-1",
-        title: "Introduction to React",
-        duration: "40 min",
-        content:
-          "React is a powerful JavaScript library for building user interfaces. Created by Facebook, it has become one of the most popular tools for frontend development.\n\nIn this introduction, you'll learn:\n- What is React and why use it?\n- Component-based architecture\n- Virtual DOM concepts\n- JSX syntax\n- Setting up your development environment\n\nReact revolutionized how we build web applications by introducing a component-based approach that makes code more reusable and maintainable.",
-        objectives: [
-          "Understand React's core concepts",
-          "Set up a React development environment",
-          "Learn JSX syntax and its benefits",
-          "Create your first React component",
-        ],
-        activities: ["activity goes here"],
-        completed: false,
+        id:"1-4",
+        title: "Refine AI output through iterative prompting",
+        duration: "20 min",
+        content:"",
+        objectives: ["Constraint Specification", "Terminology Accuracy"],
+            activities: ["activity goes here"],
+            completed: false,
       },
       {
-        id: "2-2",
-        title: "Components and Props",
-        duration: "60 min",
-        content:
-          "Components are the building blocks of React applications. Learn how to create reusable components and pass data between them using props.\n\nTopics covered:\n- Function vs Class components\n- Props and prop validation\n- Component composition\n- Children props\n- Conditional rendering\n\nUnderstanding components and props is fundamental to building React applications. You'll learn how to break down complex UIs into manageable, reusable pieces.",
-        objectives: [
-          "Create functional and class components",
-          "Pass and validate props",
-          "Compose components effectively",
-          "Implement conditional rendering",
-        ],
-        activities: ["activity goes here"],
-        completed: false,
-      },
-      {
-        id: "2-3",
-        title: "State and Lifecycle",
-        duration: "75 min",
-        content:
-          "State management is crucial for building interactive applications. Learn how to manage component state and understand the React lifecycle.\n\nKey concepts:\n- useState Hook\n- State vs Props\n- Lifting state up\n- useEffect Hook\n- Component lifecycle methods\n- Side effects and cleanup\n\nMastering state and lifecycle will enable you to build truly interactive and dynamic applications that respond to user input and external data.",
-        objectives: [
-          "Manage component state with hooks",
-          "Understand state vs props",
-          "Use useEffect for side effects",
-          "Handle component lifecycle properly",
-        ],
-        activities: ["activity goes here"],
-        completed: false,
-      },
-      {
-        id: "2-4",
-        title: "Handling Events",
-        duration: "45 min",
-        content:
-          "Learn how to handle user interactions in React applications, from simple clicks to complex form submissions.\n\nWhat you'll learn:\n- Event handling in React\n- Synthetic events\n- Event binding\n- Form handling\n- Controlled components\n- Event pooling\n\nEvent handling in React is slightly different from vanilla JavaScript, but more consistent and powerful once you understand the patterns.",
-        objectives: [
-          "Handle various user events",
-          "Create controlled form components",
-          "Manage form state effectively",
-          "Implement event handlers properly",
-        ],
-        activities: ["activity goes here"],
-        completed: false,
-      },
-      {
-        id: "2-5",
-        title: "Building a React App",
-        duration: "120 min",
-        content:
-          "Apply everything you've learned to build a complete React application. This project will incorporate components, state, props, and event handling.\n\nProject features:\n- Multi-component architecture\n- State management\n- User interactions\n- Data flow patterns\n- Styling React components\n- Deployment basics\n\nThis comprehensive project will tie together all the concepts you've learned and give you practical experience building a real-world React application.",
-        objectives: [
-          "Build a complete React application",
-          "Implement proper component architecture",
-          "Manage application state",
-          "Style and deploy a React app",
-        ],
-        activities: ["activity goes here"],
-        completed: false,
+        id:"1-4-1",
+        title: "esa",
+        duration: "10 min",
+        content:"",
+        objectives: ["Constraint Specification", "Terminology Accuracy"],
+            activities: ["activity goes here"],
+            completed: false,
       },
     ],
+    
   },
-  {
-    id: "3",
-    title: "Python Programming Essentials",
-    description:
-      "Learn Python from scratch and understand programming fundamentals with hands-on projects.",
-    category: "Programming",
-    duration: "10 hours",
-    lessons: [
-      {
-        id: "3-1",
-        title: "Python Basics",
-        duration: "50 min",
-        content:
-          "Python is one of the most popular programming languages, known for its simplicity and versatility. It's used in web development, data science, automation, and more.\n\nIn this lesson:\n- Installing Python and setting up your environment\n- Python syntax and basic operations\n- Variables and data types\n- Input and output\n- Basic operators\n\nPython's clear syntax makes it an excellent first programming language, while its powerful libraries make it a tool that professionals use every day.",
-        objectives: [
-          "Set up Python development environment",
-          "Understand Python syntax",
-          "Work with variables and data types",
-          "Write your first Python programs",
-        ],
-        activities: ["activity goes here"],
-        completed: false,
-      },
-      {
-        id: "3-2",
-        title: "Control Flow and Logic",
-        duration: "60 min",
-        content:
-          "Learn to control the flow of your programs using conditionals and loops, essential skills for any programmer.\n\nTopics:\n- If/elif/else statements\n- Boolean logic\n- For loops\n- While loops\n- Break and continue\n- List comprehensions\n\nControl flow allows your programs to make decisions and repeat tasks, making them dynamic and powerful.",
-        objectives: [
-          "Use conditional statements effectively",
-          "Implement different types of loops",
-          "Apply boolean logic",
-          "Write efficient list comprehensions",
-        ],
-        activities: ["activity goes here"],
-        completed: false,
-      },
-      {
-        id: "3-3",
-        title: "Functions and Modules",
-        duration: "70 min",
-        content:
-          "Functions are reusable blocks of code that make your programs more organized and efficient. Learn to write functions and use Python's extensive module system.\n\nWhat you'll learn:\n- Defining functions\n- Parameters and arguments\n- Return values\n- Scope and namespaces\n- Built-in functions\n- Importing modules\n- Creating your own modules\n\nFunctions are fundamental to writing clean, maintainable code. Modules help you organize and reuse code across projects.",
-        objectives: [
-          "Write and call functions",
-          "Use function parameters and returns",
-          "Import and use modules",
-          "Create custom modules",
-        ],
-        activities: ["activity goes here"],
-        completed: false,
-      },
-      {
-        id: "3-4",
-        title: "Data Structures",
-        duration: "80 min",
-        content:
-          "Master Python's powerful built-in data structures: lists, tuples, dictionaries, and sets.\n\nCoverage includes:\n- Lists and list methods\n- Tuples and their uses\n- Dictionaries for key-value storage\n- Sets for unique collections\n- Choosing the right data structure\n- Common operations and patterns\n\nUnderstanding data structures is crucial for solving programming problems efficiently and writing performant code.",
-        objectives: [
-          "Work with lists, tuples, and dictionaries",
-          "Understand when to use each structure",
-          "Perform common data operations",
-          "Solve problems with appropriate structures",
-        ],
-        activities: ["activity goes here"],
-        completed: false,
-      },
-      {
-        id: "3-5",
-        title: "Python Project: Data Analysis",
-        duration: "150 min",
-        content:
-          "Build a complete Python project that analyzes data, creates visualizations, and generates reports.\n\nProject scope:\n- Reading data from files\n- Processing and analyzing data\n- Using libraries like pandas\n- Creating visualizations\n- Generating reports\n- Best practices and code organization\n\nThis hands-on project will give you practical experience and demonstrate how Python is used in real-world data analysis scenarios.",
-        objectives: [
-          "Build a complete Python application",
-          "Work with external libraries",
-          "Process and analyze data",
-          "Create meaningful visualizations",
-        ],
-        activities: ["activity goes here"],
-        completed: false,
-      },
-    ],
-  },
-  {
-    id: "4",
-    title: "UI/UX Design Principles",
-    description:
-      "Discover the fundamentals of user interface and experience design to create beautiful, intuitive products.",
-    category: "Design",
-    duration: "5 hours",
-    lessons: [
-      {
-        id: "4-1",
-        title: "Introduction to UI/UX",
-        duration: "40 min",
-        content:
-          "User Interface (UI) and User Experience (UX) design are crucial for creating products that people love to use. Learn the difference and why both matter.\n\nFoundational concepts:\n- What is UI vs UX?\n- The design thinking process\n- Understanding user needs\n- Design principles overview\n- Tools of the trade\n\nGood design is invisible - it makes complex tasks feel simple and intuitive. Learn how to create experiences that delight users.",
-        objectives: [
-          "Understand UI and UX fundamentals",
-          "Learn the design thinking process",
-          "Identify user needs",
-          "Recognize good design principles",
-        ],
-        activities: ["activity goes here"],
-        completed: false,
-      },
-      {
-        id: "4-2",
-        title: "Color Theory and Typography",
-        duration: "55 min",
-        content:
-          "Master the visual fundamentals of design: color and typography. These elements create the mood, hierarchy, and personality of your designs.\n\nLearn about:\n- Color psychology\n- Color schemes and palettes\n- Typography basics\n- Font pairing\n- Visual hierarchy\n- Accessibility considerations\n\nThe right colors and fonts can make or break a design. Learn to choose and combine them effectively.",
-        objectives: [
-          "Apply color theory principles",
-          "Create effective color schemes",
-          "Choose appropriate typography",
-          "Ensure accessibility",
-        ],
-        activities: ["activity goes here"],
-        completed: false,
-      },
-      {
-        id: "4-3",
-        title: "Layout and Composition",
-        duration: "60 min",
-        content:
-          "Learn to arrange elements effectively using proven layout principles and composition techniques.\n\nKey topics:\n- Grid systems\n- White space and balance\n- Visual weight and emphasis\n- Alignment and proximity\n- Responsive design principles\n- Mobile-first approach\n\nLayout determines how users navigate and understand your design. Master these principles to create clear, usable interfaces.",
-        objectives: [
-          "Use grid systems effectively",
-          "Apply composition principles",
-          "Create responsive layouts",
-          "Balance visual elements",
-        ],
-        activities: ["activity goes here"],
-        completed: false,
-      },
-      {
-        id: "4-4",
-        title: "User Research and Testing",
-        duration: "50 min",
-        content:
-          "Great design is based on understanding real users. Learn research methods and testing techniques to validate your designs.\n\nMethods covered:\n- User interviews\n- Surveys and questionnaires\n- Usability testing\n- A/B testing\n- Analytics and metrics\n- Iterative design process\n\nUser research removes guesswork from design decisions and ensures you're building something people actually need and want.",
-        objectives: [
-          "Conduct user research",
-          "Perform usability testing",
-          "Analyze user feedback",
-          "Iterate based on data",
-        ],
-        activities: ["activity goes here"],
-        completed: false,
-      },
-      {
-        id: "4-5",
-        title: "Design Project: Mobile App",
-        duration: "120 min",
-        content:
-          "Apply all your UI/UX knowledge to design a complete mobile app from concept to high-fidelity mockups.\n\nProject phases:\n- User research and personas\n- Information architecture\n- Wireframing\n- Visual design\n- Prototyping\n- Presentation and documentation\n\nThis comprehensive project will give you a portfolio-ready case study demonstrating your UI/UX design skills.",
-        objectives: [
-          "Complete a full design project",
-          "Apply research methods",
-          "Create wireframes and mockups",
-          "Build an interactive prototype",
-        ],
-        activities: ["activity goes here"],
-        completed: false,
-      },
-    ],
-  },
+  
+  
+
+ 
 ];
 
 type View = "dashboard" | "course" | "lesson" | "schedule";
@@ -559,7 +329,7 @@ export default function App() {
                 <CalendarIcon className="h-5 w-5" />
               </Button>
               <Button variant="ghost" size="icon">
-                <User className="h-5 w-5" />
+                {/* <User className="h-5 w-5" /> */}
               </Button>
             </div>
           </div>
@@ -777,7 +547,7 @@ export default function App() {
             <div className="space-y-3">
               <h3 className="font-semibold text-lg">Course Modules</h3>
               {selectedCourse.lessons
-                .filter((lesson) => lesson.id === "1-1" || lesson.id === "1-2" || lesson.id === "1-3" || (selectedCourse.id !== "1" && lesson.id.split("-").length === 2))
+                .filter((lesson) => lesson.id === "1-1" || lesson.id === "1-2" || lesson.id === "1-3" || lesson.id ==="1-4" || (selectedCourse.id !== "1" && lesson.id.split("-").length === 2))
                 .map((lesson) => (
                   <LessonItem
                     key={lesson.id}
