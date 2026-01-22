@@ -99,11 +99,8 @@ const initialCourses: Course[] = [
         duration: "15 min",
         content:
           "Large Language Models (LLMs) are a type of artificial intelligence trained on vast amounts of text data. For developers, understanding LLMs means recognizing they are probabilistic next-token predictors, not reasoning engines with consciousness. This fundamental distinction is crucial for setting realistic expectations and designing effective AI-integrated systems.\n\nWhen working with LLMs, developers should focus on their ability to handle unstructured data, perform translation tasks, and assist in code generation while being mindful of their limitations, such as hallucinations and context window constraints. Mastering the interface between deterministic code and probabilistic AI outputs is the key to building robust AI-enhanced applications.",
-        objectives: [
-          "Neural Network Foundations",
-          "Tokenization and Embeddings",
-        ],
-        activities: [],
+        objectives: ["Neural Network Foundations", "Tokenization and Embeddings"],
+        activities: ["activity goes here"],
         completed: false,
       },
 
@@ -114,7 +111,7 @@ const initialCourses: Course[] = [
         content:
           "Effective interaction with AI requires moving beyond simple questions to structured interaction patterns. Patterns like 'Chain of Thought' prompting, where you ask the AI to explain its reasoning step-by-step, can lead to much more reliable complex code outputs. Another powerful pattern is the 'Flipped Interaction', where you ask the AI to interview you about your requirements before it generates any code.\n\nUnderstanding these interaction patterns allows developers to treat the AI as a junior partner rather than just a search engine. By providing clear constraints and using iterative refinement, you can guide the AI to produce production-ready code that adheres to your specific design patterns and architectural standards.",
         objectives: ["Chain of Thought Prompting", "Iterative Refinement"],
-        activities: [],
+        activities: ["activity goes here"],
         completed: false,
       },
       {
