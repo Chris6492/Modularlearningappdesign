@@ -9,6 +9,7 @@ import {
 } from "./ui/card";
 import { Separator } from "./ui/separator";
 import { Badge } from "./ui/badge";
+import { CarPromptExample } from "./Carpromptexample";
 
 interface LessonContentProps {
   title: string;
@@ -93,7 +94,8 @@ export function LessonContent({
           <div className="prose prose-slate max-w-none">
             <div className="whitespace-pre-wrap text-muted-foreground leading-relaxed">
               {content}
-            </div>
+            </div>{" "}
+            <CarPromptExample />
           </div>
         </CardContent>
       </Card>
