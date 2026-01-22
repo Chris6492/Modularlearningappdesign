@@ -15,6 +15,7 @@ import { Table } from "./components/ui/table";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "./components/ui/tabs";
 import { Calendar } from "./components/ui/calendar";
 import { CourseCard } from "./components/CourseCard";
+import { avatar } from "./components/ui/avatar";
 import { LessonItem } from "./components/LessonItem";
 import { LessonContent } from "./components/LessonContent";
 import { StatsCard } from "./components/StatsCard";
@@ -132,6 +133,18 @@ const initialCourses: Course[] = [
               "Overreliance on AI occurs when individuals or organizations depend too heavily on AI tools without sufficient validation or critical oversight. In a software development context, this can lead developers to accept AI-generated code, designs, or explanations at face value, even when they are incomplete, inefficient, or subtly incorrect. Over time, this reduces active engagement in independent problem-solving and weakens core skills such as debugging, system design, and reasoning through edge cases. When developers stop questioning outputs, AI shifts from being an assistive tool to an unquestioned authority, increasing the risk of technical debt and hidden defects.  Another major drawback of AI overreliance is the erosion of contextual and domain understanding. AI tools generate output based on patterns in data, not on a true understanding of a project’s unique constraints, business goals, or long-term architecture. Developers who rely too heavily on AI may miss important trade-offs related to performance, security, scalability, or maintainability. This is especially risky in complex systems, where blindly integrating AI-generated solutions can introduce vulnerabilities or misalignments that only surface in production. Without human judgment and review, small mistakes can scale into costly failures."
               //Finally, excessive dependence on AI can limit professional growth and adaptability. Learning in software development comes from struggling with problems, making mistakes, and refining mental models over time. If AI is always used as the first and final step, developers may progress faster in the short term but plateau in the long term. This creates teams that can assemble solutions quickly but lack the deep expertise needed to innovate, troubleshoot novel issues, or operate effectively when AI tools are unavailable or incorrect. Used thoughtfully, AI should amplify human capability—not replace critical thinking, accountability, or learning.",
           },
+          "Bad Prompting and Lack of Context": {
+            title: "LLM Fundamentals",
+            description: "111111.",
+          },
+          "Over-Reliance": {
+            title: "Toolchain Configuration",
+            description: "22222.",
+          },
+          "Licensing & ip risk": {
+            title: "Toolchain Configuration",
+            description: "3333.",
+          },
         },
         activities: ["activity goes here"],
         completed: false,
@@ -151,6 +164,24 @@ const initialCourses: Course[] = [
         objectiveDetails: {
           "Master the Context-Action-Result structure": {
             title: "LLM Fundamentals",
+            description:
+              "zzzzzzzDeep dive into how Large Language Models work, tokenization, and their probabilistic nature.",
+          },
+          "Write precise technical prompts": {
+            title: "LLM Fundamentals",
+            description:
+              "Deep dive into how Large Language Models work, tokenization, and their probabilistic nature.",
+          },
+          "Refine AI output through iterative prompting": {
+            title: "LLM Fundamentals",
+            description:
+              "Deep dive into how Large Language Models work, tokenization, and their probabilistic nature.",
+          },
+          "Build a library of effective developer prompts": {
+            title: "LLM Fundamentals",
+            description: "all good.",
+          },
+        },
             description: `The C.A.R. Prompting Method (Context → Action → Result) is a practical framework developers use directly when talking to an LLM to unlock senior-level thinking while still producing junior-friendly execution. The core idea is simple: think like a senior engineer, execute like a junior, and let AI act as the multiplier. Instead of vague, low‑leverage prompts such as “fix this code” or “make this better,” C.A.R. forces structure, intent, and professional standards into the prompt itself. This structure mirrors how experienced developers naturally think about problems and how they communicate expectations during real code reviews.
 
 The first part, Context, represents how senior developers frame problems before touching the keyboard. A developer with several years of experience understands where the code lives, why it exists, and what constraints it must operate under. Context includes the programming language, framework, and the purpose of the code, as well as non‑negotiable constraints such as readability, security, performance, and maintainability. It also defines the skill level of the original author, which is critical for shaping explanations. By explicitly stating that the AI should act as a senior engineer mentoring a junior developer, the model is guided to respond with clearer explanations, better judgment, and realistic trade‑offs instead of generic advice.
@@ -167,30 +198,10 @@ Without C.A.R., a junior developer might ask something like, “Can you fix this
         completed: false,
       },
       {
-        id: "1-3-1",
-        title: "Master the Context-Action-Result structure",
-        duration: "20 min",
-        content:
-          "The C.A.R. framework is designed to provide the AI with the three essential components it needs for high-quality output. 'Context' sets the stage by explaining the project environment and constraints; 'Action' defines exactly what the AI should do (e.g., 'Refactor this function'); and 'Result' specifies the desired format and characteristics of the final output.\n\nBy consistently using this structure, developers can eliminate the ambiguity that leads to poor AI performance. This systematic approach transforms prompting from a trial-and-error process into a predictable engineering discipline, ensuring that the AI understands not just 'what' to build, but 'how' it fits into your broader technical goals.",
-        objectives: ["Component Breakdown", "Framework Application"],
-        activities: [],
-        completed: false,
-      },
-      {
-        id: "1-3-2",
-        title: "Write precise technical prompts",
-        duration: "15 min",
-        content:
-          "Precision in technical prompting is about using specific terminology and providing clear constraints. Instead of asking for 'a list', specify 'a React component that renders a virtualized list of items with search functionality'. Providing examples of desired inputs and outputs within the prompt can also significantly improve the AI's accuracy.\n\nTechnical precision also includes specifying the libraries and versions you are using, as well as any specific coding standards or design patterns required. This level of detail prevents the AI from making incorrect assumptions and ensures that the generated code is immediately compatible with your existing project structure.",
-        objectives: ["Constraint Specification", "Terminology Accuracy"],
-        activities: ["activity goes here"],
-        completed: false,
-      },
-      {
-        id:"1-4",
+        id: "1-4",
         title: "Refine AI output through iterative prompting",
         duration: "20 min",
-        content:"",
+        content: "",
         objectives: ["Constraint Specification", "Terminology Accuracy"],
         objectiveDetails: {
           "Understand LLM basics for developers": {
@@ -199,18 +210,18 @@ Without C.A.R., a junior developer might ask something like, “Can you fix this
               "Deep dive into how Large Language Models work, tokenization, and their probabilistic nature.",
           },
         },
-            activities: ["activity goes here"],
-            completed: false,
+        activities: ["activity goes here"],
+        completed: false,
       },
-      
+
       {
-        id:"1-4-1",
+        id: "1-4-1",
         title: "esa",
         duration: "10 min",
-        content:"",
+        content: "",
         objectives: ["Constraint Specification", "Terminology Accuracy"],
-            activities: ["activity goes here"],
-            completed: false,
+        activities: ["activity goes here"],
+        completed: false,
       },
       {
         id:"1-5",
@@ -231,12 +242,7 @@ Without C.A.R., a junior developer might ask something like, “Can you fix this
         completed: false
       }
     ],
-    
   },
-  
-  
-
- 
 ];
 
 type View = "dashboard" | "course" | "lesson" | "schedule" | "objective";
@@ -639,6 +645,15 @@ export default function App() {
                       lesson.id.split("-").length === 2),
                 )
                 .filter((lesson) => lesson.id === "1-1" || lesson.id === "1-2" || lesson.id === "1-3" || lesson.id ==="1-4" || lesson.id === "1-5" || lesson.id ==="1-6" ||(selectedCourse.id !== "1" && lesson.id.split("-").length === 2))
+                .filter(
+                  (lesson) =>
+                    lesson.id === "1-1" ||
+                    lesson.id === "1-2" ||
+                    lesson.id === "1-3" ||
+                    lesson.id === "1-4" ||
+                    (selectedCourse.id !== "1" &&
+                      lesson.id.split("-").length === 2),
+                )
                 .map((lesson) => (
                   <LessonItem
                     key={lesson.id}
