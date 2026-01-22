@@ -16,7 +16,7 @@ import { Table } from "./components/ui/table";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "./components/ui/tabs";
 import { Calendar } from "./components/ui/calendar";
 import { CourseCard } from "./components/CourseCard";
-import {avatar} from "./components/ui/avatar"
+import { avatar } from "./components/ui/avatar";
 import { LessonItem } from "./components/LessonItem";
 import { LessonContent } from "./components/LessonContent";
 import { StatsCard } from "./components/StatsCard";
@@ -134,8 +134,20 @@ const initialCourses: Course[] = [
           "Blindly trusting AI-generated code": {
             title: "ssss",
             description:
-              "Overreliance on AI occurs when individuals or organizations depend too heavily on AI tools without sufficient validation or critical oversight. In a software development context, this can lead developers to accept AI-generated code, designs, or explanations at face value, even when they are incomplete, inefficient, or subtly incorrect. Over time, this reduces active engagement in independent problem-solving and weakens core skills such as debugging, system design, and reasoning through edge cases. When developers stop questioning outputs, AI shifts from being an assistive tool to an unquestioned authority, increasing the risk of technical debt and hidden defects.\n   \n   Another major drawback of AI overreliance is the erosion of contextual and domain understanding. AI tools generate output based on patterns in data, not on a true understanding of a project’s unique constraints, business goals, or long-term architecture. Developers who rely too heavily on AI may miss important trade-offs related to performance, security, scalability, or maintainability. This is especially risky in complex systems, where blindly integrating AI-generated solutions can introduce vulnerabilities or misalignments that only surface in production. Without human judgment and review, small mistakes can scale into costly failures.",
+              "Overreliance on AI occurs when individuals or organizations depend too heavily on AI tools without sufficient validation or critical oversight. In a software development context, this can lead developers to accept AI-generated code, designs, or explanations at face value, even when they are incomplete, inefficient, or subtly incorrect. Over time, this reduces active engagement in independent problem-solving and weakens core skills such as debugging, system design, and reasoning through edge cases. When developers stop questioning outputs, AI shifts from being an assistive tool to an unquestioned authority, increasing the risk of technical debt and hidden defects.\n   Another major drawback of AI overreliance is the erosion of contextual and domain understanding. AI tools generate output based on patterns in data, not on a true understanding of a project’s unique constraints, business goals, or long-term architecture. Developers who rely too heavily on AI may miss important trade-offs related to performance, security, scalability, or maintainability. This is especially risky in complex systems, where blindly integrating AI-generated solutions can introduce vulnerabilities or misalignments that only surface in production. Without human judgment and review, small mistakes can scale into costly failures.\n",
             // "Finally, excessive dependence on AI can limit professional growth and adaptability. Learning in software development comes from struggling with problems, making mistakes, and refining mental models over time. If AI is always used as the first and final step, developers may progress faster in the short term but plateau in the long term. This creates teams that can assemble solutions quickly but lack the deep expertise needed to innovate, troubleshoot novel issues, or operate effectively when AI tools are unavailable or incorrect. Used thoughtfully, AI should amplify human capability—not replace critical thinking, accountability, or learning.",
+          },
+          "Bad Prompting and Lack of Context": {
+            title: "LLM Fundamentals",
+            description: "111111.",
+          },
+          "Over-Reliance": {
+            title: "Toolchain Configuration",
+            description: "22222.",
+          },
+          "Licensing & ip risk": {
+            title: "Toolchain Configuration",
+            description: "3333.",
           },
         },
         activities: ["activity goes here"],
@@ -177,10 +189,10 @@ const initialCourses: Course[] = [
         completed: false,
       },
       {
-        id:"1-4",
+        id: "1-4",
         title: "Refine AI output through iterative prompting",
         duration: "20 min",
-        content:"",
+        content: "",
         objectives: ["Constraint Specification", "Terminology Accuracy"],
         objectiveDetails: {
           "Understand LLM basics for developers": {
@@ -189,26 +201,20 @@ const initialCourses: Course[] = [
               "Deep dive into how Large Language Models work, tokenization, and their probabilistic nature.",
           },
         },
-            activities: ["activity goes here"],
-            completed: false,
+        activities: ["activity goes here"],
+        completed: false,
       },
-      
       {
-        id:"1-4-1",
+        id: "1-4-1",
         title: "esa",
         duration: "10 min",
-        content:"",
+        content: "",
         objectives: ["Constraint Specification", "Terminology Accuracy"],
-            activities: ["activity goes here"],
-            completed: false,
+        activities: ["activity goes here"],
+        completed: false,
       },
     ],
-    
   },
-  
-  
-
- 
 ];
 
 type View = "dashboard" | "course" | "lesson" | "schedule" | "objective";
@@ -608,7 +614,15 @@ export default function App() {
                     (selectedCourse.id !== "1" &&
                       lesson.id.split("-").length === 2),
                 )
-                .filter((lesson) => lesson.id === "1-1" || lesson.id === "1-2" || lesson.id === "1-3" || lesson.id ==="1-4" || (selectedCourse.id !== "1" && lesson.id.split("-").length === 2))
+                .filter(
+                  (lesson) =>
+                    lesson.id === "1-1" ||
+                    lesson.id === "1-2" ||
+                    lesson.id === "1-3" ||
+                    lesson.id === "1-4" ||
+                    (selectedCourse.id !== "1" &&
+                      lesson.id.split("-").length === 2),
+                )
                 .map((lesson) => (
                   <LessonItem
                     key={lesson.id}
