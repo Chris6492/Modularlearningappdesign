@@ -12,7 +12,7 @@ import {
 } from "lucide-react";
 import { Button } from "./components/ui/button";
 import { Input } from "./components/ui/input";
-import {Table} from "./components/ui/table";  
+import { Table } from "./components/ui/table";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "./components/ui/tabs";
 import { Calendar } from "./components/ui/calendar";
 import { CourseCard } from "./components/CourseCard";
@@ -20,6 +20,12 @@ import {avatar} from "./components/ui/avatar"
 import { LessonItem } from "./components/LessonItem";
 import { LessonContent } from "./components/LessonContent";
 import { StatsCard } from "./components/StatsCard";
+import { ObjectiveView } from "./components/ObjectiveView";
+
+interface ObjectiveDetail {
+  title: string;
+  description: string;
+}
 
 interface Lesson {
   id: string;
@@ -27,6 +33,7 @@ interface Lesson {
   duration: string;
   content: string;
   objectives: string[];
+  objectiveDetails?: Record<string, ObjectiveDetail>;
   activities: string[];
   completed: boolean;
 }
@@ -43,7 +50,7 @@ interface Course {
 const initialCourses: Course[] = [
   {
     id: "1",
-    title: "What AI Is (and Isn’t) in Software Development",
+    title: "Software Development",
     description:
       "Master the essentials of AI-assisted development, from foundational skills to advanced prompting frameworks and identifying bad practices.",
     category: "AI Development",
@@ -61,6 +68,28 @@ const initialCourses: Course[] = [
           "Learn core AI interaction patterns",
           "Identify best use cases for AI assistance",
         ],
+        objectiveDetails: {
+          "Understand LLM basics for developers": {
+            title: "LLM Fundamentals",
+            description:
+              "Deep dive into how Large Language Models work, tokenization, and their probabilistic nature.",
+          },
+          "Set up AI development tools": {
+            title: "Toolchain Configuration",
+            description:
+              "Properly configuring your IDE and CLI tools to leverage AI assistance effectively.",
+          },
+          "Learn core AI interaction patterns": {
+            title: "Interaction Design",
+            description:
+              "Mastering zero-shot, few-shot, and chain-of-thought prompting for better code generation.",
+          },
+          "Identify best use cases for AI assistance": {
+            title: "Value Recognition",
+            description:
+              "Learning where AI excels and where human intervention is critical in the dev lifecycle.",
+          },
+        },
         activities: ["activity goes here"],
         completed: false,
       },
@@ -70,10 +99,14 @@ const initialCourses: Course[] = [
         duration: "15 min",
         content:
           "Large Language Models (LLMs) are a type of artificial intelligence trained on vast amounts of text data. For developers, understanding LLMs means recognizing they are probabilistic next-token predictors, not reasoning engines with consciousness. This fundamental distinction is crucial for setting realistic expectations and designing effective AI-integrated systems.\n\nWhen working with LLMs, developers should focus on their ability to handle unstructured data, perform translation tasks, and assist in code generation while being mindful of their limitations, such as hallucinations and context window constraints. Mastering the interface between deterministic code and probabilistic AI outputs is the key to building robust AI-enhanced applications.",
-        objectives: ["Neural Network Foundations", "Tokenization and Embeddings"],
+        objectives: [
+          "Neural Network Foundations",
+          "Tokenization and Embeddings",
+        ],
+        activities: [],
         completed: false,
       },
-      
+
       {
         id: "1-1-3",
         title: "Learn core AI interaction patterns",
@@ -81,6 +114,7 @@ const initialCourses: Course[] = [
         content:
           "Effective interaction with AI requires moving beyond simple questions to structured interaction patterns. Patterns like 'Chain of Thought' prompting, where you ask the AI to explain its reasoning step-by-step, can lead to much more reliable complex code outputs. Another powerful pattern is the 'Flipped Interaction', where you ask the AI to interview you about your requirements before it generates any code.\n\nUnderstanding these interaction patterns allows developers to treat the AI as a junior partner rather than just a search engine. By providing clear constraints and using iterative refinement, you can guide the AI to produce production-ready code that adheres to your specific design patterns and architectural standards.",
         objectives: ["Chain of Thought Prompting", "Iterative Refinement"],
+        activities: [],
         completed: false,
       },
       {
@@ -95,25 +129,16 @@ const initialCourses: Course[] = [
           "Over-Reliance",
           "Licensing & ip risk",
         ],
+
+        objectiveDetails: {
+          "Blindly trusting AI-generated code": {
+            title: "ssss",
+            description:
+              "Overreliance on AI occurs when individuals or organizations depend too heavily on AI tools without sufficient validation or critical oversight. In a software development context, this can lead developers to accept AI-generated code, designs, or explanations at face value, even when they are incomplete, inefficient, or subtly incorrect. Over time, this reduces active engagement in independent problem-solving and weakens core skills such as debugging, system design, and reasoning through edge cases. When developers stop questioning outputs, AI shifts from being an assistive tool to an unquestioned authority, increasing the risk of technical debt and hidden defects.\n   \n   Another major drawback of AI overreliance is the erosion of contextual and domain understanding. AI tools generate output based on patterns in data, not on a true understanding of a project’s unique constraints, business goals, or long-term architecture. Developers who rely too heavily on AI may miss important trade-offs related to performance, security, scalability, or maintainability. This is especially risky in complex systems, where blindly integrating AI-generated solutions can introduce vulnerabilities or misalignments that only surface in production. Without human judgment and review, small mistakes can scale into costly failures.",
+            // "Finally, excessive dependence on AI can limit professional growth and adaptability. Learning in software development comes from struggling with problems, making mistakes, and refining mental models over time. If AI is always used as the first and final step, developers may progress faster in the short term but plateau in the long term. This creates teams that can assemble solutions quickly but lack the deep expertise needed to innovate, troubleshoot novel issues, or operate effectively when AI tools are unavailable or incorrect. Used thoughtfully, AI should amplify human capability—not replace critical thinking, accountability, or learning.",
+          },
+        },
         activities: ["activity goes here"],
-        completed: false,
-      },
-      {
-        id: "1-2-1",
-        title: "Identify AI-generated code smells",
-        duration: "15 min",
-        content:
-          "AI-generated code often exhibits specific 'smells' that differ from human-written errors. These include overly verbose logic, the use of deprecated library patterns, or perfectly syntactical code that is logically detached from the rest of the application. Developers must learn to recognize these patterns to prevent 'code bloat' and maintain a clean, readable codebase while leveraging AI assistance.\n\nCommon signs of AI-generated smells include repetitive variable naming and the inclusion of unnecessary utility functions that already exist in the project's standard library. By developing an eye for these specific issues, you can quickly filter out low-quality AI suggestions and focus on refining the outputs that actually add value to your project.",
-        objectives: ["Redundancy Detection", "Pattern Consistency"],
-        completed: false,
-      },
-      {
-        id: "1-2-2",
-        title: "Understand security risks in AI suggestions",
-        duration: "20 min",
-        content:
-          "AI models can inadvertently suggest code that contains well-known security vulnerabilities, such as SQL injection points, insecure cryptographic defaults, or hardcoded secrets. Because the AI doesn't 'understand' security in the same way a human expert does, it might provide a solution that works but leaves the application exposed to attacks.\n\nIt is the developer's responsibility to perform a security audit on every piece of AI-suggested code before it is merged. This involves using automated linting tools and manual reviews focused on data validation and sanitization. Understanding these risks ensures that you use AI as a productivity booster without compromising the safety and integrity of your user data.",
-        objectives: ["Vulnerability Auditing", "Secure Coding Standards"],
         completed: false,
       },
       {
@@ -128,6 +153,7 @@ const initialCourses: Course[] = [
           "Refine AI output through iterative prompting",
           "Build a library of effective developer prompts",
         ],
+        activities: [],
         completed: false,
       },
       {
@@ -137,6 +163,7 @@ const initialCourses: Course[] = [
         content:
           "The C.A.R. framework is designed to provide the AI with the three essential components it needs for high-quality output. 'Context' sets the stage by explaining the project environment and constraints; 'Action' defines exactly what the AI should do (e.g., 'Refactor this function'); and 'Result' specifies the desired format and characteristics of the final output.\n\nBy consistently using this structure, developers can eliminate the ambiguity that leads to poor AI performance. This systematic approach transforms prompting from a trial-and-error process into a predictable engineering discipline, ensuring that the AI understands not just 'what' to build, but 'how' it fits into your broader technical goals.",
         objectives: ["Component Breakdown", "Framework Application"],
+        activities: [],
         completed: false,
       },
       {
@@ -176,13 +203,16 @@ const initialCourses: Course[] = [
  
 ];
 
-type View = "dashboard" | "course" | "lesson" | "schedule";
+type View = "dashboard" | "course" | "lesson" | "schedule" | "objective";
 
 export default function App() {
   const [courses, setCourses] = useState(initialCourses);
   const [currentView, setCurrentView] = useState<View>("dashboard");
   const [selectedCourseId, setSelectedCourseId] = useState<string | null>(null);
   const [selectedLessonId, setSelectedLessonId] = useState<string | null>(null);
+  const [selectedObjective, setSelectedObjective] = useState<string | null>(
+    null,
+  );
   const [searchQuery, setSearchQuery] = useState("");
   const [activeTab, setActiveTab] = useState("all");
   const [date, setDate] = useState<Date | undefined>(new Date());
@@ -242,6 +272,12 @@ export default function App() {
   const handleLessonClick = (lessonId: string) => {
     setSelectedLessonId(lessonId);
     setCurrentView("lesson");
+    setSelectedObjective(null);
+  };
+
+  const handleObjectiveClick = (objective: string) => {
+    setSelectedObjective(objective);
+    setCurrentView("objective");
   };
 
   const handleLessonComplete = () => {
@@ -429,14 +465,16 @@ export default function App() {
             <div className="flex items-center justify-between">
               <div>
                 <h2 className="text-3xl font-bold mb-2">Learning Schedule</h2>
-                <p className="text-muted-foreground">Plan and track your study sessions.</p>
+                <p className="text-muted-foreground">
+                  Plan and track your study sessions.
+                </p>
               </div>
               <Button onClick={() => setCurrentView("dashboard")}>
                 <ArrowLeft className="h-4 w-4 mr-2" />
                 Back to Dashboard
               </Button>
             </div>
-            
+
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               <div className="lg:col-span-1">
                 <div className="bg-card p-6 rounded-xl border shadow-sm">
@@ -449,7 +487,7 @@ export default function App() {
                   />
                 </div>
               </div>
-              
+
               <div className="lg:col-span-2 space-y-4">
                 <div className="bg-card p-6 rounded-xl border shadow-sm">
                   <h3 className="font-semibold mb-4">
@@ -462,7 +500,9 @@ export default function App() {
                       </div>
                       <div>
                         <p className="font-medium">AI Foundational Skills</p>
-                        <p className="text-sm text-muted-foreground">10:00 AM - 11:30 AM</p>
+                        <p className="text-sm text-muted-foreground">
+                          10:00 AM - 11:30 AM
+                        </p>
                       </div>
                     </div>
                     <div className="flex items-start gap-4 p-4 rounded-lg bg-secondary/50 border border-border">
@@ -471,14 +511,18 @@ export default function App() {
                       </div>
                       <div>
                         <p className="font-medium">React Hooks Deep Dive</p>
-                        <p className="text-sm text-muted-foreground">2:00 PM - 3:30 PM</p>
+                        <p className="text-sm text-muted-foreground">
+                          2:00 PM - 3:30 PM
+                        </p>
                       </div>
                     </div>
                     <p className="text-sm text-muted-foreground italic text-center py-4">
                       No more events scheduled for this day.
                     </p>
                   </div>
-                  <Button className="w-full mt-6" variant="outline">Add New Study Session</Button>
+                  <Button className="w-full mt-6" variant="outline">
+                    Add New Study Session
+                  </Button>
                 </div>
               </div>
             </div>
@@ -547,6 +591,14 @@ export default function App() {
             <div className="space-y-3">
               <h3 className="font-semibold text-lg">Course Modules</h3>
               {selectedCourse.lessons
+                .filter(
+                  (lesson) =>
+                    lesson.id === "1-1" ||
+                    lesson.id === "1-2" ||
+                    lesson.id === "1-3" ||
+                    (selectedCourse.id !== "1" &&
+                      lesson.id.split("-").length === 2),
+                )
                 .filter((lesson) => lesson.id === "1-1" || lesson.id === "1-2" || lesson.id === "1-3" || lesson.id ==="1-4" || (selectedCourse.id !== "1" && lesson.id.split("-").length === 2))
                 .map((lesson) => (
                   <LessonItem
@@ -594,26 +646,23 @@ export default function App() {
               onComplete={handleLessonComplete}
               onNext={handleNextLesson}
               onPrevious={handlePreviousLesson}
-              onObjectiveClick={(objective) => {
-                // Find a lesson that matches the objective
-                const targetLesson = selectedCourse.lessons.find(
-                  (l) => l.title.toLowerCase() === objective.toLowerCase(),
-                );
-                
-                if (targetLesson) {
-                  setSelectedLessonId(targetLesson.id);
-                  setCurrentView("lesson");
-                } else {
-                  // Fallback to partial match if exact match not found
-                  const partialMatch = selectedCourse.lessons.find(
-                    (l) => l.title.toLowerCase().includes(objective.toLowerCase())
-                  );
-                  if (partialMatch) {
-                    setSelectedLessonId(partialMatch.id);
-                    setCurrentView("lesson");
-                  }
-                }
-              }}
+              onObjectiveClick={handleObjectiveClick}
+            />
+          </div>
+        )}
+
+        {/* Objective View */}
+        {currentView === "objective" && selectedObjective && selectedLesson && (
+          <div className="space-y-6">
+            <ObjectiveView
+              objective={selectedObjective}
+              description={
+                selectedLesson.objectiveDetails?.[selectedObjective]
+                  ?.description ||
+                "No description available for this objective."
+              }
+              lessonTitle={selectedLesson.title}
+              onBack={() => setCurrentView("lesson")}
             />
           </div>
         )}
