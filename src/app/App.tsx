@@ -165,6 +165,27 @@ const initialCourses: Course[] = [
           "Refine AI output through iterative prompting",
           "Build a library of effective developer prompts",
         ],
+        objectiveDetails: {
+          "Master the Context-Action-Result structure": {
+            title: "LLM Fundamentals",
+            description:
+              "Deep dive into how Large Language Models work, tokenization, and their probabilistic nature.",
+          },
+          "Write precise technical prompts": {
+            title: "LLM Fundamentals",
+            description:
+              "Deep dive into how Large Language Models work, tokenization, and their probabilistic nature.",
+          },
+          "Refine AI output through iterative prompting": {
+            title: "LLM Fundamentals",
+            description:
+              "Deep dive into how Large Language Models work, tokenization, and their probabilistic nature.",
+          },
+          "Build a library of effective developer prompts": {
+            title: "LLM Fundamentals",
+            description: "all good.",
+          },
+        },
         activities: [],
         completed: false,
       },
@@ -204,6 +225,7 @@ const initialCourses: Course[] = [
         activities: ["activity goes here"],
         completed: false,
       },
+
       {
         id: "1-4-1",
         title: "esa",
