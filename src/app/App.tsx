@@ -8,7 +8,6 @@ import {
   BookOpen,
   Clock,
   Calendar as CalendarIcon,
-  Avatar,
 } from "lucide-react";
 import { Button } from "./components/ui/button";
 import { Input } from "./components/ui/input";
@@ -99,11 +98,8 @@ const initialCourses: Course[] = [
         duration: "15 min",
         content:
           "Large Language Models (LLMs) are a type of artificial intelligence trained on vast amounts of text data. For developers, understanding LLMs means recognizing they are probabilistic next-token predictors, not reasoning engines with consciousness. This fundamental distinction is crucial for setting realistic expectations and designing effective AI-integrated systems.\n\nWhen working with LLMs, developers should focus on their ability to handle unstructured data, perform translation tasks, and assist in code generation while being mindful of their limitations, such as hallucinations and context window constraints. Mastering the interface between deterministic code and probabilistic AI outputs is the key to building robust AI-enhanced applications.",
-        objectives: [
-          "Neural Network Foundations",
-          "Tokenization and Embeddings",
-        ],
-        activities: [],
+        objectives: ["Neural Network Foundations", "Tokenization and Embeddings"],
+        activities: ["activity goes here"],
         completed: false,
       },
 
@@ -114,7 +110,7 @@ const initialCourses: Course[] = [
         content:
           "Effective interaction with AI requires moving beyond simple questions to structured interaction patterns. Patterns like 'Chain of Thought' prompting, where you ask the AI to explain its reasoning step-by-step, can lead to much more reliable complex code outputs. Another powerful pattern is the 'Flipped Interaction', where you ask the AI to interview you about your requirements before it generates any code.\n\nUnderstanding these interaction patterns allows developers to treat the AI as a junior partner rather than just a search engine. By providing clear constraints and using iterative refinement, you can guide the AI to produce production-ready code that adheres to your specific design patterns and architectural standards.",
         objectives: ["Chain of Thought Prompting", "Iterative Refinement"],
-        activities: [],
+        activities: ["activity goes here"],
         completed: false,
       },
       {
@@ -168,24 +164,18 @@ const initialCourses: Course[] = [
         objectiveDetails: {
           "Master the Context-Action-Result structure": {
             title: "LLM Fundamentals",
-            description:
-              "zzzzzzzDeep dive into how Large Language Models work, tokenization, and their probabilistic nature.",
-          },
-          "Write precise technical prompts": {
-            title: "LLM Fundamentals",
-            description:
-              "Deep dive into how Large Language Models work, tokenization, and their probabilistic nature.",
-          },
-          "Refine AI output through iterative prompting": {
-            title: "LLM Fundamentals",
-            description:
-              "Deep dive into how Large Language Models work, tokenization, and their probabilistic nature.",
-          },
-          "Build a library of effective developer prompts": {
-            title: "LLM Fundamentals",
-            description: "all good.",
-          },
-        },
+            description: `The C.A.R. Prompting Method (Context → Action → Result) is a practical framework developers use directly when talking to an LLM to unlock senior-level thinking while still producing junior-friendly execution. The core idea is simple: think like a senior engineer, execute like a junior, and let AI act as the multiplier. Instead of vague, low‑leverage prompts such as “fix this code” or “make this better,” C.A.R. forces structure, intent, and professional standards into the prompt itself. This structure mirrors how experienced developers naturally think about problems and how they communicate expectations during real code reviews.
+
+The first part, Context, represents how senior developers frame problems before touching the keyboard. A developer with several years of experience understands where the code lives, why it exists, and what constraints it must operate under. Context includes the programming language, framework, and the purpose of the code, as well as non‑negotiable constraints such as readability, security, performance, and maintainability. It also defines the skill level of the original author, which is critical for shaping explanations. By explicitly stating that the AI should act as a senior engineer mentoring a junior developer, the model is guided to respond with clearer explanations, better judgment, and realistic trade‑offs instead of generic advice.
+
+The second part, Action, reflects how senior engineers give instructions. Rather than asking only for an answer, seniors ask for process and reasoning. In C.A.R., the Action section tells the AI exactly how to approach the task: review the code, identify code smells, explain why each issue is a problem in simple terms, refactor step‑by‑step, and follow industry best practices. This mimics a real-world code review, where the goal is not just to fix the problem but to teach the developer how to think better next time. By breaking the work into explicit steps, the output becomes educational, structured, and easier for a junior developer to follow.
+
+The final part, Result, captures what experienced developers actually care about once the code works. While juniors often focus on whether the code runs, seniors focus on maintainability, scalability, readability, and risk. The Result section instructs the AI to output clean, production‑ready code with comments that explain key decisions, describe how the solution would scale, and call out potential risks or edge cases. This ensures the response goes beyond surface‑level fixes and instead reflects how software is evaluated in professional environments.
+
+When combined, Context, Action, and Result form a reusable prompt template that developers can apply to almost any task. A full C.A.R. prompt clearly defines the role of the AI as a senior mentor, specifies the technical environment, outlines the review and refactor process, and sets expectations for production‑quality output and learning outcomes. This makes the prompt itself a tool for skill development, not just a way to get an answer.
+
+Without C.A.R., a junior developer might ask something like, “Can you fix this React code?” which typically results in shallow fixes, limited reasoning, and little long‑term learning. Using the C.A.R. method, the same developer instead provides structured context about the component’s purpose, constraints such as handling loading and error states, and explicit actions like identifying issues and explaining trade‑offs. The result is a higher‑leverage interaction where the AI delivers senior‑level insights, clearer code, and concrete lessons the junior can apply in future work. In practice, C.A.R. is not hidden logic or backend magic—it is simply a disciplined way of writing prompts that turns AI into a realistic senior engineer sitting next to you during a code review.`,
+          }},
         activities: [],
         completed: false,
       },

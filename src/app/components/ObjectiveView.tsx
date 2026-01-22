@@ -31,9 +31,9 @@ export function ObjectiveView({ objective, description, lessonTitle, onBack }: O
           </CardDescription>
         </CardHeader>
         <CardContent className="prose prose-slate max-w-none">
-          <p className="text-muted-foreground leading-relaxed">
+          <div className="whitespace-pre-wrap text-muted-foreground leading-relaxed">
             {description}
-          </p>
+          </div>
         </CardContent>
       </Card>
     </div>
