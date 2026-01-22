@@ -150,6 +150,12 @@ const initialCourses: Course[] = [
           "Refine AI output through iterative prompting",
           "Build a library of effective developer prompts",
         ],
+        objectiveDetails: {
+          "Master the Context-Action-Result structure": {
+            title: "LLM Fundamentals",
+            description:
+              "zzzzzzzzzz.",
+          }},
         activities: [],
         completed: false,
       },
