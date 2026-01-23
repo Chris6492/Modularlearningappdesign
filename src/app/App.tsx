@@ -649,6 +649,9 @@ export default function App() {
                     lesson.id === "1-1" ||
                     lesson.id === "1-2" ||
                     lesson.id === "1-3" ||
+                    lesson.id === "1-4" ||
+                    lesson.id === "1-5" ||
+                    lesson.id === "1-6" ||
                     (selectedCourse.id !== "1" &&
                       lesson.id.split("-").length === 2),
                 )
