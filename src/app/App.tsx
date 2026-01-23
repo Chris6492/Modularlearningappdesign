@@ -651,6 +651,8 @@ export default function App() {
                     lesson.id === "1-2" ||
                     lesson.id === "1-3" ||
                     lesson.id === "1-4" ||
+                    lesson.id === "1-5" ||
+                    lesson.id === "1-6" ||
                     (selectedCourse.id !== "1" &&
                       lesson.id.split("-").length === 2),
                 )
@@ -686,6 +688,7 @@ export default function App() {
               objectives={selectedLesson.objectives}
               activities={selectedLesson.activities}
               completed={selectedLesson.completed}
+              ShowCarPromptExample={selectedLesson.id === "1-3"}
               hasNext={
                 selectedCourse.lessons.findIndex(
                   (l) => l.id === selectedLessonId,
