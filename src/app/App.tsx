@@ -132,8 +132,7 @@ const initialCourses: Course[] = [
           "Blindly trusting AI-generated code": {
             title: "ssss",
             description:
-              "Overreliance on AI occurs when individuals or organizations depend too heavily on AI tools without sufficient validation or critical oversight. In a software development context, this can lead developers to accept AI-generated code, designs, or explanations at face value, even when they are incomplete, inefficient, or subtly incorrect. Over time, this reduces active engagement in independent problem-solving and weakens core skills such as debugging, system design, and reasoning through edge cases. When developers stop questioning outputs, AI shifts from being an assistive tool to an unquestioned authority, increasing the risk of technical debt and hidden defects.  Another major drawback of AI overreliance is the erosion of contextual and domain understanding. AI tools generate output based on patterns in data, not on a true understanding of a project’s unique constraints, business goals, or long-term architecture. Developers who rely too heavily on AI may miss important trade-offs related to performance, security, scalability, or maintainability. This is especially risky in complex systems, where blindly integrating AI-generated solutions can introduce vulnerabilities or misalignments that only surface in production. Without human judgment and review, small mistakes can scale into costly failures."
-              //Finally, excessive dependence on AI can limit professional growth and adaptability. Learning in software development comes from struggling with problems, making mistakes, and refining mental models over time. If AI is always used as the first and final step, developers may progress faster in the short term but plateau in the long term. This creates teams that can assemble solutions quickly but lack the deep expertise needed to innovate, troubleshoot novel issues, or operate effectively when AI tools are unavailable or incorrect. Used thoughtfully, AI should amplify human capability—not replace critical thinking, accountability, or learning.",
+              "Overreliance on AI occurs when individuals or organizations depend too heavily on AI tools without sufficient validation or critical oversight. In a software development context, this can lead developers to accept AI-generated code, designs, or explanations at face value, even when they are incomplete, inefficient, or subtly incorrect. Over time, this reduces active engagement in independent problem-solving and weakens core skills such as debugging, system design, and reasoning through edge cases. When developers stop questioning outputs, AI shifts from being an assistive tool to an unquestioned authority, increasing the risk of technical debt and hidden defects.  Another major drawback of AI overreliance is the erosion of contextual and domain understanding. AI tools generate output based on patterns in data, not on a true understanding of a project’s unique constraints, business goals, or long-term architecture. Developers who rely too heavily on AI may miss important trade-offs related to performance, security, scalability, or maintainability. This is especially risky in complex systems, where blindly integrating AI-generated solutions can introduce vulnerabilities or misalignments that only surface in production. Without human judgment and review, small mistakes can scale into costly failures.",
           },
           "Bad Prompting and Lack of Context": {
             title: "LLM Fundamentals",
@@ -166,8 +165,17 @@ const initialCourses: Course[] = [
         objectiveDetails: {
           "Master the Context-Action-Result structure": {
             title: "LLM Fundamentals",
-            description:
-              "zzzzzzzDeep dive into how Large Language Models work, tokenization, and their probabilistic nature.",
+            description: `The C.A.R. Prompting Method (Context → Action → Result) is a practical framework developers use directly when talking to an LLM to unlock senior-level thinking while still producing junior-friendly execution. The core idea is simple: think like a senior engineer, execute like a junior, and let AI act as the multiplier. Instead of vague, low‑leverage prompts such as “fix this code” or “make this better,” C.A.R. forces structure, intent, and professional standards into the prompt itself. This structure mirrors how experienced developers naturally think about problems and how they communicate expectations during real code reviews.
+
+The first part, Context, represents how senior developers frame problems before touching the keyboard. A developer with several years of experience understands where the code lives, why it exists, and what constraints it must operate under. Context includes the programming language, framework, and the purpose of the code, as well as non‑negotiable constraints such as readability, security, performance, and maintainability. It also defines the skill level of the original author, which is critical for shaping explanations. By explicitly stating that the AI should act as a senior engineer mentoring a junior developer, the model is guided to respond with clearer explanations, better judgment, and realistic trade‑offs instead of generic advice.
+
+The second part, Action, reflects how senior engineers give instructions. Rather than asking only for an answer, seniors ask for process and reasoning. In C.A.R., the Action section tells the AI exactly how to approach the task: review the code, identify code smells, explain why each issue is a problem in simple terms, refactor step‑by‑step, and follow industry best practices. This mimics a real-world code review, where the goal is not just to fix the problem but to teach the developer how to think better next time. By breaking the work into explicit steps, the output becomes educational, structured, and easier for a junior developer to follow.
+
+The final part, Result, captures what experienced developers actually care about once the code works. While juniors often focus on whether the code runs, seniors focus on maintainability, scalability, readability, and risk. The Result section instructs the AI to output clean, production‑ready code with comments that explain key decisions, describe how the solution would scale, and call out potential risks or edge cases. This ensures the response goes beyond surface‑level fixes and instead reflects how software is evaluated in professional environments.
+
+When combined, Context, Action, and Result form a reusable prompt template that developers can apply to almost any task. A full C.A.R. prompt clearly defines the role of the AI as a senior mentor, specifies the technical environment, outlines the review and refactor process, and sets expectations for production‑quality output and learning outcomes. This makes the prompt itself a tool for skill development, not just a way to get an answer.
+
+Without C.A.R., a junior developer might ask something like, “Can you fix this React code?” which typically results in shallow fixes, limited reasoning, and little long‑term learning. Using the C.A.R. method, the same developer instead provides structured context about the component’s purpose, constraints such as handling loading and error states, and explicit actions like identifying issues and explaining trade‑offs. The result is a higher‑leverage interaction where the AI delivers senior‑level insights, clearer code, and concrete lessons the junior can apply in future work. In practice, C.A.R. is not hidden logic or backend magic—it is simply a disciplined way of writing prompts that turns AI into a realistic senior engineer sitting next to you during a code review.`,
           },
           "Write precise technical prompts": {
             title: "LLM Fundamentals",
@@ -184,18 +192,6 @@ const initialCourses: Course[] = [
             description: "all good.",
           },
         },
-            description: `The C.A.R. Prompting Method (Context → Action → Result) is a practical framework developers use directly when talking to an LLM to unlock senior-level thinking while still producing junior-friendly execution. The core idea is simple: think like a senior engineer, execute like a junior, and let AI act as the multiplier. Instead of vague, low‑leverage prompts such as “fix this code” or “make this better,” C.A.R. forces structure, intent, and professional standards into the prompt itself. This structure mirrors how experienced developers naturally think about problems and how they communicate expectations during real code reviews.
-
-The first part, Context, represents how senior developers frame problems before touching the keyboard. A developer with several years of experience understands where the code lives, why it exists, and what constraints it must operate under. Context includes the programming language, framework, and the purpose of the code, as well as non‑negotiable constraints such as readability, security, performance, and maintainability. It also defines the skill level of the original author, which is critical for shaping explanations. By explicitly stating that the AI should act as a senior engineer mentoring a junior developer, the model is guided to respond with clearer explanations, better judgment, and realistic trade‑offs instead of generic advice.
-
-The second part, Action, reflects how senior engineers give instructions. Rather than asking only for an answer, seniors ask for process and reasoning. In C.A.R., the Action section tells the AI exactly how to approach the task: review the code, identify code smells, explain why each issue is a problem in simple terms, refactor step‑by‑step, and follow industry best practices. This mimics a real-world code review, where the goal is not just to fix the problem but to teach the developer how to think better next time. By breaking the work into explicit steps, the output becomes educational, structured, and easier for a junior developer to follow.
-
-The final part, Result, captures what experienced developers actually care about once the code works. While juniors often focus on whether the code runs, seniors focus on maintainability, scalability, readability, and risk. The Result section instructs the AI to output clean, production‑ready code with comments that explain key decisions, describe how the solution would scale, and call out potential risks or edge cases. This ensures the response goes beyond surface‑level fixes and instead reflects how software is evaluated in professional environments.
-
-When combined, Context, Action, and Result form a reusable prompt template that developers can apply to almost any task. A full C.A.R. prompt clearly defines the role of the AI as a senior mentor, specifies the technical environment, outlines the review and refactor process, and sets expectations for production‑quality output and learning outcomes. This makes the prompt itself a tool for skill development, not just a way to get an answer.
-
-Without C.A.R., a junior developer might ask something like, “Can you fix this React code?” which typically results in shallow fixes, limited reasoning, and little long‑term learning. Using the C.A.R. method, the same developer instead provides structured context about the component’s purpose, constraints such as handling loading and error states, and explicit actions like identifying issues and explaining trade‑offs. The result is a higher‑leverage interaction where the AI delivers senior‑level insights, clearer code, and concrete lessons the junior can apply in future work. In practice, C.A.R. is not hidden logic or backend magic—it is simply a disciplined way of writing prompts that turns AI into a realistic senior engineer sitting next to you during a code review.`,
-          }},
         exampleType: "carPrompt",
         activities: [],
         completed: false,
@@ -227,23 +223,23 @@ Without C.A.R., a junior developer might ask something like, “Can you fix this
         completed: false,
       },
       {
-        id:"1-5",
+        id: "1-5",
         title: "N/A",
         duration: "20 min",
-        content:"N/A",
+        content: "N/A",
         objectives: ["N/A", "N/A"],
         activities: ["activity goes here"],
-        completed: false
+        completed: false,
       },
       {
-        id:"1-6",
+        id: "1-6",
         title: "Enter course module here!!!",
         duration: "20 min",
-        content:"N/A",
+        content: "N/A",
         objectives: ["N/A", "N/A"],
         activities: ["activity goes here"],
-        completed: false
-      }
+        completed: false,
+      },
     ],
   },
 ];
@@ -574,6 +570,18 @@ export default function App() {
           </div>
         )}
 
+        {/* Objective View */}
+        {currentView === "objective" && selectedObjective && selectedLesson && (
+          <div className="space-y-6">
+            <ObjectiveView
+              objective={selectedObjective}
+              description={selectedLesson.objectiveDetails?.[selectedObjective]?.description || ""}
+              lessonTitle={selectedLesson.title}
+              onBack={() => setCurrentView("lesson")}
+            />
+          </div>
+        )}
+
         {/* Course View */}
         {currentView === "course" && selectedCourse && (
           <div className="space-y-6">
@@ -641,21 +649,6 @@ export default function App() {
                     lesson.id === "1-1" ||
                     lesson.id === "1-2" ||
                     lesson.id === "1-3" ||
-                    lesson.id === "1-4" ||
-                    lesson.id === "1-5" ||
-                    lesson.id === "1-6" ||
-                    (selectedCourse.id !== "1" &&
-                      lesson.id.split("-").length === 2),
-                )
-                .filter((lesson) => lesson.id === "1-1" || lesson.id === "1-2" || lesson.id === "1-3" || lesson.id ==="1-4" || lesson.id === "1-5" || lesson.id ==="1-6" ||(selectedCourse.id !== "1" && lesson.id.split("-").length === 2))
-                .filter(
-                  (lesson) =>
-                    lesson.id === "1-1" ||
-                    lesson.id === "1-2" ||
-                    lesson.id === "1-3" ||
-                    lesson.id === "1-4" ||
-                    lesson.id === "1-5" ||
-                    lesson.id === "1-6" ||
                     (selectedCourse.id !== "1" &&
                       lesson.id.split("-").length === 2),
                 )
@@ -676,11 +669,7 @@ export default function App() {
         {/* Lesson View */}
         {currentView === "lesson" && selectedLesson && selectedCourse && (
           <div className="space-y-6">
-            <Button
-              variant="ghost"
-              onClick={handleBackToCourse}
-              className="mb-4"
-            >
+            <Button variant="ghost" onClick={handleBackToCourse} className="mb-4">
               <ArrowLeft className="h-4 w-4 mr-2" />
               Back to Course
             </Button>
@@ -689,10 +678,9 @@ export default function App() {
               title={selectedLesson.title}
               content={selectedLesson.content}
               objectives={selectedLesson.objectives}
-              exampleType={selectedLesson.exampleType}
               activities={selectedLesson.activities}
               completed={selectedLesson.completed}
-              ShowCarPromptExample={selectedLesson.id === "1-3"}
+              exampleType={selectedLesson.exampleType}
               hasNext={
                 selectedCourse.lessons.findIndex(
                   (l) => l.id === selectedLessonId,
@@ -708,22 +696,6 @@ export default function App() {
               onNext={handleNextLesson}
               onPrevious={handlePreviousLesson}
               onObjectiveClick={handleObjectiveClick}
-            />
-          </div>
-        )}
-
-        {/* Objective View */}
-        {currentView === "objective" && selectedObjective && selectedLesson && (
-          <div className="space-y-6">
-            <ObjectiveView
-              objective={selectedObjective}
-              description={
-                selectedLesson.objectiveDetails?.[selectedObjective]
-                  ?.description ||
-                "No description available for this objective."
-              }
-              lessonTitle={selectedLesson.title}
-              onBack={() => setCurrentView("lesson")}
             />
           </div>
         )}
