@@ -670,6 +670,7 @@ export default function App() {
               objectives={selectedLesson.objectives}
               activities={selectedLesson.activities}
               completed={selectedLesson.completed}
+              ShowCarPromptExample={selectedLesson.id === "1-3"}
               hasNext={
                 selectedCourse.lessons.findIndex(
                   (l) => l.id === selectedLessonId,
