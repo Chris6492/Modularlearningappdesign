@@ -23,6 +23,7 @@ interface LessonContentProps {
   onNext: () => void;
   onPrevious: () => void;
   onObjectiveClick: (objective: string) => void;
+  ShowCarPromptExample?: boolean;
 }
 
 export function LessonContent({
@@ -33,6 +34,7 @@ export function LessonContent({
   completed,
   hasNext,
   hasPrevious,
+  ShowCarPromptExample,
   onComplete,
   onNext,
   onPrevious,
@@ -95,7 +97,7 @@ export function LessonContent({
             <div className="whitespace-pre-wrap text-muted-foreground leading-relaxed">
               {content}
             </div>{" "}
-            <CarPromptExample />
+            { ShowCarPromptExample && <CarPromptExample />}
           </div>
         </CardContent>
       </Card>
