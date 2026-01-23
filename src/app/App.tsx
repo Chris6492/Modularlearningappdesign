@@ -15,11 +15,12 @@ import { Table } from "./components/ui/table";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "./components/ui/tabs";
 import { Calendar } from "./components/ui/calendar";
 import { CourseCard } from "./components/CourseCard";
-import { avatar } from "./components/ui/avatar";
 import { LessonItem } from "./components/LessonItem";
 import { LessonContent } from "./components/LessonContent";
 import { StatsCard } from "./components/StatsCard";
 import { ObjectiveView } from "./components/ObjectiveView";
+
+import { ExampleType } from "./components/example/ExampleRegistry";
 
 interface ObjectiveDetail {
   title: string;
@@ -33,6 +34,7 @@ interface Lesson {
   content: string;
   objectives: string[];
   objectiveDetails?: Record<string, ObjectiveDetail>;
+  exampleType?: ExampleType;
   activities: string[];
   completed: boolean;
 }
@@ -193,7 +195,8 @@ The final part, Result, captures what experienced developers actually care about
 When combined, Context, Action, and Result form a reusable prompt template that developers can apply to almost any task. A full C.A.R. prompt clearly defines the role of the AI as a senior mentor, specifies the technical environment, outlines the review and refactor process, and sets expectations for production‑quality output and learning outcomes. This makes the prompt itself a tool for skill development, not just a way to get an answer.
 
 Without C.A.R., a junior developer might ask something like, “Can you fix this React code?” which typically results in shallow fixes, limited reasoning, and little long‑term learning. Using the C.A.R. method, the same developer instead provides structured context about the component’s purpose, constraints such as handling loading and error states, and explicit actions like identifying issues and explaining trade‑offs. The result is a higher‑leverage interaction where the AI delivers senior‑level insights, clearer code, and concrete lessons the junior can apply in future work. In practice, C.A.R. is not hidden logic or backend magic—it is simply a disciplined way of writing prompts that turns AI into a realistic senior engineer sitting next to you during a code review.`,
-      
+          }},
+        exampleType: "carPrompt",
         activities: [],
         completed: false,
       },
@@ -686,6 +689,7 @@ export default function App() {
               title={selectedLesson.title}
               content={selectedLesson.content}
               objectives={selectedLesson.objectives}
+              exampleType={selectedLesson.exampleType}
               activities={selectedLesson.activities}
               completed={selectedLesson.completed}
               ShowCarPromptExample={selectedLesson.id === "1-3"}
