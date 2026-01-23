@@ -166,6 +166,24 @@ const initialCourses: Course[] = [
         objectiveDetails: {
           "Master the Context-Action-Result structure": {
             title: "LLM Fundamentals",
+            description:
+              "zzzzzzzDeep dive into how Large Language Models work, tokenization, and their probabilistic nature.",
+          },
+          "Write precise technical prompts": {
+            title: "LLM Fundamentals",
+            description:
+              "Deep dive into how Large Language Models work, tokenization, and their probabilistic nature.",
+          },
+          "Refine AI output through iterative prompting": {
+            title: "LLM Fundamentals",
+            description:
+              "Deep dive into how Large Language Models work, tokenization, and their probabilistic nature.",
+          },
+          "Build a library of effective developer prompts": {
+            title: "LLM Fundamentals",
+            description: "all good.",
+          },
+        },
             description: `The C.A.R. Prompting Method (Context → Action → Result) is a practical framework developers use directly when talking to an LLM to unlock senior-level thinking while still producing junior-friendly execution. The core idea is simple: think like a senior engineer, execute like a junior, and let AI act as the multiplier. Instead of vague, low‑leverage prompts such as “fix this code” or “make this better,” C.A.R. forces structure, intent, and professional standards into the prompt itself. This structure mirrors how experienced developers naturally think about problems and how they communicate expectations during real code reviews.
 
 The first part, Context, represents how senior developers frame problems before touching the keyboard. A developer with several years of experience understands where the code lives, why it exists, and what constraints it must operate under. Context includes the programming language, framework, and the purpose of the code, as well as non‑negotiable constraints such as readability, security, performance, and maintainability. It also defines the skill level of the original author, which is critical for shaping explanations. By explicitly stating that the AI should act as a senior engineer mentoring a junior developer, the model is guided to respond with clearer explanations, better judgment, and realistic trade‑offs instead of generic advice.
@@ -674,6 +692,7 @@ export default function App() {
               exampleType={selectedLesson.exampleType}
               activities={selectedLesson.activities}
               completed={selectedLesson.completed}
+              ShowCarPromptExample={selectedLesson.id === "1-3"}
               hasNext={
                 selectedCourse.lessons.findIndex(
                   (l) => l.id === selectedLessonId,

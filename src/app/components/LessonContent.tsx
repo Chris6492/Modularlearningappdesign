@@ -26,6 +26,7 @@ interface LessonContentProps {
   onNext: () => void;
   onPrevious: () => void;
   onObjectiveClick: (objective: string) => void;
+  ShowCarPromptExample?: boolean;
 }
 
 export function LessonContent({
@@ -37,6 +38,7 @@ export function LessonContent({
   completed,
   hasNext,
   hasPrevious,
+  ShowCarPromptExample,
   onComplete,
   onNext,
   onPrevious,
