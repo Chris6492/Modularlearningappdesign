@@ -199,15 +199,15 @@ Without C.A.R., a junior developer might ask something like, “Can you fix this
       },
       {
         id: "1-4",
-        title: "Refine AI output through iterative prompting",
+        title: "AI Tools For Software Development",
         duration: "20 min",
         content: "",
-        objectives: ["Constraint Specification", "Terminology Accuracy"],
+        objectives: ["learning the core capabilites of each AI Tool ", "Terminology Accuracy"],
         objectiveDetails: {
-          "Understand LLM basics for developers": {
+          "Learning the core capabilities of each AI Tool": {
             title: "LLM Fundamentals",
             description:
-              "Deep dive into how Large Language Models work, tokenization, and their probabilistic nature.",
+              "understanding the strength and weaknesses of each AI tool",
           },
         },
         activities: ["activity goes here"],
@@ -218,8 +218,8 @@ Without C.A.R., a junior developer might ask something like, “Can you fix this
         id: "1-4-1",
         title: "esa",
         duration: "10 min",
-        content: "",
-        objectives: ["Constraint Specification", "Terminology Accuracy"],
+        content: "there is only one AI",
+        objectives: ["learning the core capabilities of each AI Tool", "Terminology Accuracy"],
         activities: ["activity goes here"],
         completed: false,
       },
