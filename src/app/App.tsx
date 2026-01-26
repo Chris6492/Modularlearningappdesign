@@ -156,7 +156,7 @@ const initialCourses: Course[] = [
           "Master the C.A.R. (Context, Action, Result) prompting framework to get high-quality, relevant code from AI. Learn how to structure your requests for maximum efficiency and accuracy.",
         objectives: [
           "Master the Context-Action-Result structure",
-          "Senior Level Prompts Workflow;",
+          "Senior Level Prompts Workflow",
           "Refine AI output through iterative prompting",
           "Build a library of effective developer prompts",
         ],
@@ -293,10 +293,8 @@ ________________________________________
             description: "all good.",
           },
         },
-     
-          
         activities: ["activity goes here"],
-        completed: false
+        completed: false,
       },
       {
         id: "1-4",
