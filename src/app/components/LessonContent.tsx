@@ -9,13 +9,16 @@ import {
 } from "./ui/card";
 import { Separator } from "./ui/separator";
 import { Badge } from "./ui/badge";
-import { CarPromptExample } from "./Carpromptexample";
+import { exampleRegistry } from "./example/ExampleRegistry";
+import { ExampleType } from "./example/ExampleRegistry";
+
 
 interface LessonContentProps {
   title: string;
   content: string;
   objectives: string[];
   activities: string[];
+  exampleType?: ExampleType;
   completed: boolean;
   hasNext: boolean;
   hasPrevious: boolean;
@@ -23,6 +26,7 @@ interface LessonContentProps {
   onNext: () => void;
   onPrevious: () => void;
   onObjectiveClick: (objective: string) => void;
+  ShowCarPromptExample?: boolean;
 }
 
 export function LessonContent({
@@ -30,14 +34,18 @@ export function LessonContent({
   content,
   objectives,
   activities,
+  exampleType,
   completed,
   hasNext,
   hasPrevious,
+  ShowCarPromptExample,
   onComplete,
   onNext,
   onPrevious,
   onObjectiveClick,
 }: LessonContentProps) {
+  const ExampleComponent = exampleType ? exampleRegistry[exampleType] : null;
+
   return (
     <div className="space-y-6">
       <Card>
@@ -94,8 +102,8 @@ export function LessonContent({
           <div className="prose prose-slate max-w-none">
             <div className="whitespace-pre-wrap text-muted-foreground leading-relaxed">
               {content}
-            </div>{" "}
-            <CarPromptExample />
+            </div>
+            {ExampleComponent && <ExampleComponent />}
           </div>
         </CardContent>
       </Card>
