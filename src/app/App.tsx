@@ -188,7 +188,7 @@ AI Prompt
 summarize current risks, technical debt, and the most impactful next action.”
 Outcome
 • You work on risk, not random tasks
-• This is senior thinking 🔥
+• AI surfaces hidden dependencies
 ________________________________________
 2️⃣ Requirement Clarifier (Before Any Code)
 Why seniors win: they prevent wrong work.
@@ -212,8 +212,7 @@ AI Prompts (in order)
 “What breaks first if usage doubles?”
 You choose
 • Prefer boring
-• Write one paragraph explaining why
-That paragraph = senior-level ownership
+• Write one paragraph explaining why you chose that option
 ________________________________________
 4️⃣ Implementation (AI = Mid-Level Dev)
 Your mindset: “I don’t type, I review.”
@@ -239,7 +238,6 @@ You ensure
 • Invalid input tested
 • Partial failures tested
 • Permissions tested
-🔥 This is senior-level QA thinking
 ________________________________________
 6️⃣ AI-Assisted Self Code Review (CRITICAL)
 This is how you level up fastest.
@@ -250,7 +248,7 @@ Then:
 “What would cause pain 6 months from now?”
 You fix
 • Naming
-• Tight coupling
+• Tight coupling (what things would break if this changed?)
 • Silent failures
 • Over-engineering
 This is where juniors become seniors.
