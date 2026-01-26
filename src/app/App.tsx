@@ -156,7 +156,7 @@ const initialCourses: Course[] = [
           "Master the C.A.R. (Context, Action, Result) prompting framework to get high-quality, relevant code from AI. Learn how to structure your requests for maximum efficiency and accuracy.",
         objectives: [
           "Master the Context-Action-Result structure",
-          "Write precise technical prompts",
+          "Senior Level Prompts Workflow;",
           "Refine AI output through iterative prompting",
           "Build a library of effective developer prompts",
         ],
@@ -176,10 +176,112 @@ const initialCourses: Course[] = [
 
               Without C.A.R., a junior developer might ask something like, “Can you fix this React code?” which typically results in shallow fixes, limited reasoning, and little long‑term learning. Using the C.A.R. method, the same developer instead provides structured context about the component’s purpose, constraints such as handling loading and error states, and explicit actions like identifying issues and explaining trade‑offs. The result is a higher‑leverage interaction where the AI delivers senior‑level insights, clearer code, and concrete lessons the junior can apply in future work. In practice, C.A.R. is not hidden logic or backend magic—it is simply a disciplined way of writing prompts that turns AI into a realistic senior engineer sitting next to you during a code review.`,
           },
-          "Write precise technical prompts": {
+          "Senior Level Prompts Workflow": {
             title: "LLM Fundamentals",
-            description:
-              "Deep dive into how Large Language Models work, tokenization, and their probabilistic nature.",
+            description: `DAILY WORKFLOW (REALISTIC & HIGH-IMPACT)
+1️⃣ Context Sync (5–10 min)
+Why seniors do this: avoid thrash & rework.
+What YOU do
+• Skim commits, issues, failing tests, logs
+AI Prompt
+“Given this repo state, recent commits, and open issues:
+summarize current risks, technical debt, and the most impactful next action.”
+Outcome
+• You work on risk, not random tasks
+• This is senior thinking 🔥
+________________________________________
+2️⃣ Requirement Clarifier (Before Any Code)
+Why seniors win: they prevent wrong work.
+AI Prompt
+“Rewrite this task as clear requirements.
+Identify missing assumptions, edge cases, and non-functional needs (performance, security, scale).”
+You sanity-check
+• Is failure behavior defined?
+• Is rollback mentioned?
+• Is “done” measurable?
+🚨 If this isn’t clear → don’t code yet
+________________________________________
+3️⃣ Architecture Lite
+You don’t need a 20-page doc — you need correct decisions.
+AI Prompts (in order)
+1.
+“Propose 2–3 architectures given these constraints (small team, cloud, CI/CD).”
+2.        
+“Which option is the most boring and stable?”
+3.        
+“What breaks first if usage doubles?”
+You choose
+• Prefer boring
+• Write one paragraph explaining why
+That paragraph = senior-level ownership
+________________________________________
+4️⃣ Implementation (AI = Mid-Level Dev)
+Your mindset: “I don’t type, I review.”
+AI Prompt
+“Implement this feature with clean, readable code.
+Optimize for maintainability over cleverness.”
+Your review checklist
+• Can I explain this out loud?
+• Are failures explicit?
+• Are logs meaningful?
+• Would I want to maintain this in 6 months?
+🚨 If not → refactor immediately
+________________________________________
+5️⃣ Testing Like a Senior (Failure-First)
+This is where most devs fall short.
+AI Prompts
+1.
+“List the top 10 ways this feature could fail in production.”
+2.        
+“Generate tests for those failure scenarios.”
+You ensure
+• Timeouts tested
+• Invalid input tested
+• Partial failures tested
+• Permissions tested
+🔥 This is senior-level QA thinking
+________________________________________
+6️⃣ AI-Assisted Self Code Review (CRITICAL)
+This is how you level up fastest.
+AI Prompt
+“Review this code as a strict senior engineer.
+Call out bugs, performance issues, security risks, and maintainability concerns.”
+Then:
+“What would cause pain 6 months from now?”
+You fix
+• Naming
+• Tight coupling
+• Silent failures
+• Over-engineering
+This is where juniors become seniors.
+________________________________________
+7️⃣ CI/CD & Deployment Safety
+Senior rule: Deployments should be boring.
+AI Prompt
+“What could go wrong during deployment or runtime?
+Suggest safeguards and rollback strategies.”
+You check
+• Feature flags?
+• Health checks?
+• Rollback path?
+• Metrics exist?
+🚨 If rollback isn’t obvious → you’re not done.
+________________________________________
+8️⃣ End-of-Day Senior Reflection (5 min)
+This compounds faster than tutorials.
+AI Prompt
+“What risks did I reduce today?
+What risks did I introduce?
+What should I watch tomorrow?”
+This trains judgment, not syntax.
+________________________________________
+📆 WEEKLY SENIOR ROUTINES (Non-Negotiable)
+🧩 Architecture Drift Check
+“What design decisions are becoming brittle or overcomplicated?”
+🧹 Tech Debt Audit
+“What shortcuts are now production risks?”
+📈 Skill Feedback Loop
+“What did I debug this week that reveals a knowledge gap?”`,
           },
           "Refine AI output through iterative prompting": {
             title: "LLM Fundamentals",
