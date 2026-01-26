@@ -163,29 +163,130 @@ const initialCourses: Course[] = [
           "Master the C.A.R. (Context, Action, Result) prompting framework to get high-quality, relevant code from AI. Learn how to structure your requests for maximum efficiency and accuracy.",
         objectives: [
           "Master the Context-Action-Result structure",
-          "Write precise technical prompts",
+          "Senior Level Prompts Workflow",
           "Refine AI output through iterative prompting",
           "Build a library of effective developer prompts",
         ],
         objectiveDetails: {
           "Master the Context-Action-Result structure": {
             title: "LLM Fundamentals",
-            description: `The C.A.R. Prompting Method (Context → Action → Result) is a practical framework developers use directly when talking to an LLM to unlock senior-level thinking while still producing junior-friendly execution. The core idea is simple: think like a senior engineer, execute like a junior, and let AI act as the multiplier. Instead of vague, low‑leverage prompts such as “fix this code” or “make this better,” C.A.R. forces structure, intent, and professional standards into the prompt itself. This structure mirrors how experienced developers naturally think about problems and how they communicate expectations during real code reviews.
-
-The first part, Context, represents how senior developers frame problems before touching the keyboard. A developer with several years of experience understands where the code lives, why it exists, and what constraints it must operate under. Context includes the programming language, framework, and the purpose of the code, as well as non‑negotiable constraints such as readability, security, performance, and maintainability. It also defines the skill level of the original author, which is critical for shaping explanations. By explicitly stating that the AI should act as a senior engineer mentoring a junior developer, the model is guided to respond with clearer explanations, better judgment, and realistic trade‑offs instead of generic advice.
-
-The second part, Action, reflects how senior engineers give instructions. Rather than asking only for an answer, seniors ask for process and reasoning. In C.A.R., the Action section tells the AI exactly how to approach the task: review the code, identify code smells, explain why each issue is a problem in simple terms, refactor step‑by‑step, and follow industry best practices. This mimics a real-world code review, where the goal is not just to fix the problem but to teach the developer how to think better next time. By breaking the work into explicit steps, the output becomes educational, structured, and easier for a junior developer to follow.
-
-The final part, Result, captures what experienced developers actually care about once the code works. While juniors often focus on whether the code runs, seniors focus on maintainability, scalability, readability, and risk. The Result section instructs the AI to output clean, production‑ready code with comments that explain key decisions, describe how the solution would scale, and call out potential risks or edge cases. This ensures the response goes beyond surface‑level fixes and instead reflects how software is evaluated in professional environments.
-
-When combined, Context, Action, and Result form a reusable prompt template that developers can apply to almost any task. A full C.A.R. prompt clearly defines the role of the AI as a senior mentor, specifies the technical environment, outlines the review and refactor process, and sets expectations for production‑quality output and learning outcomes. This makes the prompt itself a tool for skill development, not just a way to get an answer.
-
-Without C.A.R., a junior developer might ask something like, “Can you fix this React code?” which typically results in shallow fixes, limited reasoning, and little long‑term learning. Using the C.A.R. method, the same developer instead provides structured context about the component’s purpose, constraints such as handling loading and error states, and explicit actions like identifying issues and explaining trade‑offs. The result is a higher‑leverage interaction where the AI delivers senior‑level insights, clearer code, and concrete lessons the junior can apply in future work. In practice, C.A.R. is not hidden logic or backend magic—it is simply a disciplined way of writing prompts that turns AI into a realistic senior engineer sitting next to you during a code review.`,
-          },
-          "Write precise technical prompts": {
-            title: "LLM Fundamentals",
             description:
-              "Deep dive into how Large Language Models work, tokenization, and their probabilistic nature.",
+              `The C.A.R. Prompting Method (Context → Action → Result) is a practical framework developers use directly when talking to an LLM to unlock senior-level thinking while still producing junior-friendly execution. The core idea is simple: think like a senior engineer, execute like a junior, and let AI act as the multiplier. Instead of vague, low‑leverage prompts such as “fix this code” or “make this better,” C.A.R. forces structure, intent, and professional standards into the prompt itself. This structure mirrors how experienced developers naturally think about problems and how they communicate expectations during real code reviews.
+
+              The first part, Context, represents how senior developers frame problems before touching the keyboard. A developer with several years of experience understands where the code lives, why it exists, and what constraints it must operate under. Context includes the programming language, framework, and the purpose of the code, as well as non‑negotiable constraints such as readability, security, performance, and maintainability. It also defines the skill level of the original author, which is critical for shaping explanations. By explicitly stating that the AI should act as a senior engineer mentoring a junior developer, the model is guided to respond with clearer explanations, better judgment, and realistic trade‑offs instead of generic advice.
+
+              The second part, Action, reflects how senior engineers give instructions. Rather than asking only for an answer, seniors ask for process and reasoning. In C.A.R., the Action section tells the AI exactly how to approach the task: review the code, identify code smells, explain why each issue is a problem in simple terms, refactor step‑by‑step, and follow industry best practices. This mimics a real-world code review, where the goal is not just to fix the problem but to teach the developer how to think better next time. By breaking the work into explicit steps, the output becomes educational, structured, and easier for a junior developer to follow.
+
+              The final part, Result, captures what experienced developers actually care about once the code works. While juniors often focus on whether the code runs, seniors focus on maintainability, scalability, readability, and risk. The Result section instructs the AI to output clean, production‑ready code with comments that explain key decisions, describe how the solution would scale, and call out potential risks or edge cases. This ensures the response goes beyond surface‑level fixes and instead reflects how software is evaluated in professional environments.
+
+              When combined, Context, Action, and Result form a reusable prompt template that developers can apply to almost any task. A full C.A.R. prompt clearly defines the role of the AI as a senior mentor, specifies the technical environment, outlines the review and refactor process, and sets expectations for production‑quality output and learning outcomes. This makes the prompt itself a tool for skill development, not just a way to get an answer.
+
+              Without C.A.R., a junior developer might ask something like, “Can you fix this React code?” which typically results in shallow fixes, limited reasoning, and little long‑term learning. Using the C.A.R. method, the same developer instead provides structured context about the component’s purpose, constraints such as handling loading and error states, and explicit actions like identifying issues and explaining trade‑offs. The result is a higher‑leverage interaction where the AI delivers senior‑level insights, clearer code, and concrete lessons the junior can apply in future work. In practice, C.A.R. is not hidden logic or backend magic—it is simply a disciplined way of writing prompts that turns AI into a realistic senior engineer sitting next to you during a code review.`,
+          },
+          "Senior Level Prompts Workflow": {
+            title: "LLM Fundamentals",
+            description: `DAILY WORKFLOW (REALISTIC & HIGH-IMPACT)
+1️⃣ Context Sync (5–10 min)
+Why seniors do this: avoid thrash & rework.
+What YOU do
+• Skim commits, issues, failing tests, logs
+AI Prompt
+“Given this repo state, recent commits, and open issues:
+summarize current risks, technical debt, and the most impactful next action.”
+Outcome
+• You work on risk, not random tasks
+• AI surfaces hidden dependencies
+________________________________________
+2️⃣ Requirement Clarifier (Before Any Code)
+Why seniors win: they prevent wrong work.
+AI Prompt
+“Rewrite this task as clear requirements.
+Identify missing assumptions, edge cases, and non-functional needs (performance, security, scale).”
+You sanity-check
+• Is failure behavior defined?
+• Is rollback mentioned?
+• Is “done” measurable?
+🚨 If this isn’t clear → don’t code yet
+________________________________________
+3️⃣ Architecture Lite
+You don’t need a 20-page doc — you need correct decisions.
+AI Prompts (in order)
+1.
+“Propose 2–3 architectures given these constraints (small team, cloud, CI/CD).”
+2.        
+“Which option is the most boring and stable?”
+3.        
+“What breaks first if usage doubles?”
+You choose
+• Prefer boring
+• Write one paragraph explaining why you chose that option
+________________________________________
+4️⃣ Implementation (AI = Mid-Level Dev)
+Your mindset: “I don’t type, I review.”
+AI Prompt
+“Implement this feature with clean, readable code.
+Optimize for maintainability over cleverness.”
+Your review checklist
+• Can I explain this out loud?
+• Are failures explicit?
+• Are logs meaningful?
+• Would I want to maintain this in 6 months?
+🚨 If not → refactor immediately
+________________________________________
+5️⃣ Testing Like a Senior (Failure-First)
+This is where most devs fall short.
+AI Prompts
+1.
+“List the top 10 ways this feature could fail in production.”
+2.        
+“Generate tests for those failure scenarios.”
+You ensure
+• Timeouts tested
+• Invalid input tested
+• Partial failures tested
+• Permissions tested
+________________________________________
+6️⃣ AI-Assisted Self Code Review (CRITICAL)
+This is how you level up fastest.
+AI Prompt
+“Review this code as a strict senior engineer.
+Call out bugs, performance issues, security risks, and maintainability concerns.”
+Then:
+“What would cause pain 6 months from now?”
+You fix
+• Naming
+• Tight coupling (what things would break if this changed?)
+• Silent failures
+• Over-engineering
+This is where juniors become seniors.
+________________________________________
+7️⃣ CI/CD & Deployment Safety
+Senior rule: Deployments should be boring.
+AI Prompt
+“What could go wrong during deployment or runtime?
+Suggest safeguards and rollback strategies.”
+You check
+• Feature flags?
+• Health checks?
+• Rollback path?
+• Metrics exist?
+🚨 If rollback isn’t obvious → you’re not done.
+________________________________________
+8️⃣ End-of-Day Senior Reflection (5 min)
+This compounds faster than tutorials.
+AI Prompt
+“What risks did I reduce today?
+What risks did I introduce?
+What should I watch tomorrow?”
+This trains judgment, not syntax.
+________________________________________
+📆 WEEKLY SENIOR ROUTINES (Non-Negotiable)
+🧩 Architecture Drift Check
+“What design decisions are becoming brittle or overcomplicated?”
+🧹 Tech Debt Audit
+“What shortcuts are now production risks?”
+📈 Skill Feedback Loop
+“What did I debug this week that reveals a knowledge gap?”`,
           },
           "Refine AI output through iterative prompting": {
             title: "LLM Fundamentals",
@@ -203,15 +304,45 @@ Without C.A.R., a junior developer might ask something like, “Can you fix this
       },
       {
         id: "1-4",
-        title: "Refine AI output through iterative prompting",
+        title: "AI Tools For Software Development",
         duration: "20 min",
         content: "",
-        objectives: ["Constraint Specification", "Terminology Accuracy"],
+        objectives: ["Learning the core capabilities of each AI Tool", "Terminology Accuracy"],
         objectiveDetails: {
-          "Understand LLM basics for developers": {
+          "Learning the core capabilities of each AI Tool": {
             title: "LLM Fundamentals",
-            description:
-              "Deep dive into how Large Language Models work, tokenization, and their probabilistic nature.",
+            description: `Google Antigravity
+Product Overview: Google Antigravity is an "agent-first" integrated development environment (IDE) built on an open-source VS Code foundation. Launched on November 18, 2025, it is designed as a "Mission Control" for managing autonomous AI agents that plan, code, and test software with minimal human intervention.
+
+Key Strengths:
+• Massive Context Window: Uses Gemini 3.0 Pro with a 2-million-token context window, allowing it to process large enterprise codebases.
+• Autonomous Multi-Agent Workflows: Multiple agents can be launched simultaneously to handle different tasks like building features while others write tests.
+• Integrated Browser Control: Built-in Chrome-based browser allows agents to navigate pages and check visual UI changes in real-time.
+• High-Level Verification (Artifacts): Provides implementation plans, walkthroughs, and screen recordings to prove code works.
+• Human-in-the-Loop Feedback: Users can comment directly on artifacts or screenshots to refine agent plans.
+
+Current Weaknesses & Risks:
+• Critical Security Vulnerabilities: Documented "indirect prompt injection" flaws can lead to unauthorized commands or data theft.
+• Reliability & "Task Looping": Agents can get stuck in repetitive loops or incorrectly delete critical code.
+• Extension & Plugin Gaps: Lacks compatibility with some official Microsoft extensions due to licensing restrictions.
+• Resource Throttling: Strict rate limits ("Out of Quota" walls) can force shifts to standard tools.
+• Black Box Logic: Deep refactors can produce "logic compression," resulting in code that is hard for humans to debug.
+• UI/UX Instability: Occasional flickers or freezing in browser integration.
+
+Claude (Anthropic)
+• Strengths: Highly consistent, follows constraints exceptionally well, excellent for complex coding and reduced review overhead.
+• Weaknesses: Higher cost per task (though offset by reduced dev time), less extensive multimodal features than Gemini.
+• Best For: Reliable, production-ready code, debugging, and complex refactoring.
+
+Gemini (Google)
+• Strengths: Powerful multimodal understanding, large context windows for deep codebase understanding, and features like Antigravity.
+• Weaknesses: Can sometimes introduce unintended features or modify extra files; requires Google Cloud knowledge.
+• Best For: Multimodal tasks (analyzing screenshots), deep codebase understanding, and Google ecosystem development.
+
+OpenAI (GPT)
+• Strengths: Broad integration (GitHub Copilot), large developer community, fast iteration, and good for general productivity.
+• Weaknesses: Higher hallucination rates and can be less precise in complex coding scenarios.
+• Best For: General coding assistance, creative tasks, and UI prototyping.`,
           },
         },
         activities: ["activity goes here"],
