@@ -15,6 +15,7 @@ import { Table } from "./components/ui/table";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "./components/ui/tabs";
 import { Calendar } from "./components/ui/calendar";
 import { CourseCard } from "./components/CourseCard";
+import { Avatar, AvatarFallback, AvatarImage } from "./components/ui/avatar";
 import { LessonItem } from "./components/LessonItem";
 import { LessonContent } from "./components/LessonContent";
 import { StatsCard } from "./components/StatsCard";
@@ -100,7 +101,10 @@ const initialCourses: Course[] = [
         duration: "15 min",
         content:
           "Large Language Models (LLMs) are a type of artificial intelligence trained on vast amounts of text data. For developers, understanding LLMs means recognizing they are probabilistic next-token predictors, not reasoning engines with consciousness. This fundamental distinction is crucial for setting realistic expectations and designing effective AI-integrated systems.\n\nWhen working with LLMs, developers should focus on their ability to handle unstructured data, perform translation tasks, and assist in code generation while being mindful of their limitations, such as hallucinations and context window constraints. Mastering the interface between deterministic code and probabilistic AI outputs is the key to building robust AI-enhanced applications.",
-        objectives: ["Neural Network Foundations", "Tokenization and Embeddings"],
+        objectives: [
+          "Neural Network Foundations",
+          "Tokenization and Embeddings",
+        ],
         activities: ["activity goes here"],
         completed: false,
       },
@@ -130,21 +134,22 @@ const initialCourses: Course[] = [
 
         objectiveDetails: {
           "Blindly trusting AI-generated code": {
-            title: "ssss",
+            title: "",
             description:
-              "Overreliance on AI occurs when individuals or organizations depend too heavily on AI tools without sufficient validation or critical oversight. In a software development context, this can lead developers to accept AI-generated code, designs, or explanations at face value, even when they are incomplete, inefficient, or subtly incorrect. Over time, this reduces active engagement in independent problem-solving and weakens core skills such as debugging, system design, and reasoning through edge cases. When developers stop questioning outputs, AI shifts from being an assistive tool to an unquestioned authority, increasing the risk of technical debt and hidden defects.  Another major drawback of AI overreliance is the erosion of contextual and domain understanding. AI tools generate output based on patterns in data, not on a true understanding of a project’s unique constraints, business goals, or long-term architecture. Developers who rely too heavily on AI may miss important trade-offs related to performance, security, scalability, or maintainability. This is especially risky in complex systems, where blindly integrating AI-generated solutions can introduce vulnerabilities or misalignments that only surface in production. Without human judgment and review, small mistakes can scale into costly failures.",
+              "     Blindly trusting AI generated code can create subtle but serious problems, especially for new developers who may not yet recognize warning signs. AI models do not truly understand programming concepts, business logic, or project context; they generate code by predicting what looks correct based on patterns in training data. Because of this, AI can confidently suggest deprecated functions, outdated syntax, or approaches that were once common but are no longer considered secure or efficient. The code may compile and even pass simple tests, giving a false sense of correctness while hiding deeper issues.                                                                                                                                                                                              These risks become more dangerous in real-world scenarios and edge cases. AI-generated code may fail under unusual inputs, ignore performance or security concerns, or reference libraries, methods, or APIs that don’t exist. New developers might assume the AI’s output is authoritative and skip documentation checks or testing, allowing bugs or vulnerabilities to slip into production. Treating AI as a helpful assistant rather than a trusted source of truth and validating its output through testing, reviews, and official documentation is essential for writing reliable, maintainable software.",
           },
           "Bad Prompting and Lack of Context": {
-            title: "LLM Fundamentals",
-            description: "111111.",
+            title: "",
+            description: "     Bad prompting and lack of context can significantly reduce the effectiveness of AI assisted coding and introduce new risks into the development process. When prompts are vague, incomplete, or poorly structured, AI tools may generate incorrect, insecure, or inefficient code that does not align with the intended requirements. Similarly, without sufficient context about the system architecture, dependencies, or constraints, the AI may make faulty assumptions that lead to integration issues or subtle bug.                                                                                                                                                                                       These problems are important because AI generated output is often trusted at face value, especially under time pressure. Code produced from weak prompts or limited context may pass initial review but fail in edge cases or conflict with existing design patterns. To mitigate this risk, developers should provide clear, detailed prompts and treat AI output as a starting point rather than a final solution, applying the same level of review, testing, and validation as they would for manually written code.",
           },
           "Over-Reliance": {
-            title: "Toolchain Configuration",
-            description: "22222.",
+            title: "",
+            description:
+              "     Overreliance on AI occurs when individuals or organizations depend too heavily on AI tools without sufficient validation or critical oversight. In a software development context, this can lead developers to accept AI-generated code, designs, or explanations at face value, even when they are incomplete, inefficient, or subtly incorrect. Over time, this reduces active engagement in independent problem-solving and weakens core skills such as debugging, system design, and reasoning through edge cases. When developers stop questioning outputs, AI shifts from being an assistive tool to an unquestioned authority, increasing the risk of technical debt and hidden defects.                                                                                                                               Another major drawback of AI overreliance is the erosion of contextual and domain understanding. AI tools generate output based on patterns in data, not on a true understanding of a project’s unique constraints, business goals, or long-term architecture. Developers who rely too heavily on AI may miss important trade-offs related to performance, security, scalability, or maintainability. This is especially risky in complex systems, where blindly integrating AI-generated solutions can introduce vulnerabilities or misalignments that only surface in production. Without human judgment and review, small mistakes can scale into costly failures.                                                                                                                                                                                  Finally, excessive dependence on AI can limit professional growth and adaptability. Learning in software development comes from struggling with problems, making mistakes, and refining mental models over time. If AI is always used as the first and final step, developers may progress faster in the short term but plateau in the long term. This creates teams that can assemble solutions quickly but lack the deep expertise needed to innovate, troubleshoot novel issues, or operate effectively when AI tools are unavailable or incorrect. Used thoughtfully, AI should amplify human capability—not replace critical thinking, accountability, or learning.",
           },
           "Licensing & ip risk": {
-            title: "Toolchain Configuration",
-            description: "3333.",
+            title: "",
+            description: "     Using AI tools for coding introduces intellectual property (IP) risks, particularly when proprietary or sensitive code is shared with external AI systems. A real world example occurred when Samsung engineers unintentionally exposed confidential source code by submitting it to ChatGPT for assistance, raising concerns that such information could be retained or later surfaced through future queries. This highlights the risk of data leakage and the importance of clear internal policies around what code can be shared with AI tools, especially when those tools are hosted by third parties.                                                                                                                                                                                               There are also licensing and copyright considerations around AI generated code itself. In some cases, generated code may be considered derivative of copyrighted material used during an AI model’s training, which can create legal ambiguity around ownership and usage rights. Developers and organizations must be cautious to ensure that AI assisted outputs comply with open source licenses, fair use principles, and internal compliance standards to avoid unintended copyright violations or legal exposure.",
           },
         },
         activities: ["activity goes here"],
@@ -212,22 +217,29 @@ Without C.A.R., a junior developer might ask something like, “Can you fix this
         activities: ["activity goes here"],
         completed: false,
       },
-
-      {
-        id: "1-4-1",
-        title: "esa",
-        duration: "10 min",
-        content: "",
-        objectives: ["Constraint Specification", "Terminology Accuracy"],
-        activities: ["activity goes here"],
-        completed: false,
-      },
       {
         id: "1-5",
-        title: "N/A",
+        title: "AI Generated Testing",
         duration: "20 min",
         content: "N/A",
-        objectives: ["N/A", "N/A"],
+        objectives: ["Unit Testing", "Integration Testing", "Generating Test"],
+        objectiveDetails: {
+          "Unit Testing": {
+            title: "Unit Testing",
+            description:
+              "     Unit testing is a software development practice where individual pieces of code usually small functions or methods are tested in isolation to make sure they work as intended. Each unit test focuses on a single behavior, providing specific inputs and checking that the output matches the expected result. These tests are typically automated and added as features are built. This allows developers to quickly verify that each part of the codebase behaves correctly on its own.                                                                                                                         Unit testing is important because it helps catch bugs early, when they are easier and cheaper to fix. By validating code at a granular level, unit tests reduce the risk of errors spreading to other parts of the system and make refactoring safer. They also serve as living documentation, showing how code is supposed to behave, which makes the codebase easier to understand and maintain over time.",
+          },
+          "Integration Testing": {
+            title: "Integration Testing",
+            description:
+              "     Integration testing is a software testing practice that verifies how different units or components of a system work together. Instead of testing individual functions in isolation, integration tests focus on the interactions between modules such as how a service communicates with a database, API, or another service. These tests ensure that data flows correctly across components and that their combined behavior matches expectations.                                                                                                                                                                         Integration testing is important because many defects occur at the boundaries between components rather than within a single unit. It helps uncover issues like incorrect assumptions, interface mismatches, or configuration problems that unit tests can’t catch. By validating that integrated components work together properly, integration tests increase confidence in the overall system and reduce the risk of failures when the application is deployed or scaled.",
+          },
+          "Generating Test": {
+            title: "Generating Test",
+            description:
+              "   Using AI to generate unit and integration tests involves leveraging machine learning models to analyze existing code and automatically create test cases that validate its behavior. Instead of developers manually writing every test, AI tools can identify key execution paths, edge cases, and expected outputs, then produce test code that fits the project’s testing framework. This approach can significantly reduce the time and effort required to achieve meaningful test coverage, especially in large or fast moving codebases.                                                                                                                                                                               The main benefit of AI generated tests is increased developer productivity and faster feedback loops. By automating repetitive testing tasks, developers can focus more on designing features and solving complex problems rather than boilerplate test creation. AI-assisted testing can also improve consistency and coverage by catching scenarios that might be overlooked manually, leading to more reliable software and a smoother, more efficient development workflow overall.",
+          }
+        },
         activities: ["activity goes here"],
         completed: false,
       },
@@ -236,7 +248,19 @@ Without C.A.R., a junior developer might ask something like, “Can you fix this
         title: "Enter course module here!!!",
         duration: "20 min",
         content: "N/A",
-        objectives: ["N/A", "N/A"],
+        objectives: ["objective1", "objective2"],
+        objectiveDetails: {
+          objective1: {
+            title: "LLM Fundamentals",
+            description:
+              "Deep dive into how Large Language Models work, tokenization, and their probabilistic nature.",
+          },
+          objective2: {
+            title: "LLM Fundamentals",
+            description:
+              "Deep dive into how Large Language Models work, tokenization, and their probabilistic nature.",
+          },
+        },
         activities: ["activity goes here"],
         completed: false,
       },
