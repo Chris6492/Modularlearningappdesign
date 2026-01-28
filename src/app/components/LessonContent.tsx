@@ -1,5 +1,7 @@
-import { CheckCircle2, ChevronLeft, ChevronRight } from "lucide-react";
+import { CheckCircle2, ChevronLeft, ChevronRight, HelpCircle } from "lucide-react";
 import { Button } from "./ui/button";
+import { useState } from "react";
+import { HelpModal } from "./HelpModal";
 import {
   Card,
   CardContent,
@@ -18,6 +20,7 @@ interface LessonContentProps {
   content: string;
   objectives: string[];
   activities: string[];
+  activityDescriptions?: Record<string, string>;
   exampleType?: ExampleType;
   completed: boolean;
   hasNext: boolean;
@@ -34,6 +37,7 @@ export function LessonContent({
   content,
   objectives,
   activities,
+  activityDescriptions,
   exampleType,
   completed,
   hasNext,
@@ -44,6 +48,11 @@ export function LessonContent({
   onObjectiveClick,
 }: LessonContentProps) {
   const ExampleComponent = exampleType ? exampleRegistry[exampleType] : null;
+  const [selectedActivity, setSelectedActivity] = useState<string | null>(null);
+
+  const handleHelpClick = (activity: string) => {
+    setSelectedActivity(activity);
+  };
 
   return (
     <div className="space-y-6">
@@ -88,9 +97,19 @@ export function LessonContent({
             <h3 className="font-semibold mb-3">Learning Activities</h3>
             <ul className="space-y-2">
               {activities?.map((activity, index) => (
-                <li key={index} className="flex items-start gap-2">
-                  <span className="text-primary mt-1">•</span>
+                <li key={index} className="flex items-center gap-2 group">
+                  <span className="text-primary">•</span>
                   <span className="text-muted-foreground">{activity}</span>
+                  {activityDescriptions && activityDescriptions[activity] && (
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="h-6 w-6 rounded-full opacity-50 group-hover:opacity-100 transition-opacity"
+                      onClick={() => handleHelpClick(activity)}
+                    >
+                      <HelpCircle className="h-3 w-3" />
+                    </Button>
+                  )}
                 </li>
               ))}
             </ul>
@@ -106,6 +125,13 @@ export function LessonContent({
           </div>
         </CardContent>
       </Card>
+
+      <HelpModal
+        isOpen={!!selectedActivity}
+        onClose={() => setSelectedActivity(null)}
+        title="Activity Description"
+        description={selectedActivity ? activityDescriptions?.[selectedActivity] || "" : ""}
+      />
 
       <div className="flex items-center justify-between gap-4">
         <Button variant="outline" onClick={onPrevious} disabled={!hasPrevious}>

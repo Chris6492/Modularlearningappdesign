@@ -37,6 +37,7 @@ interface Lesson {
   objectiveDetails?: Record<string, ObjectiveDetail>;
   exampleType?: ExampleType;
   activities: string[];
+  activityDescriptions?: Record<string, string>;
   completed: boolean;
 }
 
@@ -93,6 +94,9 @@ const initialCourses: Course[] = [
           },
         },
         activities: ["activity goes here"],
+        activityDescriptions: {
+          "activity goes here": "This activity involves identifying specific code smells and vulnerabilities in AI-generated code. You will be presented with several snippets and must flag issues related to security, efficiency, and logical correctness."
+        },
         completed: false,
       },
       {
@@ -153,6 +157,9 @@ const initialCourses: Course[] = [
           },
         },
         activities: ["activity goes here"],
+        activityDescriptions: {
+          "activity goes here": "This activity involves identifying specific code smells and vulnerabilities in AI-generated code. You will be presented with several snippets and must flag issues related to security, efficiency, and logical correctness."
+        },
         completed: false,
       },
       {
@@ -346,6 +353,9 @@ OpenAI (GPT)
           },
         },
         activities: ["activity goes here"],
+        activityDescriptions: {
+          "activity goes here": "This activity involves identifying specific code smells and vulnerabilities in AI-generated code. You will be presented with several snippets and must flag issues related to security, efficiency, and logical correctness."
+        },
         completed: false,
       },
       {
@@ -372,6 +382,9 @@ OpenAI (GPT)
           }
         },
         activities: ["activity goes here"],
+        activityDescriptions: {
+          "activity goes here": "This activity involves identifying specific code smells and vulnerabilities in AI-generated code. You will be presented with several snippets and must flag issues related to security, efficiency, and logical correctness."
+        },
         completed: false,
       },
       {
@@ -393,6 +406,9 @@ OpenAI (GPT)
           },
         },
         activities: ["activity goes here"],
+        activityDescriptions: {
+          "activity goes here": "This activity involves identifying specific code smells and vulnerabilities in AI-generated code. You will be presented with several snippets and must flag issues related to security, efficiency, and logical correctness."
+        },
         completed: false,
       },
     ],
@@ -837,6 +853,7 @@ export default function App() {
               content={selectedLesson.content}
               objectives={selectedLesson.objectives}
               activities={selectedLesson.activities}
+              activityDescriptions={selectedLesson.activityDescriptions}
               completed={selectedLesson.completed}
               exampleType={selectedLesson.exampleType}
               hasNext={
