@@ -99,7 +99,18 @@ export function LessonContent({
               {activities?.map((activity, index) => (
                 <li key={index} className="flex items-center gap-2 group">
                   <span className="text-primary">•</span>
-                  <span className="text-muted-foreground">{activity}</span>
+                  {activity === "activity goes here" ? (
+                    <a 
+                      href="/activity-page" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-muted-foreground hover:text-primary hover:underline transition-colors cursor-pointer"
+                    >
+                      {activity}
+                    </a>
+                  ) : (
+                    <span className="text-muted-foreground">{activity}</span>
+                  )}
                   {activityDescriptions && activityDescriptions[activity] && (
                     <Button
                       variant="ghost"
