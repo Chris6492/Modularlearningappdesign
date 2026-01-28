@@ -1,3 +1,4 @@
+/*This is the car prompt example component for the car lesson content component. */
 export function CarPromptExample() {
   const carPrompt = {
     context: `You are a senior React engineer mentoring a junior developer.
