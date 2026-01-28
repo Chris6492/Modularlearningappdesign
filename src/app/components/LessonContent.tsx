@@ -49,10 +49,12 @@ export function LessonContent({
 }: LessonContentProps) {
   const ExampleComponent = exampleType ? exampleRegistry[exampleType] : null;
   const [selectedActivity, setSelectedActivity] = useState<string | null>(null);
+  const [selectedActivityForCode, setSelectedActivityForCode] = useState<string | null>(null);
 
   const handleHelpClick = (activity: string) => {
     setSelectedActivity(activity);
   };
+  const placeholderCode = `// Example code for ${selectedActivityForCode || "selected activity"}\nconsole.log("This is a placeholder for the activity code.");`
 
   return (
     <div className="space-y-6">
@@ -100,17 +102,17 @@ export function LessonContent({
                 <li key={index} className="flex items-center gap-2 group">
                   <span className="text-primary">•</span>
                   {activity === "activity goes here" ? (
-                    <a 
-                      href="/activity-page" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="text-muted-foreground hover:text-primary hover:underline transition-colors cursor-pointer"
+                    <button
+                      type="button"
+                      onClick={() => setSelectedActivityForCode(activity)}
+                      className="text-muted-foreground hover:text-primary hover:underline transition-colors cursor-pointer text-left"
                     >
                       {activity}
-                    </a>
+                    </button>
                   ) : (
                     <span className="text-muted-foreground">{activity}</span>
                   )}
+                  
                   {activityDescriptions && activityDescriptions[activity] && (
                     <Button
                       variant="ghost"
@@ -125,6 +127,33 @@ export function LessonContent({
               ))}
             </ul>
           </div>
+          {selectedActivityForCode && (
+            <div className="mt-4 rounded-lg border bg-background">
+              <div className="flex items-center justify-between border-b px-4 py-2">
+                <div className="font-medium">
+                  AI Code Window
+                  <span className="ml-2 text-sm text-muted-foreground">
+                    ({selectedActivityForCode})
+                  </span>
+                </div>
+
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setSelectedActivityForCode(null)}
+                >
+                  Close
+                </Button>
+              </div>
+
+              <div className="p-4">
+                <pre className="max-h-72 overflow-auto rounded-md bg-zinc-900 p-4 text-sm text-zinc-100">
+                  <code>{placeholderCode}</code>
+                </pre>
+              </div>
+            </div>
+          )}
+
 
           <Separator />
 
