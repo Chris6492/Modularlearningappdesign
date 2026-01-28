@@ -1,8 +1,5 @@
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
-import os
-
-api_key = os.getenv("OPENAI_API_KEY")
 
 llm = ChatOpenAI(model="gpt-4.1-nano")
 
@@ -13,4 +10,4 @@ prompt = ChatPromptTemplate.from_messages([
 
 chain = prompt | llm
 res = chain.invoke({"input": "Generate bad Python code with a security vulnerability."})
-print(api_key)
+print(res.content)
