@@ -38,7 +38,6 @@ export function LessonContent({
   completed,
   hasNext,
   hasPrevious,
-  ShowCarPromptExample,
   onComplete,
   onNext,
   onPrevious,
