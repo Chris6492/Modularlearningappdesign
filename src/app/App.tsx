@@ -20,6 +20,7 @@ import { LessonItem } from "./components/LessonItem";
 import { LessonContent } from "./components/LessonContent";
 import { StatsCard } from "./components/StatsCard";
 import { ObjectiveView } from "./components/ObjectiveView";
+import { ActivityPageView } from "./components/ActivityPageView";
 
 import { ExampleType } from "./components/example/ExampleRegistry";
 
@@ -425,6 +426,7 @@ export default function App() {
   const [selectedObjective, setSelectedObjective] = useState<string | null>(
     null,
   );
+  const [selectedActivity, setSelectedActivity] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [activeTab, setActiveTab] = useState("all");
   const [date, setDate] = useState<Date | undefined>(new Date());
@@ -490,6 +492,11 @@ export default function App() {
   const handleObjectiveClick = (objective: string) => {
     setSelectedObjective(objective);
     setCurrentView("objective");
+  };
+
+  const handleActivityClick = (activity: string) => {
+    setSelectedActivity(activity);
+    setCurrentView("activity-page" as any);
   };
 
   const handleLessonComplete = () => {
@@ -871,8 +878,17 @@ export default function App() {
               onNext={handleNextLesson}
               onPrevious={handlePreviousLesson}
               onObjectiveClick={handleObjectiveClick}
+              onActivityClick={handleActivityClick}
             />
           </div>
+        )}
+
+        {currentView === ("activity-page" as any) && selectedLesson && selectedActivity && (
+          <ActivityPageView
+            activity={selectedActivity}
+            description={selectedLesson.activityDescriptions?.[selectedActivity] || ""}
+            onBack={() => setCurrentView("lesson")}
+          />
         )}
       </main>
     </div>

@@ -29,6 +29,7 @@ interface LessonContentProps {
   onNext: () => void;
   onPrevious: () => void;
   onObjectiveClick: (objective: string) => void;
+  onActivityClick: (activity: string) => void;
   ShowCarPromptExample?: boolean;
 }
 
@@ -46,15 +47,14 @@ export function LessonContent({
   onNext,
   onPrevious,
   onObjectiveClick,
+  onActivityClick,
 }: LessonContentProps) {
   const ExampleComponent = exampleType ? exampleRegistry[exampleType] : null;
   const [selectedActivity, setSelectedActivity] = useState<string | null>(null);
-  const [selectedActivityForCode, setSelectedActivityForCode] = useState<string | null>(null);
 
   const handleHelpClick = (activity: string) => {
     setSelectedActivity(activity);
   };
-  const placeholderCode = `// Example code for ${selectedActivityForCode || "selected activity"}\nconsole.log("This is a placeholder for the activity code.");`
 
   return (
     <div className="space-y-6">
@@ -104,7 +104,7 @@ export function LessonContent({
                   {activity === "activity goes here" ? (
                     <button
                       type="button"
-                      onClick={() => setSelectedActivityForCode(activity)}
+                      onClick={() => onActivityClick(activity)}
                       className="text-muted-foreground hover:text-primary hover:underline transition-colors cursor-pointer text-left"
                     >
                       {activity}
@@ -127,33 +127,6 @@ export function LessonContent({
               ))}
             </ul>
           </div>
-          {selectedActivityForCode && (
-            <div className="mt-4 rounded-lg border bg-background">
-              <div className="flex items-center justify-between border-b px-4 py-2">
-                <div className="font-medium">
-                  AI Code Window
-                  <span className="ml-2 text-sm text-muted-foreground">
-                    ({selectedActivityForCode})
-                  </span>
-                </div>
-
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => setSelectedActivityForCode(null)}
-                >
-                  Close
-                </Button>
-              </div>
-
-              <div className="p-4">
-                <pre className="max-h-72 overflow-auto rounded-md bg-zinc-900 p-4 text-sm text-zinc-100">
-                  <code>{placeholderCode}</code>
-                </pre>
-              </div>
-            </div>
-          )}
-
 
           <Separator />
 
