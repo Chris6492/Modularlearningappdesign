@@ -4,16 +4,15 @@ import {
   GraduationCap,
   LayoutDashboard,
   Search,
-  User,
   BookOpen,
   Clock,
-  Calendar as CalendarIcon,
+  TrendingUp,
+  Target,
+  Award,
 } from "lucide-react";
 import { Button } from "./components/ui/button";
 import { Input } from "./components/ui/input";
-import { Table } from "./components/ui/table";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "./components/ui/tabs";
-import { Calendar } from "./components/ui/calendar";
 import { CourseCard } from "./components/CourseCard";
 import { Avatar, AvatarFallback, AvatarImage } from "./components/ui/avatar";
 import { LessonItem } from "./components/LessonItem";
@@ -58,7 +57,14 @@ const App: React.FC = () => {
 
   useEffect(() => {
     fetch("/api/courses")
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) {
+          return res.text().then(text => {
+            throw new Error(`HTTP error! status: ${res.status}, body: ${text}`);
+          });
+        }
+        return res.json();
+      })
       .then((data) => {
         setCourses(data);
         setLoading(false);
@@ -70,14 +76,15 @@ const App: React.FC = () => {
   }, []);
 
   const [activeTab, setActiveTab] = useState("all");
-  const [activeView, setActiveView] = useState<"dashboard" | "course" | "lesson">("dashboard");
+  const [activeView, setActiveView] = useState<"dashboard" | "course" | "lesson" | "objective">("dashboard");
   const [currentCourse, setCurrentCourse] = useState<Course | null>(null);
   const [currentLesson, setCurrentLesson] = useState<Lesson | null>(null);
+  const [currentObjective, setCurrentObjective] = useState<{title: string, description: string} | null>(null);
 
   const stats = [
-    { label: "Total Courses", value: courses.length.toString(), icon: GraduationCap },
-    { label: "Completed", value: "0", icon: BookOpen },
-    { label: "Hours Learned", value: "0h", icon: Clock },
+    { title: "Total Courses", value: courses.length, subtitle: "Available now", icon: "book" as const },
+    { title: "Target Progress", value: "0%", subtitle: "Weekly goal", icon: "target" as const },
+    { title: "Learning Streak", value: "0 days", subtitle: "Keep it up", icon: "trending" as const },
   ];
 
   if (loading) {
@@ -98,6 +105,16 @@ const App: React.FC = () => {
     setActiveView("lesson");
   };
 
+  const handleObjectiveClick = (objectiveTitle: string) => {
+    if (currentLesson?.objectiveDetails?.[objectiveTitle]) {
+      setCurrentObjective({
+        title: objectiveTitle,
+        description: currentLesson.objectiveDetails[objectiveTitle].description
+      });
+      setActiveView("objective");
+    }
+  };
+
   return (
     <div className="min-h-screen bg-background">
       {/* Navigation */}
@@ -106,10 +123,10 @@ const App: React.FC = () => {
           <div className="flex justify-between h-16">
             <div className="flex items-center">
               <GraduationCap className="h-8 w-8 text-primary" />
-              <span className="ml-2 text-xl font-bold">LMS Portal</span>
+              <span className="ml-2 text-xl font-bold">LearnHub</span>
             </div>
             <div className="flex items-center space-x-4">
-              <div className="relative">
+              <div className="relative hidden md:block">
                 <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
                 <Input
                   type="search"
@@ -118,8 +135,8 @@ const App: React.FC = () => {
                 />
               </div>
               <Avatar className="cursor-pointer" onClick={() => setUserDialogOpen(true)}>
-                <AvatarImage src="https://github.com/shadcn.png" />
-                <AvatarFallback>{currentUser ? currentUser.username[0].toUpperCase() : "CN"}</AvatarFallback>
+                <AvatarImage src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${currentUser?.username || 'Guest'}`} />
+                <AvatarFallback>{currentUser ? currentUser.username[0].toUpperCase() : "U"}</AvatarFallback>
               </Avatar>
             </div>
           </div>
@@ -166,7 +183,13 @@ const App: React.FC = () => {
                   {courses.map((course) => (
                     <CourseCard
                       key={course.id}
-                      course={course}
+                      id={course.id}
+                      title={course.title}
+                      description={course.description}
+                      category={course.category}
+                      duration={course.duration}
+                      lessonsCount={course.lessons.length}
+                      progress={0}
                       onClick={() => handleCourseClick(course)}
                     />
                   ))}
@@ -192,7 +215,9 @@ const App: React.FC = () => {
                     currentCourse.lessons.map((lesson) => (
                       <LessonItem
                         key={lesson.id}
-                        lesson={lesson}
+                        title={lesson.title}
+                        duration={lesson.duration}
+                        completed={lesson.completed}
                         onClick={() => handleLessonClick(lesson)}
                       />
                     ))
@@ -211,14 +236,30 @@ const App: React.FC = () => {
               <ArrowLeft className="mr-2 h-4 w-4" />
               Back to Course
             </Button>
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-              <div className="lg:col-span-2">
-                <LessonContent lesson={currentLesson} />
-              </div>
-              <div className="space-y-6">
-                <ObjectiveView objectives={currentLesson.objectives} />
-              </div>
-            </div>
+            <LessonContent 
+              title={currentLesson.title}
+              content={currentLesson.content}
+              objectives={currentLesson.objectives}
+              activities={currentLesson.activities}
+              completed={currentLesson.completed}
+              hasNext={false}
+              hasPrevious={false}
+              onComplete={() => {}}
+              onNext={() => {}}
+              onPrevious={() => {}}
+              onObjectiveClick={handleObjectiveClick}
+            />
+          </div>
+        )}
+
+        {activeView === "objective" && currentObjective && currentLesson && (
+          <div className="space-y-6">
+            <ObjectiveView 
+              objective={currentObjective.title}
+              description={currentObjective.description}
+              lessonTitle={currentLesson.title}
+              onBack={() => setActiveView("lesson")}
+            />
           </div>
         )}
       </main>

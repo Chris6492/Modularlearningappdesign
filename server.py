@@ -31,20 +31,49 @@ def get_users():
 @app.route('/api/users', methods=['POST'])
 def create_user():
     data = request.json
-    new_user = User(username=data['username'], email=data['email'])
-    db.session.add(new_user)
-    db.session.commit()
-    return jsonify(new_user.to_dict()), 201
+    try:
+        new_user = User()
+        new_user.username = data['username']
+        new_user.email = data['email']
+        db.session.add(new_user)
+        db.session.commit()
+        return jsonify(new_user.to_dict()), 201
+    except Exception as e:
+        db.session.rollback()
+        # Log the error for debugging
+        print(f"Error creating user: {e}")
+        return jsonify({"error": "Internal Server Error"}), 500
 
 # Existing course data
 courses = [
     {
         "id": "1",
-        "title": "Software Development (via Python)",
-        "description": "Master the essentials of AI-assisted development...",
+        "title": "Software Development",
+        "description": "Master the essentials of AI-assisted development, from foundational skills to advanced prompting frameworks and identifying bad practices.",
         "category": "AI Development",
         "duration": "4 hours",
-        "lessons": []
+        "lessons": [
+            {
+                "id": "1-1",
+                "title": "AI Foundational Skills",
+                "duration": "60 min",
+                "content": "Explore the core concepts of AI in software development. Understand how Large Language Models work, their capabilities, and how to integrate them into your development workflow effectively.",
+                "objectives": [
+                    "Understand LLM basics for developers",
+                    "Set up AI development tools",
+                    "Learn core AI interaction patterns",
+                    "Identify best use cases for AI assistance"
+                ],
+                "objectiveDetails": {
+                    "Understand LLM basics for developers": {
+                        "title": "LLM Fundamentals",
+                        "description": "Deep dive into how Large Language Models work, tokenization, and their probabilistic nature."
+                    }
+                },
+                "activities": ["Read about Transformers", "Experiment with tokenizers"],
+                "completed": False
+            }
+        ]
     }
 ]
 
