@@ -18,4 +18,5 @@
   Run cd src/app/Backend
   
   Run python3 main.py
-  
+
+  pip install -r requirments.txt
