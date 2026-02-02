@@ -244,7 +244,7 @@ Without C.A.R., a junior developer might ask something like, “Can you fix this
   },
 ];
 
-type View = "dashboard" | "course" | "lesson" | "schedule" | "objective";
+type View = "dashboard" | "course" | "lesson" |"activity-page"| "schedule" | "objective";
 
 export default function App() {
   const [courses, setCourses] = useState(initialCourses);
@@ -319,6 +319,11 @@ export default function App() {
   const handleObjectiveClick = (objective: string) => {
     setSelectedObjective(objective);
     setCurrentView("objective");
+  };
+
+  const handleActivityClick = (objective: string) => {
+    setSelectedObjective(objective);
+    setCurrentView("activity-page");
   };
 
   const handleLessonComplete = () => {
