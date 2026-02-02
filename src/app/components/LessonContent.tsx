@@ -26,6 +26,7 @@ interface LessonContentProps {
   onNext: () => void;
   onPrevious: () => void;
   onObjectiveClick: (objective: string) => void;
+  onActivityClick: (activity: string) => void
   ShowCarPromptExample?: boolean;
 }
 
@@ -43,6 +44,7 @@ export function LessonContent({
   onNext,
   onPrevious,
   onObjectiveClick,
+  onActivityClick,
 }: LessonContentProps) {
   const ExampleComponent = exampleType ? exampleRegistry[exampleType] : null;
 

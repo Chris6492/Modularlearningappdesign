@@ -705,6 +705,7 @@ export default function App() {
               onNext={handleNextLesson}
               onPrevious={handlePreviousLesson}
               onObjectiveClick={handleObjectiveClick}
+              onActivityClick={handleActivityClick}
             />
 
           </div>
