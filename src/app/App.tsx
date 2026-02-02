@@ -321,9 +321,8 @@ export default function App() {
     setCurrentView("objective");
   };
 
-  const handleActivityClick = (objective: string) => {
-    setSelectedObjective(objective);
-    setCurrentView("activity-page");
+  const handleActivityClick = (activity: string) => {
+    setCurrentView("activity-page" as any);
   };
 
   const handleLessonComplete = () => {
@@ -705,9 +704,11 @@ export default function App() {
               onPrevious={handlePreviousLesson}
               onObjectiveClick={handleObjectiveClick}
             />
-            <LLMCodeGenerator />
+
           </div>
         )}
+        {currentView === ("activity-page" as any)&& selectedLesson}
+        <LLMCodeGenerator />
       </main>
     </div>
   );
