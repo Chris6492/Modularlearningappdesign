@@ -1,4 +1,4 @@
-import { TrendingUp, Target, Award, BookOpen } from "lucide-react";
+import { TrendingUp, Target, Award, BookOpen, LucideIcon } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 
 interface StatsCardProps {
@@ -9,14 +9,14 @@ interface StatsCardProps {
   color?: string;
 }
 
-const iconMap = {
+const iconMap: Record<string, LucideIcon> = {
   trending: TrendingUp,
   target: Target,
   award: Award,
   book: BookOpen,
 };
 
-const colorMap = {
+const colorMap: Record<string, string> = {
   trending: "text-blue-500",
   target: "text-purple-500",
   award: "text-yellow-500",
@@ -24,8 +24,8 @@ const colorMap = {
 };
 
 export function StatsCard({ icon, title, value, subtitle, color }: StatsCardProps) {
-  const Icon = iconMap[icon];
-  const iconColor = color || colorMap[icon];
+  const Icon = iconMap[icon] || BookOpen;
+  const iconColor = color || colorMap[icon] || "text-primary";
 
   return (
     <Card>
