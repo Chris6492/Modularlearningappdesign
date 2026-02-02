@@ -707,8 +707,10 @@ export default function App() {
 
           </div>
         )}
-        {currentView === ("activity-page" as any)&& selectedLesson}
-        <LLMCodeGenerator />
+        {currentView === ("activity-page" as any)&& selectedLesson(
+          <LLMCodeGenerator />
+        )}
+        
       </main>
     </div>
   );
