@@ -19,7 +19,7 @@ import { LessonItem } from "./components/LessonItem";
 import { LessonContent } from "./components/LessonContent";
 import { StatsCard } from "./components/StatsCard";
 import { ObjectiveView } from "./components/ObjectiveView";
-
+import { LLMCodeGenerator } from "./components/LLM"
 import { ExampleType } from "./components/example/ExampleRegistry";
 
 interface ObjectiveDetail {
@@ -700,6 +700,7 @@ export default function App() {
               onPrevious={handlePreviousLesson}
               onObjectiveClick={handleObjectiveClick}
             />
+            <LLMCodeGenerator />
           </div>
         )}
       </main>
