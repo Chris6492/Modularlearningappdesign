@@ -52,7 +52,7 @@ interface Course {
 const initialCourses: Course[] = [
   {
     id: "1",
-    title: "Software Development",
+    title: "Using AI Tools Like A Mid, Evolving Software Development",
     description:
       "Master the essentials of AI-assisted development, from foundational skills to advanced prompting frameworks and identifying bad practices.",
     category: "AI Development",
@@ -376,20 +376,50 @@ OpenAI (GPT)
       },
       {
         id: "1-6",
-        title: "Enter course module here!!!",
-        duration: "20 min",
-        content: "N/A",
-        objectives: ["objective1", "objective2"],
+        title: "AI VS Automation VS Search Engine",
+        duration: "15 min",
+        content: "Giving you a breif explantion of what each one is and how differ in your journey to becoming a better all around developer.",
+        objectives: ["Why It Matter For Software Developers", "The Core Definitions"],
         objectiveDetails: {
-          objective1: {
-            title: "LLM Fundamentals",
+          "Why It Matter For Software Developers": {
+            title: "Why It Matter For Software Developers",
             description:
-              "Deep dive into how Large Language Models work, tokenization, and their probabilistic nature.",
+              "Why this matters for software developers As an entry-level developer, you’ll constantly hear people say “use AI,” “just automate it,” or “Google it.” These are not the same thing, and knowing when to use each one is a key skill that separates junior developers from mid-level developers.Before comparing them, let’s clearly define what each does."
+,
           },
-          objective2: {
-            title: "LLM Fundamentals",
+          "The Core Definitions": {
+            title: "Core Definitions",
             description:
-              "Deep dive into how Large Language Models work, tokenization, and their probabilistic nature.",
+              `Automation
+              Automation is the use of software, hardware, or scripts to perform repeatable, predefined tasks with little to no human intervention.
+              * Follows explicit rules
+              * Does not learn or adapt on its own
+              * Produces the same output for the same input every time
+              Examples:
+              * A cron job that runs a backup every night
+              * A CI pipeline that runs tests on every pull request
+              * A script that renames files in bulk
+              
+Artificial Intelligence (AI)
+              AI involves training computer systems to perform tasks that typically require human intelligence, such as reasoning, pattern recognition, language understanding, and decision-making.
+              * Learns from data
+              * Can generalize to new situations
+              * Handles ambiguity and incomplete information
+              Examples:
+              * A code assistant that suggests fixes
+              * A chatbot that explains complex logic
+              * A system that classifies support tickets by intent
+
+Search Engines
+              Search engines retrieve existing, human-written information from large datasets (usually the internet) based on keyword or semantic matching.
+              * Does not generate new knowledge
+              * Does not reason or adapt
+              * Returns links or snippets that already exist
+              Examples:
+              * Google search results
+              * Stack Overflow answers
+              * Documentation pages
+              `,
           },
         },
         activities: ["activity goes here"],
