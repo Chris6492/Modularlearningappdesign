@@ -254,6 +254,7 @@ export default function App() {
   const [selectedObjective, setSelectedObjective] = useState<string | null>(
     null,
   );
+  const [selectedActivity, setSelectedActivity] = useState<string | null>(null)
   const [searchQuery, setSearchQuery] = useState("");
   const [activeTab, setActiveTab] = useState("all");
   const [date, setDate] = useState<Date | undefined>(new Date());
@@ -322,6 +323,7 @@ export default function App() {
   };
 
   const handleActivityClick = (activity: string) => {
+    setSelectedActivity(activity);
     setCurrentView("activity-page" as any);
   };
 
@@ -707,7 +709,7 @@ export default function App() {
 
           </div>
         )}
-        {currentView === ("activity-page" as any)&& selectedLesson(
+        {currentView === ("activity-page" as any)&& selectedLesson &&(
           <LLMCodeGenerator />
         )}
         
