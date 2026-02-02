@@ -55,7 +55,7 @@ const initialCourses: Course[] = [
     title: "Using AI Tools Like A Mid, Evolving Software Development",
     description:
       "Master the essentials of AI-assisted development, from foundational skills to advanced prompting frameworks and identifying bad practices.",
-    category: "AI Development",
+    category: "Software Development",
     duration: "4 hours",
     lessons: [
       {
