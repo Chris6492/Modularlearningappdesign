@@ -19,6 +19,7 @@ import { LessonItem } from "./components/LessonItem";
 import { LessonContent } from "./components/LessonContent";
 import { StatsCard } from "./components/StatsCard";
 import { ObjectiveView } from "./components/ObjectiveView";
+import { ActivityPageView } from "./components/ActivityPageView";
 
 import { ExampleType } from "./components/example/ExampleRegistry";
 import { UserDialog } from "./components/UserDialog";
@@ -37,6 +38,7 @@ interface Lesson {
   objectiveDetails?: Record<string, ObjectiveDetail>;
   exampleType?: ExampleType;
   activities: string[];
+  activityDescriptions?: Record<string, string>;
   completed: boolean;
 }
 
@@ -236,31 +238,41 @@ const App: React.FC = () => {
               <ArrowLeft className="mr-2 h-4 w-4" />
               Back to Course
             </Button>
-            <LessonContent 
-              title={currentLesson.title}
-              content={currentLesson.content}
-              objectives={currentLesson.objectives}
-              activities={currentLesson.activities}
-              completed={currentLesson.completed}
-              hasNext={false}
-              hasPrevious={false}
-              onComplete={() => {}}
-              onNext={() => {}}
-              onPrevious={() => {}}
+
+            <LessonContent
+              title={selectedLesson.title}
+              content={selectedLesson.content}
+              objectives={selectedLesson.objectives}
+              activities={selectedLesson.activities}
+              activityDescriptions={selectedLesson.activityDescriptions}
+              completed={selectedLesson.completed}
+              exampleType={selectedLesson.exampleType}
+              hasNext={
+                selectedCourse.lessons.findIndex(
+                  (l) => l.id === selectedLessonId,
+                ) <
+                selectedCourse.lessons.length - 1
+              }
+              hasPrevious={
+                selectedCourse.lessons.findIndex(
+                  (l) => l.id === selectedLessonId,
+                ) > 0
+              }
+              onComplete={handleLessonComplete}
+              onNext={handleNextLesson}
+              onPrevious={handlePreviousLesson}
               onObjectiveClick={handleObjectiveClick}
+              onActivityClick={handleActivityClick}
             />
           </div>
         )}
 
-        {activeView === "objective" && currentObjective && currentLesson && (
-          <div className="space-y-6">
-            <ObjectiveView 
-              objective={currentObjective.title}
-              description={currentObjective.description}
-              lessonTitle={currentLesson.title}
-              onBack={() => setActiveView("lesson")}
-            />
-          </div>
+        {currentView === ("activity-page" as any) && selectedLesson && selectedActivity && (
+          <ActivityPageView
+            activity={selectedActivity}
+            description={selectedLesson.activityDescriptions?.[selectedActivity] || ""}
+            onBack={() => setCurrentView("lesson")}
+          />
         )}
       </main>
     </div>
