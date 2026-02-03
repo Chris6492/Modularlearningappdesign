@@ -2,6 +2,7 @@ from flask import Flask, jsonify, request
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 import os
+from llm import get_llm_response
 
 app = Flask(__name__)
 CORS(app)
@@ -359,8 +360,8 @@ OpenAI (GPT)
             },
             {
                 "id": "1-6",
-                "title": "Enter course module here!!!",
-                "duration": "20 min",
+                "title": "AI VS Automation VS Search",
+                "duration": "15 min",
                 "content": "N/A",
                 "objectives": ["N/A", "N/A"],
                 "activities": ["activity goes here"],
@@ -383,6 +384,20 @@ def get_course(course_id):
         return jsonify(course)
     return jsonify({"error": "Course not found"}), 404
 
+
+@app.route("/api/generate", methods=["POST"])
+def generate_code():
+    data = request.json
+
+    if not data or "prompt" not in data:
+        return jsonify({"error": "Missing prompt"}), 400
+
+    try:
+        result = get_llm_response(data["prompt"])
+        return jsonify({"content": result})
+    except Exception as e:
+        print(f"LLM error: {e}")
+        return jsonify({"error": "Failed to generate code"}), 500
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8000)
