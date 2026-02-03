@@ -78,10 +78,11 @@ const App: React.FC = () => {
   }, []);
 
   const [activeTab, setActiveTab] = useState("all");
-  const [activeView, setActiveView] = useState<"dashboard" | "course" | "lesson" | "objective">("dashboard");
+  const [activeView, setActiveView] = useState<"dashboard" | "course" | "lesson" | "objective" | "activity-page">("dashboard");
   const [currentCourse, setCurrentCourse] = useState<Course | null>(null);
   const [currentLesson, setCurrentLesson] = useState<Lesson | null>(null);
   const [currentObjective, setCurrentObjective] = useState<{title: string, description: string} | null>(null);
+  const [selectedActivity, setSelectedActivity] = useState<string | null>(null);
 
   const stats = [
     { title: "Total Courses", value: courses.length, subtitle: "Available now", icon: "book" as const },
@@ -114,6 +115,42 @@ const App: React.FC = () => {
         description: currentLesson.objectiveDetails[objectiveTitle].description
       });
       setActiveView("objective");
+    }
+  };
+
+  const handleActivityClick = (activity: string) => {
+    setSelectedActivity(activity);
+    setActiveView("activity-page");
+  };
+
+  const handleLessonComplete = () => {
+    if (currentLesson) {
+      // In a real app, this would be an API call
+      const updatedLessons = currentCourse?.lessons.map(l => 
+        l.id === currentLesson.id ? { ...l, completed: true } : l
+      ) || [];
+      if (currentCourse) {
+        setCurrentCourse({ ...currentCourse, lessons: updatedLessons });
+        setCurrentLesson({ ...currentLesson, completed: true });
+      }
+    }
+  };
+
+  const handleNextLesson = () => {
+    if (currentCourse && currentLesson) {
+      const currentIndex = currentCourse.lessons.findIndex(l => l.id === currentLesson.id);
+      if (currentIndex < currentCourse.lessons.length - 1) {
+        setCurrentLesson(currentCourse.lessons[currentIndex + 1]);
+      }
+    }
+  };
+
+  const handlePreviousLesson = () => {
+    if (currentCourse && currentLesson) {
+      const currentIndex = currentCourse.lessons.findIndex(l => l.id === currentLesson.id);
+      if (currentIndex > 0) {
+        setCurrentLesson(currentCourse.lessons[currentIndex - 1]);
+      }
     }
   };
 
@@ -232,7 +269,7 @@ const App: React.FC = () => {
           </div>
         )}
 
-        {activeView === "lesson" && currentLesson && (
+        {activeView === "lesson" && currentLesson && currentCourse && (
           <div className="space-y-6">
             <Button variant="ghost" onClick={() => setActiveView("course")}>
               <ArrowLeft className="mr-2 h-4 w-4" />
@@ -240,24 +277,14 @@ const App: React.FC = () => {
             </Button>
 
             <LessonContent
-              title={selectedLesson.title}
-              content={selectedLesson.content}
-              objectives={selectedLesson.objectives}
-              activities={selectedLesson.activities}
-              activityDescriptions={selectedLesson.activityDescriptions}
-              completed={selectedLesson.completed}
-              exampleType={selectedLesson.exampleType}
-              hasNext={
-                selectedCourse.lessons.findIndex(
-                  (l) => l.id === selectedLessonId,
-                ) <
-                selectedCourse.lessons.length - 1
-              }
-              hasPrevious={
-                selectedCourse.lessons.findIndex(
-                  (l) => l.id === selectedLessonId,
-                ) > 0
-              }
+              title={currentLesson.title}
+              content={currentLesson.content}
+              objectives={currentLesson.objectives}
+              activities={currentLesson.activities}
+              completed={currentLesson.completed}
+              exampleType={currentLesson.exampleType}
+              hasNext={currentCourse.lessons.findIndex(l => l.id === currentLesson.id) < currentCourse.lessons.length - 1}
+              hasPrevious={currentCourse.lessons.findIndex(l => l.id === currentLesson.id) > 0}
               onComplete={handleLessonComplete}
               onNext={handleNextLesson}
               onPrevious={handlePreviousLesson}
@@ -267,11 +294,22 @@ const App: React.FC = () => {
           </div>
         )}
 
-        {currentView === ("activity-page" as any) && selectedLesson && selectedActivity && (
+        {activeView === "objective" && currentObjective && currentLesson && (
+          <div className="space-y-6">
+            <ObjectiveView 
+              objective={currentObjective.title}
+              description={currentObjective.description}
+              lessonTitle={currentLesson.title}
+              onBack={() => setActiveView("lesson")}
+            />
+          </div>
+        )}
+
+        {activeView === "activity-page" && currentLesson && selectedActivity && (
           <ActivityPageView
             activity={selectedActivity}
-            description={selectedLesson.activityDescriptions?.[selectedActivity] || ""}
-            onBack={() => setCurrentView("lesson")}
+            description={currentLesson.activityDescriptions?.[selectedActivity] || ""}
+            onBack={() => setActiveView("lesson")}
           />
         )}
       </main>
