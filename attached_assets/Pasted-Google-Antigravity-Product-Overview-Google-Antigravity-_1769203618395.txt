@@ -1,0 +1,37 @@
+Google Antigravity 
+Product Overview
+Google Antigravity is an "agent-first" integrated development environment (IDE) built on an open-source VS Code foundation. Launched in November 18, 2025, it is designed as a "Mission Control" for managing autonomous AI agents that plan, code, and test software with minimal human intervention. 
+________________________________________
+Key Strengths
+•	Massive Context Window: The tool uses Gemini 3.0 Pro. It has a 2-million-token context window. This lets it process large enterprise codebases that competitors, like Cursor, cannot handle.
+•	Autonomous Multi-Agent Workflows: Multiple agents can be launched at once. They can handle different tasks, such as building a feature while another agent writes tests or researches documentation.
+•	Integrated Browser Control: The tool has a built-in Chrome-based browser. Agents can use it to click buttons, navigate pages, and check visual UI changes in real-time.
+•	High-Level Verification (Artifacts): The system provides "Artifacts" to prove the code works. These include implementation plans, walkthroughs, and screen recordings of test executions.
+•	Human-in-the-Loop Feedback: Users can add comments directly on artifacts or screenshots, like in Google Docs. Agents then use these to refine their plans. 
+________________________________________
+Current Weaknesses & Risks
+•	Critical Security Vulnerabilities: There are documented "indirect prompt injection" flaws. Agents can be manipulated to execute unauthorized commands or steal sensitive data.
+•	Reliability & "Task Looping": Agents sometimes get stuck in repetitive "recursive optimization loops." They may also incorrectly delete critical code.
+•	Extension & Plugin Gaps: It uses the Open VSX registry. This means it lacks compatibility with some official Microsoft extensions, such as the C# Dev Kit, due to licensing restrictions.
+•	Resource Throttling: The tool has strict rate limits ("Out of Quota" walls). This can force developers to use standard tools.
+•	Black Box Logic: Deep refactors can sometimes produce "logic compression." This can result in code that is up to 70% smaller, but hard for humans to debug or maintain.
+•	UI/UX Instability: The interface may have occasional flickers, freezing, or bugs in the browser integration. 
+
+
+
+
+Claude (Anthropic)
+•	Strengths: Highly consistent, better at following constraints, excellent for complex coding tasks, reduced code review overhead, strong on benchmarks like SWE-Bench.
+•	Weaknesses: Higher cost per task (though cost-effective when factoring in reduced dev time), less extensive multimodal features than Gemini.
+•	Best For: Developers wanting reliable, production-ready code, debugging, and complex refactoring with minimal errors
+
+Gemini (Google)
+•	Strengths: Powerful multimodal understanding (text, images, audio), features like Antigravity for direct testing, large context windows for understanding codebases.
+•	Weaknesses: Can sometimes modify extra files or introduce unintended features, requires Google Cloud knowledge for full leverage, slower execution times.
+•	Best For: Multimodal tasks (analyzing screenshots with code), deep codebase understanding, and development within Google's ecosystem. 
+
+
+OpenAI (GPT)
+•	Strengths: Broad integration (GitHub Copilot, VS Code), large developer community, fast iteration cycle, good for general productivity and prototyping.
+•	Weaknesses: Higher hallucination rates, can be less precise in complex coding scenarios, instability concerns for some users.
+•	Best For: General coding assistance, creative tasks, UI prototyping, and leveraging extensive existing integrations. 
