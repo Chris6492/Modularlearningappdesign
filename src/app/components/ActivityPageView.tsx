@@ -52,6 +52,7 @@ const BAD_CODING_OPTIONS = [
 export function ActivityPageView({ activity, description, onBack }: ActivityPageViewProps) {
   const [isHelpOpen, setIsHelpOpen] = useState(false);
   const [isCompleted, setIsCompleted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [code, setCode] = useState(`// AI Generated Code with potential issues
 function processUserData(userData) {
   // Blindly trust that userData has the expected structure

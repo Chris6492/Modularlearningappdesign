@@ -2,7 +2,7 @@ from flask import Flask, jsonify, request
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 import os
-from llm import get_llm_response
+from .llm import get_llm_response
 
 app = Flask(__name__)
 CORS(app)
