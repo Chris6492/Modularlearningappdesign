@@ -9,6 +9,7 @@ interface ActivityPageViewProps {
   activity: string;
   description: string;
   onBack: () => void;
+  code: string;
 }
 
 const BAD_CODING_OPTIONS = [
@@ -53,20 +54,7 @@ export function ActivityPageView({ activity, description, onBack }: ActivityPage
   const [isHelpOpen, setIsHelpOpen] = useState(false);
   const [isCompleted, setIsCompleted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [code, setCode] = useState(`// AI Generated Code with potential issues
-function processUserData(userData) {
-  // Blindly trust that userData has the expected structure
-  const name = userData.name;
-  const email = userData.email;
-  
-  console.log("Processing user: " + name + " (" + email + ")");
-  
-  // Potential SQL Injection vulnerability
-  const query = "INSERT INTO users (name, email) VALUES ('" + name + "', '" + email + "')";
-  return db.execute(query);
-}
-
-// Select the correct fix from the options below!`);
+  const [code, setCode] = useState("");
 
   return (
     <div className="max-w-4xl mx-auto space-y-6">

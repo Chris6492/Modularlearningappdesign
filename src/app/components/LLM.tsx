@@ -1,22 +1,22 @@
 import { useState } from "react";
 
-export function LLMCodeGenerator() {
+export function LLMCodeGenerator({ onCodeGenerated }: { onCodeGenerated: (code: string) => void }) {
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
   const [loading, setLoading] = useState(false);
 
   const generateCode = async () => {
     setLoading(true);
-    const res = await fetch("http://localhost:8000/generate", {
+    const res = await fetch("http://localhost:8000/api/generate", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ input }),
+      body: JSON.stringify({ prompt:input }),
     });
 
     const data = await res.json();
-    setOutput(data.content);
+    onCodeGenerated(data.content);
     setLoading(false);
   };
 
@@ -24,13 +24,13 @@ export function LLMCodeGenerator() {
     <div style={{ padding: "2rem", fontFamily: "sans-serif" }}>
       <h2>LLM Code Generator</h2>
 
-      {/* <textarea
+      <textarea
         rows={4}
         style={{ width: "100%" }}
         value={input}
         onChange={(e) => setInput(e.target.value)}
         placeholder="Enter your prompt..."
-      /> */}
+      />
 
       <button onClick={generateCode} disabled={loading}>
         {loading ? "Generating..." : "Generate"}
