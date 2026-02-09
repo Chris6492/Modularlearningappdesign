@@ -456,19 +456,19 @@ def get_course(course_id):
     return jsonify({"error": "Course not found"}), 404
 
 
-# @app.route("/api/generate", methods=["POST"])
-# def generate_code():
-#     data = request.json
+@app.route("/api/generate", methods=["POST"])
+def generate_code():
+    data = request.json
 
-#     if not data or "prompt" not in data:
-#         return jsonify({"error": "Missing prompt"}), 400
+    if not data or "prompt" not in data:
+        return jsonify({"error": "Missing prompt"}), 400
 
-#     try:
-#         result = get_llm_response(data["prompt"])
-#         return jsonify({"content": result})
-#     except Exception as e:
-#         print(f"LLM error: {e}")
-#         return jsonify({"error": "Failed to generate code"}), 500
+    try:
+        result = get_llm_response(data["prompt"])
+        return jsonify({"content": result})
+    except Exception as e:
+        print(f"LLM error: {e}")
+        return jsonify({"error": "Failed to generate code"}), 500
 
 
 if __name__ == "__main__":
