@@ -1,14 +1,14 @@
 import sys
+import os
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), 'src'))
+
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
-import os
 from app.backend.llm import get_llm_response
 
 app = Flask(__name__)
 CORS(app)
-
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 # Database configuration
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
