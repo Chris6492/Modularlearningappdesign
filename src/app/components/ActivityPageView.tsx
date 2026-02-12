@@ -55,6 +55,36 @@ export function ActivityPageView({ activity, description, onBack }: ActivityPage
   const [isCompleted, setIsCompleted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [code, setCode] = useState("");
+  const [error, setError] = useState("");
+
+const fetchGPTCode = async (prompt: string) => {
+    setIsLoading(true);
+    setError("");
+    try {
+      const res = await fetch("http://localhost:5000/api/generate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ prompt })
+      });
+      
+      console.log("Response status:", res.status); // DEBUG
+      const data = await res.json();
+      console.log("Response data:", data); // DEBUG
+      console.log("data.response value:", data.response);
+
+      if (res.ok) {
+        console.log("Generated code:", data.response); // DEBUG
+        setCode(data.response || "No code generated");
+      } else {
+        setError(data.error || "Failed to fetch response");
+      }
+    } catch (err) {
+      console.error("Fetch error:", err); // DEBUG
+      setError("Connection error: " + (err as Error).message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <div className="max-w-4xl mx-auto space-y-6">
@@ -88,6 +118,16 @@ export function ActivityPageView({ activity, description, onBack }: ActivityPage
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
+           <Button 
+            onClick={() => fetchGPTCode("Generate bad Python code with a security vulnerability")}
+            disabled={isLoading}
+            className="gap-2"
+          >
+            <Play className="h-4 w-4" />
+            {isLoading ? "Generating..." : "Generate Code"}
+          </Button>
+
+          {error && <div className="text-red-600 text-sm">{error}</div>}
           <div className="relative group">
             <textarea
               value={code}

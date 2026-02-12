@@ -16,6 +16,7 @@ export function LLMCodeGenerator({ onCodeGenerated }: { onCodeGenerated: (code: 
     });
 
     const data = await res.json();
+    setOutput(data.content);
     onCodeGenerated(data.content);
     setLoading(false);
   };
