@@ -7,7 +7,7 @@ export function LLMCodeGenerator({ onCodeGenerated }: { onCodeGenerated: (code: 
 
   const generateCode = async () => {
     setLoading(true);
-    const res = await fetch("http://localhost:8000/api/generate", {
+    const res = await fetch("/api/generate_v2", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -16,8 +16,9 @@ export function LLMCodeGenerator({ onCodeGenerated }: { onCodeGenerated: (code: 
     });
 
     const data = await res.json();
-    setOutput(data.content);
-    onCodeGenerated(data.content);
+    const generatedCode = data.response || data.content;
+    setOutput(generatedCode);
+    onCodeGenerated(generatedCode);
     setLoading(false);
   };
 

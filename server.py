@@ -52,7 +52,19 @@ def create_user():
         return jsonify({"error": "Internal Server Error"}), 500
 
 
-# Existing course data
+@app.route('/api/generate', methods=['POST'])
+def generate_code_route():
+    data = request.json
+    prompt = data.get('prompt')
+    if not prompt:
+        return jsonify({"error": "No prompt provided"}), 400
+    try:
+        response = get_llm_response(prompt)
+        return jsonify({"response": response})
+    except Exception as e:
+        print(f"Error in generate_code: {e}")
+        return jsonify({"error": str(e)}), 500
+
 initial_courses = [
     {
         "id":
@@ -458,8 +470,8 @@ def get_course(course_id):
     return jsonify({"error": "Course not found"}), 404
 
 
-@app.route("/api/generate", methods=["POST"])
-def generate_code():
+@app.route("/api/generate_v2", methods=["POST"])
+def generate_code_v2():
     try:
         data = request.json
         prompt = data.get('prompt', '')

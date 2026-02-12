@@ -61,7 +61,7 @@ const fetchGPTCode = async (prompt: string) => {
     setIsLoading(true);
     setError("");
     try {
-      const res = await fetch("http://localhost:5000/api/generate", {
+      const res = await fetch("/api/generate_v2", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ prompt })
