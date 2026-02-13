@@ -4,87 +4,58 @@ import { Button } from "./ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "./ui/card";
 import { HelpModal } from "./HelpModal";
 import { MultipleChoiceActivity } from "./MultipleChoiceActivity";
+import { Option } from "./LLM";
 
 interface ActivityPageViewProps {
   activity: string;
   description: string;
   onBack: () => void;
   code: string;
+  options: Option[];
 }
 
-const BAD_CODING_OPTIONS = [
-  {
-    id: "1",
-    code: `function saveUser(user) {
-  const sql = "INSERT INTO users VALUES ('" + user.name + "')";
-  db.execute(sql);
-}`,
-    isCorrect: false,
-    explanation: "This is vulnerable to SQL injection. Never concatenate user input directly into SQL queries."
-  },
-  {
-    id: "2",
-    code: `function saveUser(user) {
-  const sql = "INSERT INTO users (name) VALUES (?)";
-  db.execute(sql, [user.name]);
-}`,
-    isCorrect: true,
-    explanation: "Correct! Using parameterized queries (prepared statements) prevents SQL injection by separating code from data."
-  },
-  {
-    id: "3",
-    code: `function saveUser(user) {
-  eval("db.insert('users', " + JSON.stringify(user) + ")");
-}`,
-    isCorrect: false,
-    explanation: "Using eval() is extremely dangerous and can lead to arbitrary code execution."
-  },
-  {
-    id: "4",
-    code: `function saveUser(user) {
-  localStorage.setItem('lastUser', user.name);
-  db.execute("INSERT INTO users VALUES ('" + user.name + "')");
-}`,
-    isCorrect: false,
-    explanation: "This still has the SQL injection vulnerability and adds unnecessary side effects."
-  }
-];
+// const BAD_CODING_OPTIONS = [
+//   {
+//     id: "1",
+//     code: `function saveUser(user) {
+//   const sql = "INSERT INTO users VALUES ('" + user.name + "')";
+//   db.execute(sql);
+// }`,
+//     isCorrect: false,
+//     explanation: "This is vulnerable to SQL injection. Never concatenate user input directly into SQL queries."
+//   },
+//   {
+//     id: "2",
+//     code: `function saveUser(user) {
+//   const sql = "INSERT INTO users (name) VALUES (?)";
+//   db.execute(sql, [user.name]);
+// }`,
+//     isCorrect: true,
+//     explanation: "Correct! Using parameterized queries (prepared statements) prevents SQL injection by separating code from data."
+//   },
+//   {
+//     id: "3",
+//     code: `function saveUser(user) {
+//   eval("db.insert('users', " + JSON.stringify(user) + ")");
+// }`,
+//     isCorrect: false,
+//     explanation: "Using eval() is extremely dangerous and can lead to arbitrary code execution."
+//   },
+//   {
+//     id: "4",
+//     code: `function saveUser(user) {
+//   localStorage.setItem('lastUser', user.name);
+//   db.execute("INSERT INTO users VALUES ('" + user.name + "')");
+// }`,
+//     isCorrect: false,
+//     explanation: "This still has the SQL injection vulnerability and adds unnecessary side effects."
+//   }
+// ];
 
-export function ActivityPageView({ activity, description, onBack }: ActivityPageViewProps) {
+export function ActivityPageView({ activity, description, onBack, code, options }: ActivityPageViewProps) {
   const [isHelpOpen, setIsHelpOpen] = useState(false);
   const [isCompleted, setIsCompleted] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [code, setCode] = useState("");
-  const [error, setError] = useState("");
 
-const fetchGPTCode = async (prompt: string) => {
-    setIsLoading(true);
-    setError("");
-    try {
-      const res = await fetch("/api/generate_v2", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ prompt })
-      });
-      
-      console.log("Response status:", res.status); // DEBUG
-      const data = await res.json();
-      console.log("Response data:", data); // DEBUG
-      console.log("data.response value:", data.response);
-
-      if (res.ok) {
-        console.log("Generated code:", data.response); // DEBUG
-        setCode(data.response || "No code generated");
-      } else {
-        setError(data.error || "Failed to fetch response");
-      }
-    } catch (err) {
-      console.error("Fetch error:", err); // DEBUG
-      setError("Connection error: " + (err as Error).message);
-    } finally {
-      setIsLoading(false);
-    }
-  };
 
   return (
     <div className="max-w-4xl mx-auto space-y-6">
@@ -118,16 +89,7 @@ const fetchGPTCode = async (prompt: string) => {
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
-           <Button 
-            onClick={() => fetchGPTCode("Generate bad Python code with a security vulnerability")}
-            disabled={isLoading}
-            className="gap-2"
-          >
-            <Play className="h-4 w-4" />
-            {isLoading ? "Generating..." : "Generate Code"}
-          </Button>
 
-          {error && <div className="text-red-600 text-sm">{error}</div>}
           <div className="relative group">
             <textarea
               value={code}
@@ -137,13 +99,16 @@ const fetchGPTCode = async (prompt: string) => {
             />
           </div>
 
-          <div className="pt-4 border-t border-primary/10">
-            <h3 className="text-lg font-semibold mb-4">Choose the correct fix:</h3>
-            <MultipleChoiceActivity 
-              options={BAD_CODING_OPTIONS} 
-              onCorrect={() => setIsCompleted(true)} 
-            />
-          </div>
+          {options.length > 0 && (
+            <div className="pt-4 border-t border-primary/10">
+              <h3 className="text-lg font-semibold mb-4">Choose the correct fix:</h3>
+              <MultipleChoiceActivity 
+                options={options} 
+                onCorrect={() => setIsCompleted(true)} 
+              />
+            </div>
+          )}
+          
         </CardContent>
       </Card>
 

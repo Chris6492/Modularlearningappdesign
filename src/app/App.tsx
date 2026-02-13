@@ -15,9 +15,9 @@ import { LessonContent } from "./components/LessonContent";
 import { StatsCard } from "./components/StatsCard";
 import { ObjectiveView } from "./components/ObjectiveView";
 import { ActivityPageView } from "./components/ActivityPageView";
-import { LLMCodeGenerator } from "./components/LLM"; 
 import { ExampleType } from "./components/example/ExampleRegistry";
 import { UserDialog } from "./components/UserDialog";
+import { Option, LLMCodeGenerator } from "./components/LLM";
 
 interface ObjectiveDetail {
   title: string;
@@ -51,6 +51,7 @@ const App: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [userDialogOpen, setUserDialogOpen] = useState(false);
   const [currentUser, setCurrentUser] = useState<{ username: string; email: string } | null>(null);
+  const [generatedOptions, setGeneratedOptions] = useState<Option[]>([]);
 
     useEffect(() => {
     fetch("/api/courses")
@@ -118,6 +119,7 @@ const App: React.FC = () => {
   const handleActivityClick = (activity: string) => {
     setSelectedActivity(activity);
     setGeneratedCode(""); 
+    setGeneratedOptions([]);
     setActiveView("activity-page");
   };
 
@@ -305,14 +307,22 @@ const App: React.FC = () => {
 
         {activeView === "activity-page" && currentLesson && selectedActivity && (
           <div>
-            <LLMCodeGenerator onCodeGenerated={(code) => setGeneratedCode(code)} />
+            <LLMCodeGenerator 
+              prompt="Generate bad Python code with a SQL injection vulnerability"
+              onCodeGenerated={(data) => {
+            setGeneratedCode(data.code);
+            setGeneratedOptions(data.options);
+            }}
+            />
 
-            {generatedCode && (
+            {generatedCode && generatedOptions.length > 0 && (
             <ActivityPageView
               activity={selectedActivity}
               description={currentLesson.activityDescriptions?.[selectedActivity] || ""}
               onBack={() => setActiveView("lesson")}
-              code={generatedCode} />
+              code={generatedCode}
+              options={generatedOptions}
+              />
         )}
           </div>
           

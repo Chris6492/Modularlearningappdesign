@@ -1,4 +1,5 @@
 import os
+import json
 from openai import OpenAI
 
 api_key = os.environ.get("AI_INTEGRATIONS_OPENAI_API_KEY")
@@ -13,13 +14,46 @@ def get_llm_response(prompt_text):
     try:
         response = client.chat.completions.create(
             model="gpt-4.1-nano",
-            messages=[
-                {"role": "system", "content": "Instruction: I need you to generate a block of bad code in Python that contains at least one security vulnerability. The code should be functional but intentionally flawed for educational purposes."},
-                {"role": "user", "content": prompt_text}
-            ],
+        messages=[
+            {
+                "role": "system",
+                "content": (
+                    "You generate secure coding exercises. "
+                    "Return ONLY valid JSON. No explanations outside JSON."
+                ),
+            },
+            {
+                "role": "user",
+                "content": f"""
+        Generate:
+        1. Vulnerable Python code with a security issue.
+        2. Four fix options.
+        3. Exactly one must be correct.
+        4. Return ONLY valid JSON in this format:
+
+        {{
+        "vulnerableCode": "string",
+        "options": [
+        {{
+        "id": "1",
+        "code": "string",
+        "isCorrect": false,
+        "explanation": "string"
+        }}
+        ]
+        }}
+
+        User instruction:
+        {prompt_text}
+        """,
+            },
+        ],
         )
-        print("OpenAI API Response:", response)
-        return response.choices[0].message.content
+
+        content = response.choices[0].message.content
+        parsed = json.loads(content)
+
+        return parsed
     except Exception as e:
         print(f"OpenAI API Error: {e}")
         raise

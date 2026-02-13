@@ -1,24 +1,48 @@
 import { useState } from "react";
 
-export function LLMCodeGenerator({ onCodeGenerated }: { onCodeGenerated: (code: string) => void }) {
-  const [input, setInput] = useState("");
-  const [output, setOutput] = useState("");
+export interface Option {
+  id: string;
+  code: string;
+  isCorrect: boolean;
+  explanation: string;
+}
+
+interface LLMResponse {
+  vulnerableCode: string;
+  options: Option[];
+}
+
+interface LLMCodeGeneratorProps {
+  prompt: string;
+  onCodeGenerated: (data: { code: string; options: Option[] }) => void;
+}
+
+export function LLMCodeGenerator({ 
+  onCodeGenerated,
+  prompt,
+}: LLMCodeGeneratorProps) {
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const generateCode = async () => {
     setLoading(true);
+    setError(null);
+
+    
     const res = await fetch("/api/generate_v2", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ prompt:input }),
+      body: JSON.stringify({ prompt}),
     });
 
-    const data = await res.json();
-    const generatedCode = data.response || data.content;
-    setOutput(generatedCode);
-    onCodeGenerated(generatedCode);
+    const data: LLMResponse = await res.json();
+   
+    onCodeGenerated({
+      code:data.vulnerableCode,
+      options: data.options
+    });
     setLoading(false);
   };
 
@@ -26,21 +50,10 @@ export function LLMCodeGenerator({ onCodeGenerated }: { onCodeGenerated: (code: 
     <div style={{ padding: "2rem", fontFamily: "sans-serif" }}>
       <h2>LLM Code Generator</h2>
 
-      <textarea
-        rows={4}
-        style={{ width: "100%" }}
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-        placeholder="Enter your prompt..."
-      />
-
-      <button onClick={generateCode} disabled={loading}>
+      <button onClick={generateCode} disabled={loading} className="px-4 py-2 bg-primary text-white rounded hover:opacity-90 disabled:opacity-50">
         {loading ? "Generating..." : "Generate"}
       </button>
 
-      <pre style={{ marginTop: "1rem", background: "#111", color: "#0f0", padding: "1rem" }}>
-        {output}
-      </pre>
     </div>
   );
 }
