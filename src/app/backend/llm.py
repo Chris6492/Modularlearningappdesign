@@ -51,6 +51,10 @@ def get_llm_response(prompt_text):
         )
 
         content = response.choices[0].message.content
+
+        if content is None:
+            raise ValueError("LLM returned empty content")
+        
         parsed = json.loads(content)
 
         return parsed
