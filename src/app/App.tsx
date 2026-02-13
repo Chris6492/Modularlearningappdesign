@@ -308,7 +308,7 @@ const App: React.FC = () => {
         {activeView === "activity-page" && currentLesson && selectedActivity && (
           <div>
             <LLMCodeGenerator 
-              prompt="Generate bad Python code with a SQL injection vulnerability"
+              prompt="Generate vulnerable Python code with 4 fix options."
               onCodeGenerated={(data) => {
             setGeneratedCode(data.code);
             setGeneratedOptions(data.options);
@@ -322,7 +322,7 @@ const App: React.FC = () => {
               onBack={() => setActiveView("lesson")}
               code={generatedCode}
               options={generatedOptions}
-              />
+            />
         )}
           </div>
           

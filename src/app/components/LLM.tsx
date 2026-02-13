@@ -8,8 +8,12 @@ export interface Option {
 }
 
 interface LLMResponse {
-  vulnerableCode: string;
-  options: Option[];
+  vulnerableCode?: string;
+  options?: Option[];
+  response?: {
+    vulnerableCode: string;
+    options: Option[];
+  };
 }
 
 interface LLMCodeGeneratorProps {
@@ -28,32 +32,57 @@ export function LLMCodeGenerator({
     setLoading(true);
     setError(null);
 
-    
-    const res = await fetch("/api/generate_v2", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ prompt}),
-    });
+    try {
+      const res = await fetch("/api/generate_v2", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ prompt }),
+      });
 
-    const data: LLMResponse = await res.json();
-   
-    onCodeGenerated({
-      code:data.vulnerableCode,
-      options: data.options
-    });
-    setLoading(false);
-  };
+      if (!res.ok) {
+        throw new Error(`HTTP error: ${res.status}`);
+      }
 
-  return (
-    <div style={{ padding: "2rem", fontFamily: "sans-serif" }}>
-      <h2>LLM Code Generator</h2>
+      const data: LLMResponse = await res.json();
+      console.log("LLM Response:", data);
+      
+      const parsedData = data.response ? data.response : data;
+      
+      if (!parsedData.vulnerableCode || !Array.isArray(parsedData.options)) {
+        console.error("Structure check failed:", parsedData);
+        throw new Error("Invalid AI response structure");
+      }
 
-      <button onClick={generateCode} disabled={loading} className="px-4 py-2 bg-primary text-white rounded hover:opacity-90 disabled:opacity-50">
-        {loading ? "Generating..." : "Generate"}
+      onCodeGenerated({
+        code: parsedData.vulnerableCode,
+        options: parsedData.options,
+      });
+    } catch (err) {
+      console.error("LLM Error:", err);
+      setError((err as Error).message);
+    } finally {
+      setLoading(false);
+    }
+    };
+
+    return (
+    <div className="space-y-4">
+      <button
+        onClick={generateCode}
+        disabled={loading}
+        className="px-4 py-2 bg-primary text-white rounded hover:opacity-90 disabled:opacity-50"
+      >
+        {loading ? "Generating..." : "Generate Code"}
       </button>
 
+      {error && (
+        <div className="text-red-600 text-sm">
+          Error generating activity: {error}
+        </div>
+      )}
     </div>
-  );
+    );
+
 }
