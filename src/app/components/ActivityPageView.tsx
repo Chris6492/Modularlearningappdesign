@@ -14,43 +14,6 @@ interface ActivityPageViewProps {
   options: Option[];
 }
 
-// const BAD_CODING_OPTIONS = [
-//   {
-//     id: "1",
-//     code: `function saveUser(user) {
-//   const sql = "INSERT INTO users VALUES ('" + user.name + "')";
-//   db.execute(sql);
-// }`,
-//     isCorrect: false,
-//     explanation: "This is vulnerable to SQL injection. Never concatenate user input directly into SQL queries."
-//   },
-//   {
-//     id: "2",
-//     code: `function saveUser(user) {
-//   const sql = "INSERT INTO users (name) VALUES (?)";
-//   db.execute(sql, [user.name]);
-// }`,
-//     isCorrect: true,
-//     explanation: "Correct! Using parameterized queries (prepared statements) prevents SQL injection by separating code from data."
-//   },
-//   {
-//     id: "3",
-//     code: `function saveUser(user) {
-//   eval("db.insert('users', " + JSON.stringify(user) + ")");
-// }`,
-//     isCorrect: false,
-//     explanation: "Using eval() is extremely dangerous and can lead to arbitrary code execution."
-//   },
-//   {
-//     id: "4",
-//     code: `function saveUser(user) {
-//   localStorage.setItem('lastUser', user.name);
-//   db.execute("INSERT INTO users VALUES ('" + user.name + "')");
-// }`,
-//     isCorrect: false,
-//     explanation: "This still has the SQL injection vulnerability and adds unnecessary side effects."
-//   }
-// ];
 
 export function ActivityPageView({ activity, description, onBack, code, options }: ActivityPageViewProps) {
   const [isHelpOpen, setIsHelpOpen] = useState(false);
