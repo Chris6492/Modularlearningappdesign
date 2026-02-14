@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ArrowLeft, HelpCircle, X, Code2, Play, Trophy } from "lucide-react";
 import { Button } from "./ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "./ui/card";
@@ -13,11 +13,40 @@ interface ActivityPageViewProps {
   code: string;
   options: Option[];
 }
-
+const ACTIVITY_TIME_LIMIT = 600;
 
 export function ActivityPageView({ activity, description, onBack, code, options }: ActivityPageViewProps) {
   const [isHelpOpen, setIsHelpOpen] = useState(false);
   const [isCompleted, setIsCompleted] = useState(false);
+  const [score, setScore] = useState(0);
+  const [questionsAnswered, setQuestionsAnswered] = useState(0);
+  const [timeLeft, setTimeLeft] = useState(ACTIVITY_TIME_LIMIT);
+  const [activityEnded, setActivityEnded] = useState(false);
+  
+// Countdown effect fuctionality
+  useEffect(() => {
+    if (activityEnded) return;
+
+    if (timeLeft <= 0) {
+      setActivityEnded(true);
+      return;
+    }
+
+    const timer = setTimeout(() => {
+      setTimeLeft((prev) => prev - 1);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, [timeLeft, activityEnded]);
+
+  const handleCorrect = () => {
+    if (activityEnded) return;
+
+    // setScore((prev) => prev + 1);
+    // setQuestionsAnswered((prev) => prev + 1);
+
+    // generateNextQuestion();
+  };
 
 
   return (
@@ -27,6 +56,18 @@ export function ActivityPageView({ activity, description, onBack, code, options 
           <ArrowLeft className="h-4 w-4" />
           Back to Lesson
         </Button>
+        <div className="flex justify-between items-center mb-6">
+          {/* <div className="text-lg font-semibold">
+            Score: {score}
+          </div> */}
+
+          <div className={`text-xl font-bold ${
+            timeLeft <= 60 ? "text-red-500 animate-pulse" : ""
+          }`}>
+            {Math.floor(timeLeft / 60)}:
+            {(timeLeft % 60).toString().padStart(2, "0")}
+          </div>
+        </div>
         <div className="flex gap-2">
           {isCompleted && (
             <div className="flex items-center gap-2 px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm font-medium">
