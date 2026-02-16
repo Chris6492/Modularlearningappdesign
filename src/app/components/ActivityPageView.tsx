@@ -47,14 +47,14 @@ export function ActivityPageView({ activity, description, onBack, code, options 
 
     // generateNextQuestion();
   };
-  {activityEnded ? (
-    <div className="text-center space-y-4">
-      <h2 className="text-2xl font-bold">Time's Up! ⏰</h2>
-      <p>Final Score: {score}</p>
-      <p>Questions Answered: {questionsAnswered}</p>
-      <Button onClick={restartActivity}>Restart</Button>
-    </div>
-    )};
+  // {activityEnded ? (
+  //   <div className="text-center space-y-4">
+  //     <h2 className="text-2xl font-bold">Time's Up! ⏰</h2>
+  //     <p>Final Score: {score}</p>
+  //     <p>Questions Answered: {questionsAnswered}</p>
+  //     <Button onClick={restartActivity}>Restart</Button>
+  //   </div>
+  //   )};
 
   return (
     <div className="max-w-4xl mx-auto space-y-6">
