@@ -17,7 +17,7 @@ import { ObjectiveView } from "./components/ObjectiveView";
 import { ActivityPageView } from "./components/ActivityPageView";
 import { ExampleType } from "./components/example/ExampleRegistry";
 import { UserDialog } from "./components/UserDialog";
-import { Option, LLMCodeGenerator } from "./components/LLM";
+
 
 interface ObjectiveDetail {
   title: string;
@@ -51,7 +51,6 @@ const App: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [userDialogOpen, setUserDialogOpen] = useState(false);
   const [currentUser, setCurrentUser] = useState<{ username: string; email: string } | null>(null);
-  const [generatedOptions, setGeneratedOptions] = useState<Option[]>([]);
 
     useEffect(() => {
     fetch("/api/courses")
@@ -81,6 +80,7 @@ const App: React.FC = () => {
   const [currentObjective, setCurrentObjective] = useState<{title: string, description: string} | null>(null);
   const [selectedActivity, setSelectedActivity] = useState<string | null>(null);
   const [generatedCode, setGeneratedCode] = useState<string>("");
+  const [canGenerate, setCanGenerate] = useState(true);
 
   const stats = [
     { title: "Total Courses", value: courses.length, subtitle: "Available now", icon: "book" as const },
@@ -119,7 +119,6 @@ const App: React.FC = () => {
   const handleActivityClick = (activity: string) => {
     setSelectedActivity(activity);
     setGeneratedCode(""); 
-    setGeneratedOptions([]);
     setActiveView("activity-page");
   };
 
@@ -307,15 +306,25 @@ const App: React.FC = () => {
 
         {activeView === "activity-page" && currentLesson && selectedActivity && (
           <div>
-            <LLMCodeGenerator 
+            {/* <LLMCodeGenerator 
               prompt="Generate vulnerable Python code with 4 fix options."
               onCodeGenerated={(data) => {
             setGeneratedCode(data.code);
             setGeneratedOptions(data.options);
             }}
+              canGenerate={canGenerate}
+              onGenerated={() => setCanGenerate(false)}
+            /> */}
+            <ActivityPageView
+              activity={selectedActivity}
+              description={
+                currentLesson?.activityDescriptions?.[
+                  selectedActivity
+                ] || ""
+              }
+              onBack={() => setActiveView("lesson")}
             />
-
-            {generatedCode && generatedOptions.length > 0 && (
+            {/* {generatedCode && generatedOptions.length > 0 && (
             <ActivityPageView
               activity={selectedActivity}
               description={currentLesson.activityDescriptions?.[selectedActivity] || ""}
@@ -323,7 +332,7 @@ const App: React.FC = () => {
               code={generatedCode}
               options={generatedOptions}
             />
-        )}
+        )} */}
           </div>
           
         )}
