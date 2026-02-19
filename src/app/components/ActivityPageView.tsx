@@ -227,88 +227,107 @@ export function ActivityPageView({
   };
 
   return (
-    <div className="max-w-4xl mx-auto space-y-6">
-      <Button variant="ghost" onClick={onBack}>
-        ← Back to Lesson
-      </Button>
+    <div className="max-w-4xl mx-auto space-y-6 relative pb-20">
+      <div className="flex items-center justify-between">
+        <Button variant="ghost" onClick={onBack} className="hover:bg-primary/10 transition-colors">
+          ← Back to Lesson
+        </Button>
+        <div className={`text-xl font-mono font-bold px-4 py-2 rounded-lg bg-slate-900 border border-slate-800 ${
+          timeLeft <= 60 ? "text-red-500 animate-pulse border-red-500/50" : "text-primary"
+        }`}>
+          {Math.floor(timeLeft / 60)}:
+          {(timeLeft % 60).toString().padStart(2, "0")}
+        </div>
+      </div>
 
-      <Card>
-        <CardHeader>
-          <CardTitle>{activity}</CardTitle>
-          <p className="text-sm text-muted-foreground">{description}</p>
-        </CardHeader>
-
-        <CardContent className="space-y-6">
-          {/* Score + Generate */}
-          <div className="flex justify-between items-center">
-            <div className="text-lg font-semibold">
-              Score: {score}
+      <Card className="border-primary/20 bg-slate-950/50 backdrop-blur-sm overflow-hidden">
+        <CardContent className="p-6 space-y-8">
+          {/* Header Section */}
+          <div className="flex justify-between items-start border-b border-primary/10 pb-6">
+            <div className="space-y-1">
+              <h2 className="text-2xl font-bold text-white">{activity}</h2>
+              <p className="text-slate-400 text-sm">{description}</p>
             </div>
-             
+            <div className="flex gap-2">
+              {isCompleted && (
+                <div className="flex items-center gap-2 px-3 py-1 bg-green-500/10 text-green-400 rounded-full text-sm font-medium border border-green-500/20">
+                  <Trophy className="h-4 w-4" />
+                  Completed
+                </div>
+              )}
+              <Button variant="outline" size="sm" onClick={() => setIsHelpOpen(true)} className="gap-2 rounded-full border-primary/20 hover:bg-primary/10">
+                <HelpCircle className="h-4 w-4" />
+                Help
+              </Button>
+            </div>
+          </div>
 
+          {/* Generator Section - Centered */}
+          <div className="flex justify-center py-4">
             <LLMCodeGenerator
               onGenerate={generateQuestion}
               canGenerate={canGenerate && !loading}
             />
           </div>
-          <div className={`text-xl font-bold ${
-                 timeLeft <= 60 ? "text-red-500 animate-pulse" : ""
-               }`}>
-                 {Math.floor(timeLeft / 60)}:
-                 {(timeLeft % 60).toString().padStart(2, "0")}
-               </div>
-             <div className="flex gap-2">
-               {isCompleted && (
-                 <div className="flex items-center gap-2 px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm font-medium">
-                   <Trophy className="h-4 w-4" />
-                   Activity Completed!
-                 </div>
-               )}
-               <Button variant="outline" size="sm" onClick={() => setIsHelpOpen(true)} className="gap-2">
-                 <HelpCircle className="h-4 w-4" />
-                 Help
-               </Button>
-             </div>
+
           {/* Error */}
           {error && (
-            <div className="text-red-600 text-sm">
+            <div className="p-4 bg-red-500/10 border border-red-500/20 rounded-lg text-red-400 text-sm text-center">
               {error}
             </div>
           )}
 
           {/* Code Display */}
           {code && (
-            <Editor
-              height="300px"
-              defaultLanguage="python"
-              theme="vs-dark"
-              value={code}
-              options={{
-                readOnly: true,
-                minimap: { enabled: false },
-                fontSize: 14,
-                fontFamily: "Fira Code, monospace",
-                scrollBeyondLastLine: false,
-                automaticLayout: true,
-              }}
-            />
+            <div className="rounded-xl overflow-hidden border border-slate-800 shadow-2xl">
+              <Editor
+                height="350px"
+                defaultLanguage="python"
+                theme="vs-dark"
+                value={code}
+                options={{
+                  readOnly: true,
+                  minimap: { enabled: false },
+                  fontSize: 14,
+                  fontFamily: "Fira Code, monospace",
+                  scrollBeyondLastLine: false,
+                  automaticLayout: true,
+                  padding: { top: 20, bottom: 20 },
+                }}
+              />
+            </div>
           )}
 
           {/* Multiple Choice */}
           {options.length > 0 && (
-            <MultipleChoiceActivity
-              options={options}
-              onCorrect={handleCorrect}
-            />
+            <div className="pt-6 border-t border-primary/10">
+              <MultipleChoiceActivity
+                options={options}
+                onCorrect={handleCorrect}
+              />
+            </div>
           )}
         </CardContent>
       </Card>
-             <HelpModal
-               isOpen={isHelpOpen}
-               onClose={() => setIsHelpOpen(false)}
-               title="Activity Help"
-               description={description}
-             />
+
+      {/* Floating Score - Bottom Right */}
+      <div className="fixed bottom-8 right-8 z-50">
+        <div className="bg-primary text-white px-6 py-3 rounded-2xl shadow-2xl border-2 border-white/10 backdrop-blur-md flex items-center gap-3 hover:scale-105 transition-transform group">
+          <div className="flex flex-col">
+            <span className="text-[10px] uppercase tracking-wider font-bold opacity-70">Total Score</span>
+            <span className="text-2xl font-black leading-tight">{score}</span>
+          </div>
+          <div className="h-8 w-[1px] bg-white/20 mx-1" />
+          <Trophy className="h-6 w-6 text-yellow-400 group-hover:rotate-12 transition-transform" />
+        </div>
+      </div>
+
+      <HelpModal
+        isOpen={isHelpOpen}
+        onClose={() => setIsHelpOpen(false)}
+        title="Activity Help"
+        description={description}
+      />
     </div>
   );
 }

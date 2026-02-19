@@ -122,17 +122,17 @@ export function LLMCodeGenerator({
   };
 
   return (
-    <div className="space-y-4">
+    <div className="flex flex-col items-center space-y-4">
       <button
         onClick={handleClick}
         disabled={!canGenerate || loading}
-        className="px-4 py-2 bg-primary text-white rounded hover:opacity-90 disabled:opacity-50"
+        className="px-8 py-3 bg-primary text-white rounded-full font-semibold shadow-lg hover:shadow-xl hover:scale-105 transition-all disabled:opacity-50 disabled:hover:scale-100"
       >
         {loading ? "Generating..." : "Generate Code"}
       </button>
 
       {error && (
-        <div className="text-red-600 text-sm">
+        <div className="text-red-600 text-sm text-center">
           Error generating activity: {error}
         </div>
       )}
