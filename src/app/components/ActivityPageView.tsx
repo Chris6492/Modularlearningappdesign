@@ -52,14 +52,14 @@
 
 //     // generateNextQuestion();
 //   };
-//   // {activityEnded ? (
-//   //   <div className="text-center space-y-4">
-//   //     <h2 className="text-2xl font-bold">Time's Up!</h2>
-//   //     <p>Final Score: {score}</p>
-//   //     <p>Questions Answered: {questionsAnswered}</p>
-//   //     <Button onClick={restartActivity}>Restart</Button>
-//   //   </div>
-//   //   )};
+  // {activityEnded ? (
+  //   <div className="text-center space-y-4">
+  //     <h2 className="text-2xl font-bold">Time's Up!</h2>
+  //     <p>Final Score: {score}</p>
+  //     <p>Questions Answered: {questionsAnswered}</p>
+  //     <Button onClick={restartActivity}>Restart</Button>
+  //   </div>
+  //   )};
 
 //   return (
 //     <div className="max-w-4xl mx-auto space-y-6">
@@ -140,7 +140,7 @@
 //   );
 // }
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { HelpCircle,Trophy } from "lucide-react";
 import Editor from "@monaco-editor/react";
 import { Button } from "./ui/button";
@@ -167,7 +167,7 @@ export function ActivityPageView({
   description,
   onBack,
 }: ActivityPageViewProps) {
-  const ACTIVITY_TIME_LIMIT = 600;
+  const ACTIVITY_TIME_LIMIT = 60;
   const [code, setCode] = useState("");
   const [options, setOptions] = useState<Option[]>([]);
   const [loading, setLoading] = useState(false);
@@ -177,6 +177,7 @@ export function ActivityPageView({
   const [error, setError] = useState<string | null>(null);
   const [isCompleted, setIsCompleted] = useState(false);
   const [timeLeft, setTimeLeft] = useState(ACTIVITY_TIME_LIMIT);
+  const [activityEnded, setActivityEnded] = useState(false);
 
   // Main Question Generator
   const generateQuestion = async () => {
@@ -219,6 +220,21 @@ export function ActivityPageView({
       setLoading(false);
     }
   };
+    useEffect(() => {
+      if (activityEnded) return;
+
+      if (timeLeft <= 0) {
+        setActivityEnded(true);
+        return;
+      }
+
+      const timer = setTimeout(() => {
+        setTimeLeft((prev) => prev - 1);
+      }, 1000);
+
+      return () => clearTimeout(timer);
+    }, [timeLeft, activityEnded]);
+
 
   // Unlock when correct answer selected
   const handleCorrect = () => {
@@ -226,13 +242,37 @@ export function ActivityPageView({
     setCanGenerate(true);
   };
 
+  if (activityEnded) {
+    return (
+      <div className="max-w-4xl mx-auto text-center space-y-6 pt-20">
+        <h2 className="text-3xl font-bold text-white">Time's Up!</h2>
+        <p className="text-xl text-slate-300">Final Score: {score}</p>
+
+        <Button
+          onClick={() => {
+            setTimeLeft(ACTIVITY_TIME_LIMIT);
+            setScore(0);
+            setActivityEnded(false);
+            setCode("");
+            setOptions([]);
+            setCanGenerate(true);
+          }}
+          className="mt-4"
+        >
+          Restart Activity
+        </Button>
+      </div>
+    );
+  }
+
+
   return (
     <div className="max-w-4xl mx-auto space-y-6 relative pb-20">
       <div className="flex items-center justify-between">
         <Button variant="ghost" onClick={onBack} className="hover:bg-primary/10 transition-colors">
           ← Back to Lesson
         </Button>
-        <div className={`text-xl font-mono font-bold px-4 py-2 rounded-lg bg-slate-900 border border-slate-800 ${
+        <div className={`text-xl font-mono font-bold px-4 py-2 rounded-lg bg-white-900 border border-slate-800 ${
           timeLeft <= 60 ? "text-red-500 animate-pulse border-red-500/50" : "text-primary"
         }`}>
           {Math.floor(timeLeft / 60)}:
