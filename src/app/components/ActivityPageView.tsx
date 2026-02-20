@@ -141,10 +141,10 @@
 // }
 
 import { useState, useEffect } from "react";
-import { HelpCircle,Trophy } from "lucide-react";
+import { HelpCircle,Trophy} from "lucide-react";
 import Editor from "@monaco-editor/react";
 import { Button } from "./ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
+import { Card, CardContent, CardDescription} from "./ui/card";
 import { LLMCodeGenerator } from "./LLM";
 import { MultipleChoiceActivity } from "./MultipleChoiceActivity";
 import { HelpModal } from "./HelpModal";
@@ -285,8 +285,8 @@ export function ActivityPageView({
           {/* Header Section */}
           <div className="flex justify-between items-start border-b border-primary/10 pb-6">
             <div className="space-y-1">
-              <h2 className="text-2xl font-bold text-white">{activity}</h2>
-              <p className="text-slate-400 text-sm">{description}</p>
+              <h2 className="text-muted-foreground font-bold text-white">{activity}</h2>
+              <p className="text-sm text-muted-foreground">{description}</p>
             </div>
             <div className="flex gap-2">
               {isCompleted && (

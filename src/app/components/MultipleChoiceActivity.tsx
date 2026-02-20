@@ -2,6 +2,7 @@ import React, { useState, useEffect} from "react";
 import { CheckCircle2, AlertCircle } from "lucide-react";
 import { Button } from "./ui/button";
 import { Card, CardContent } from "./ui/card";
+import monaco from "monaco-editor"
 
 
 export interface Option {
