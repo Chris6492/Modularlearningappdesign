@@ -167,7 +167,7 @@ export function ActivityPageView({
   description,
   onBack,
 }: ActivityPageViewProps) {
-  const ACTIVITY_TIME_LIMIT = 60;
+  const ACTIVITY_TIME_LIMIT = 600;
   const [code, setCode] = useState("");
   const [options, setOptions] = useState<Option[]>([]);
   const [loading, setLoading] = useState(false);
@@ -178,6 +178,8 @@ export function ActivityPageView({
   const [isCompleted, setIsCompleted] = useState(false);
   const [timeLeft, setTimeLeft] = useState(ACTIVITY_TIME_LIMIT);
   const [activityEnded, setActivityEnded] = useState(false);
+  const [difficulty, setDifficulty] = useState<"easy" | "medium" | "hard">("easy");
+  const [streak, setStreak] = useState(0);
 
   // Main Question Generator
   const generateQuestion = async () => {
@@ -195,7 +197,7 @@ export function ActivityPageView({
         },
         body: JSON.stringify({
           prompt:
-            "Generate vulnerable Python code and 4 possible fixes in JSON format with keys: vulnerableCode and options.",
+            `Generate ${difficulty} difficulty vulnerable Python code and 4 possible fixes in JSON format with keys: vulnerableCode and options.`,
         }),
       });
 
@@ -227,7 +229,7 @@ export function ActivityPageView({
         setActivityEnded(true);
         return;
       }
-
+  
       const timer = setTimeout(() => {
         setTimeLeft((prev) => prev - 1);
       }, 1000);
@@ -235,10 +237,24 @@ export function ActivityPageView({
       return () => clearTimeout(timer);
     }, [timeLeft, activityEnded]);
 
+  useEffect(() =>{
+    if(difficulty !== "easy"){
+      generateQuestion();
+    }
+  },[difficulty]);
+
 
   // Unlock when correct answer selected
   const handleCorrect = () => {
     setScore((prev) => prev + 1);
+    setStreak((prev) =>{
+      const newStreak = prev + 1
+      if (newStreak >= 3 && difficulty === "easy")
+        setDifficulty("medium");
+      else if (newStreak >= 6 && difficulty === "medium")
+        setDifficulty("hard");
+      return newStreak;
+    });
     setCanGenerate(true);
   };
 
@@ -285,9 +301,11 @@ export function ActivityPageView({
           {/* Header Section */}
           <div className="flex justify-between items-start border-b border-primary/10 pb-6">
             <div className="space-y-1">
-              <h2 className="text-muted-foreground font-bold text-white">{activity}</h2>
               <p className="text-sm text-muted-foreground">{description}</p>
             </div>
+              <div className="flex items-center gap-4">
+                  Streak: {streak}
+              </div>
             <div className="flex gap-2">
               {isCompleted && (
                 <div className="flex items-center gap-2 px-3 py-1 bg-green-500/10 text-green-400 rounded-full text-sm font-medium border border-green-500/20">
