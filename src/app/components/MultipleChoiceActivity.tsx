@@ -15,9 +15,10 @@ export interface Option {
 interface MultipleChoiceActivityProps {
   options: Option[];
   onCorrect: () => void;
+  onWrong: () => void;
 }
 
-export function MultipleChoiceActivity({ options, onCorrect }: MultipleChoiceActivityProps) {
+export function MultipleChoiceActivity({ options, onCorrect, onWrong }: MultipleChoiceActivityProps) {
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [showResult, setShowResult] = useState(false);
 
@@ -37,6 +38,8 @@ export function MultipleChoiceActivity({ options, onCorrect }: MultipleChoiceAct
 
     if (selectedOption?.isCorrect) {
       onCorrect();
+    }else{
+      onWrong();
     }
   };
 

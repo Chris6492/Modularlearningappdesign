@@ -306,15 +306,6 @@ const App: React.FC = () => {
 
         {activeView === "activity-page" && currentLesson && selectedActivity && (
           <div>
-            {/* <LLMCodeGenerator 
-              prompt="Generate vulnerable Python code with 4 fix options."
-              onCodeGenerated={(data) => {
-            setGeneratedCode(data.code);
-            setGeneratedOptions(data.options);
-            }}
-              canGenerate={canGenerate}
-              onGenerated={() => setCanGenerate(false)}
-            /> */}
             <ActivityPageView
               activity={selectedActivity}
               description={
@@ -324,15 +315,6 @@ const App: React.FC = () => {
               }
               onBack={() => setActiveView("lesson")}
             />
-            {/* {generatedCode && generatedOptions.length > 0 && (
-            <ActivityPageView
-              activity={selectedActivity}
-              description={currentLesson.activityDescriptions?.[selectedActivity] || ""}
-              onBack={() => setActiveView("lesson")}
-              code={generatedCode}
-              options={generatedOptions}
-            />
-        )} */}
           </div>
           
         )}
