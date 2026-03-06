@@ -6,6 +6,7 @@ import { Card, CardContent, CardDescription } from "./ui/card";
 import { LLMCodeGenerator } from "./LLM";
 import { MultipleChoiceActivity } from "./MultipleChoiceActivity";
 import { HelpModal } from "./HelpModal";
+import { FaFire } from "react-icons/fa";
 
 export interface Option {
   id: string;
@@ -183,7 +184,7 @@ export function ActivityPageView({
                 onClick={() => setIsHelpOpen(true)}
                 className="gap-2 rounded-full border-primary/20 hover:bg-primary/10"
               >
-                <HelpCircle className="h-4 w-4 bg-gray-200" />
+                <HelpCircle className="h-4 w-4" />
                 Help
               </Button>
             </div>
@@ -251,8 +252,9 @@ export function ActivityPageView({
           <Trophy className="h-6 w-6 text-yellow-400 group-hover:rotate-12 transition-transform" />
         </div>
       </div>
-
-      <div className="fixed bottom-7 left-8 z-50">
+      
+      {/* Floating Streak - Bottom Left */}
+      <div className="fixed bottom-7 left-8 z-50 margin">
         <div className="bg-primary text-white px-6 py-3 rounded-2xl shadow-2xl border-2 border-white/10 backdrop-blur-md flex items-center gap-3 hover:scale-105 transition-transform group">
           <div className="flex flex-col">
             <span className="text-[10px] uppercase tracking-wider font-bold opacity-70">
@@ -261,7 +263,7 @@ export function ActivityPageView({
             <span className="text-2xl font-black leading-tight">{streak}</span>
           </div>
           <div className="h-8 w-[1px] bg-white/20 mx-1" />
-        
+           <FaFire className="text-orange-500 h-6 w-6" />
         </div>
       </div>
 
