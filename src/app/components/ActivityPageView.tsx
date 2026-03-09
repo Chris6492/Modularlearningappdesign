@@ -148,7 +148,6 @@ export function ActivityPageView({
         <Button
           variant="ghost"
           onClick={onBack}
-          className="hover:bg-primary/10 transition-colors"
         >
           ← Back to Lesson
         </Button>
@@ -182,7 +181,7 @@ export function ActivityPageView({
                 variant="outline"
                 size="sm"
                 onClick={() => setIsHelpOpen(true)}
-                className="gap-2 rounded-full border-primary/20 hover:bg-primary/10"
+                className="gap-2 rounded-full border-primary/20 hover:bg-white"
               >
                 <HelpCircle className="h-4 w-4" />
                 Help
@@ -254,7 +253,7 @@ export function ActivityPageView({
       </div>
       
       {/* Floating Streak - Bottom Left */}
-      <div className="fixed bottom-7 left-8 z-50 margin">
+      <div className="fixed bottom-8 left-8 z-50">
         <div className="bg-primary text-white px-6 py-3 rounded-2xl shadow-2xl border-2 border-white/10 backdrop-blur-md flex items-center gap-3 hover:scale-105 transition-transform group">
           <div className="flex flex-col">
             <span className="text-[10px] uppercase tracking-wider font-bold opacity-70">
