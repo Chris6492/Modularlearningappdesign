@@ -1,11 +1,14 @@
+import sys
+import os
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), 'src'))
+
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
-import os
+from app.backend.llm import get_llm_response
 
 app = Flask(__name__)
 CORS(app)
-
 # Database configuration
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -49,20 +52,41 @@ def create_user():
         return jsonify({"error": "Internal Server Error"}), 500
 
 
-# Existing course data
+@app.route('/api/generate', methods=['POST'])
+def generate_code_route():
+    data = request.json
+    prompt = data.get('prompt')
+    if not prompt:
+        return jsonify({"error": "No prompt provided"}), 400
+    try:
+        response = get_llm_response(prompt)
+        return jsonify({"response": response})
+    except Exception as e:
+        print(f"Error in generate_code: {e}")
+        return jsonify({"error": str(e)}), 500
+
 initial_courses = [
     {
-        "id": "1",
-        "title": "Software Development",
-        "description": "Master the essentials of AI-assisted development, from foundational skills to advanced prompting frameworks and identifying bad practices.",
-        "category": "AI Development",
-        "duration": "4 hours",
+        "id":
+        "1",
+        "title":
+        "Software Development",
+        "description":
+        "Master the essentials of AI-assisted development, from foundational skills to advanced prompting frameworks and identifying bad practices.",
+        "category":
+        "AI Development",
+        "duration":
+        "4 hours",
         "lessons": [
             {
-                "id": "1-1",
-                "title": "AI Foundational Skills",
-                "duration": "60 min",
-                "content": "Explore the core concepts of AI in software development. Understand how Large Language Models work, their capabilities, and how to integrate them into your development workflow effectively.",
+                "id":
+                "1-1",
+                "title":
+                "AI Foundational Skills",
+                "duration":
+                "60 min",
+                "content":
+                "Explore the core concepts of AI in software development. Understand how Large Language Models work, their capabilities, and how to integrate them into your development workflow effectively.",
                 "objectives": [
                     "Understand LLM basics for developers",
                     "Set up AI development tools",
@@ -71,54 +95,79 @@ initial_courses = [
                 ],
                 "objectiveDetails": {
                     "Understand LLM basics for developers": {
-                        "title": "LLM Fundamentals",
-                        "description": "Deep dive into how Large Language Models work, tokenization, and their probabilistic nature.",
+                        "title":
+                        "LLM Fundamentals",
+                        "description":
+                        "Deep dive into how Large Language Models work, tokenization, and their probabilistic nature.",
                     },
                     "Set up AI development tools": {
-                        "title": "Toolchain Configuration",
-                        "description": "Properly configuring your IDE and CLI tools to leverage AI assistance effectively.",
+                        "title":
+                        "Toolchain Configuration",
+                        "description":
+                        "Properly configuring your IDE and CLI tools to leverage AI assistance effectively.",
                     },
                     "Learn core AI interaction patterns": {
-                        "title": "Interaction Design",
-                        "description": "Mastering zero-shot, few-shot, and chain-of-thought prompting for better code generation.",
+                        "title":
+                        "Interaction Design",
+                        "description":
+                        "Mastering zero-shot, few-shot, and chain-of-thought prompting for better code generation.",
                     },
                     "Identify best use cases for AI assistance": {
-                        "title": "Value Recognition",
-                        "description": "Learning where AI excels and where human intervention is critical in the dev lifecycle.",
+                        "title":
+                        "Value Recognition",
+                        "description":
+                        "Learning where AI excels and where human intervention is critical in the dev lifecycle.",
                     },
                 },
                 "activities": ["activity goes here"],
                 "activityDescriptions": {
-                    "activity goes here": "This activity involves identifying specific code smells and vulnerabilities in AI-generated code. You will be presented with several snippets and must flag issues related to security, efficiency, and logical correctness."
+                    "activity goes here":
+                    "This activity involves identifying specific code smells and vulnerabilities in AI-generated code. You will be presented with several snippets and must flag issues related to security, efficiency, and logical correctness."
                 },
-                "completed": False,
+                "completed":
+                False,
             },
             {
-                "id": "1-1-1",
-                "title": "Understand LLM basics for developers",
-                "duration": "15 min",
-                "content": "Large Language Models (LLMs) are a type of artificial intelligence trained on vast amounts of text data. For developers, understanding LLMs means recognizing they are probabilistic next-token predictors, not reasoning engines with consciousness. This fundamental distinction is crucial for setting realistic expectations and designing effective AI-integrated systems.\n\nWhen working with LLMs, developers should focus on their ability to handle unstructured data, perform translation tasks, and assist in code generation while being mindful of their limitations, such as hallucinations and context window constraints. Mastering the interface between deterministic code and probabilistic AI outputs is the key to building robust AI-enhanced applications.",
+                "id":
+                "1-1-1",
+                "title":
+                "Understand LLM basics for developers",
+                "duration":
+                "15 min",
+                "content":
+                "Large Language Models (LLMs) are a type of artificial intelligence trained on vast amounts of text data. For developers, understanding LLMs means recognizing they are probabilistic next-token predictors, not reasoning engines with consciousness. This fundamental distinction is crucial for setting realistic expectations and designing effective AI-integrated systems.\n\nWhen working with LLMs, developers should focus on their ability to handle unstructured data, perform translation tasks, and assist in code generation while being mindful of their limitations, such as hallucinations and context window constraints. Mastering the interface between deterministic code and probabilistic AI outputs is the key to building robust AI-enhanced applications.",
                 "objectives": [
                     "Neural Network Foundations",
                     "Tokenization and Embeddings",
                 ],
                 "activities": ["activity goes here"],
-                "completed": False,
+                "completed":
+                False,
             },
             {
-                "id": "1-1-3",
-                "title": "Learn core AI interaction patterns",
-                "duration": "25 min",
-                "content": "Effective interaction with AI requires moving beyond simple questions to structured interaction patterns. Patterns like 'Chain of Thought' prompting, where you ask the AI to explain its reasoning step-by-step, can lead to much more reliable complex code outputs. Another powerful pattern is the 'Flipped Interaction', where you ask the AI to interview you about your requirements before it generates any code.\n\nUnderstanding these interaction patterns allows developers to treat the AI as a junior partner rather than just a search engine. By providing clear constraints and using iterative refinement, you can guide the AI to produce production-ready code that adheres to your specific design patterns and architectural standards.",
-                "objectives": ["Chain of Thought Prompting", "Iterative Refinement"],
+                "id":
+                "1-1-3",
+                "title":
+                "Learn core AI interaction patterns",
+                "duration":
+                "25 min",
+                "content":
+                "Effective interaction with AI requires moving beyond simple questions to structured interaction patterns. Patterns like 'Chain of Thought' prompting, where you ask the AI to explain its reasoning step-by-step, can lead to much more reliable complex code outputs. Another powerful pattern is the 'Flipped Interaction', where you ask the AI to interview you about your requirements before it generates any code.\n\nUnderstanding these interaction patterns allows developers to treat the AI as a junior partner rather than just a search engine. By providing clear constraints and using iterative refinement, you can guide the AI to produce production-ready code that adheres to your specific design patterns and architectural standards.",
+                "objectives":
+                ["Chain of Thought Prompting", "Iterative Refinement"],
                 "activities": ["activity goes here"],
-                "completed": False,
+                "completed":
+                False,
             },
             {
-                "id": "1-2",
-                "title": "AI Bad Coding Practices",
-                "duration": "45 min",
-                "content": "Learn to identify and avoid common pitfalls when using AI for coding. We'll cover over-reliance, hallucination checks, legal risks, and maintaining code quality.",
+                "id":
+                "1-2",
+                "title":
+                "AI Bad Coding Practices",
+                "duration":
+                "45 min",
+                "content":
+                "Learn to identify and avoid common pitfalls when using AI for coding. We'll cover over-reliance, hallucination checks, legal risks, and maintaining code quality.",
                 "objectives": [
                     "Blindly trusting AI-generated code",
                     "Bad Prompting and Lack of Context",
@@ -127,33 +176,47 @@ initial_courses = [
                 ],
                 "objectiveDetails": {
                     "Blindly trusting AI-generated code": {
-                        "title": "",
-                        "description": "     Blindly trusting AI generated code can create subtle but serious problems, especially for new developers who may not yet recognize warning signs. AI models do not truly understand programming concepts, business logic, or project context; they generate code by predicting what looks correct based on patterns in data. Because of this, AI can confidently suggest deprecated functions, outdated syntax, or approaches that were once common but are no longer considered secure or efficient. The code may compile and even pass simple tests, giving a false sense of correctness while hiding deeper issues.                                                                                                                                                                                              These risks become more dangerous in real-world scenarios and edge cases. AI-generated code may fail under unusual inputs, ignore performance or security concerns, or reference libraries, methods, or APIs that don’t exist. New developers might assume the AI’s output is authoritative and skip documentation checks or testing, allowing bugs or vulnerabilities to slip into production. Treating AI as a helpful assistant rather than a trusted source of truth and validating its output through testing, reviews, and official documentation is essential for writing reliable, maintainable software.",
+                        "title":
+                        "",
+                        "description":
+                        "     Blindly trusting AI generated code can create subtle but serious problems, especially for new developers who may not yet recognize warning signs. AI models do not truly understand programming concepts, business logic, or project context; they generate code by predicting what looks correct based on patterns in data. Because of this, AI can confidently suggest deprecated functions, outdated syntax, or approaches that were once common but are no longer considered secure or efficient. The code may compile and even pass simple tests, giving a false sense of correctness while hiding deeper issues.                                                                                                                                                                                              These risks become more dangerous in real-world scenarios and edge cases. AI-generated code may fail under unusual inputs, ignore performance or security concerns, or reference libraries, methods, or APIs that don’t exist. New developers might assume the AI’s output is authoritative and skip documentation checks or testing, allowing bugs or vulnerabilities to slip into production. Treating AI as a helpful assistant rather than a trusted source of truth and validating its output through testing, reviews, and official documentation is essential for writing reliable, maintainable software.",
                     },
                     "Bad Prompting and Lack of Context": {
-                        "title": "",
-                        "description": "     Bad prompting and lack of context can significantly reduce the effectiveness of AI assisted coding and introduce new risks into the development process. When prompts are vague, incomplete, or poorly structured, AI tools may generate incorrect, insecure, or inefficient code that does not align with the intended requirements. Similarly, without sufficient context about the system architecture, dependencies, or constraints, the AI may make faulty assumptions that lead to integration issues or subtle bug.                                                                                                                                                                                       These problems are important because AI generated output is often trusted at face value, especially under time pressure. Code produced from weak prompts or limited context may pass initial review but fail in edge cases or conflict with existing design patterns. To mitigate this risk, developers should provide clear, detailed prompts and treat AI output as a starting point rather than a final solution, applying the same level of review, testing, and validation as they would for manually written code.",
+                        "title":
+                        "",
+                        "description":
+                        "     Bad prompting and lack of context can significantly reduce the effectiveness of AI assisted coding and introduce new risks into the development process. When prompts are vague, incomplete, or poorly structured, AI tools may generate incorrect, insecure, or inefficient code that does not align with the intended requirements. Similarly, without sufficient context about the system architecture, dependencies, or constraints, the AI may make faulty assumptions that lead to integration issues or subtle bug.                                                                                                                                                                                       These problems are important because AI generated output is often trusted at face value, especially under time pressure. Code produced from weak prompts or limited context may pass initial review but fail in edge cases or conflict with existing design patterns. To mitigate this risk, developers should provide clear, detailed prompts and treat AI output as a starting point rather than a final solution, applying the same level of review, testing, and validation as they would for manually written code.",
                     },
                     "Over-Reliance": {
-                        "title": "",
-                        "description": "     Overreliance on AI occurs when individuals or organizations depend too heavily on AI tools without sufficient validation or critical oversight. In a software development context, this can lead developers to accept AI-generated code, designs, or explanations at face value, even when they are incomplete, inefficient, or subtly incorrect. Over time, this reduces active engagement in independent problem-solving and weakens core skills such as debugging, system design, and reasoning through edge cases. When developers stop questioning outputs, AI shifts from being an assistive tool to an unquestioned authority, increasing the risk of technical debt and hidden defects.                                                                                                                               Another major drawback of AI overreliance is the erosion of contextual and domain understanding. AI tools generate output based on patterns in data, not on a true understanding of a project’s unique constraints, business goals, or long-term architecture. Developers who rely too heavily on AI may miss important trade-offs related to performance, security, scalability, or maintainability. This is especially risky in complex systems, where blindly integrating AI-generated solutions can introduce vulnerabilities or misalignments that only surface in production. Without human judgment and review, small mistakes can scale into costly failures.                                                                                                                                                                                  Finally, excessive dependence on AI can limit professional growth and adaptability. Learning in software development comes from struggling with problems, making mistakes, and refining mental models over time. If AI is always used as the first and final step, developers may progress faster in the short term but plateau in the long term. This creates teams that can assemble solutions quickly but lack the deep expertise needed to innovate, troubleshoot novel issues, or operate effectively when AI tools are unavailable or incorrect. Used thoughtfully, AI should amplify human capability—not replace critical thinking, accountability, or learning.",
+                        "title":
+                        "",
+                        "description":
+                        "     Overreliance on AI occurs when individuals or organizations depend too heavily on AI tools without sufficient validation or critical oversight. In a software development context, this can lead developers to accept AI-generated code, designs, or explanations at face value, even when they are incomplete, inefficient, or subtly incorrect. Over time, this reduces active engagement in independent problem-solving and weakens core skills such as debugging, system design, and reasoning through edge cases. When developers stop questioning outputs, AI shifts from being an assistive tool to an unquestioned authority, increasing the risk of technical debt and hidden defects.                                                                                                                               Another major drawback of AI overreliance is the erosion of contextual and domain understanding. AI tools generate output based on patterns in data, not on a true understanding of a project’s unique constraints, business goals, or long-term architecture. Developers who rely too heavily on AI may miss important trade-offs related to performance, security, scalability, or maintainability. This is especially risky in complex systems, where blindly integrating AI-generated solutions can introduce vulnerabilities or misalignments that only surface in production. Without human judgment and review, small mistakes can scale into costly failures.                                                                                                                                                                                  Finally, excessive dependence on AI can limit professional growth and adaptability. Learning in software development comes from struggling with problems, making mistakes, and refining mental models over time. If AI is always used as the first and final step, developers may progress faster in the short term but plateau in the long term. This creates teams that can assemble solutions quickly but lack the deep expertise needed to innovate, troubleshoot novel issues, or operate effectively when AI tools are unavailable or incorrect. Used thoughtfully, AI should amplify human capability—not replace critical thinking, accountability, or learning.",
                     },
                     "Licensing & ip risk": {
-                        "title": "",
-                        "description": "     Using AI tools for coding introduces intellectual property (IP) risks, particularly when proprietary or sensitive code is shared with external AI systems. A real world example occurred when Samsung engineers unintentionally exposed confidential source code by submitting it to ChatGPT for assistance, raising concerns that such information could be retained or later surfaced through future queries. This highlights the risk of data leakage and the importance of clear internal policies around what code can be shared with AI tools, especially when those tools are hosted by third parties.                                                                                                                                                                                               There are also licensing and copyright considerations around AI generated code itself. In some cases, generated code may be considered derivative of copyrighted material used during an AI model’s training, which can create legal ambiguity around ownership and usage rights. Developers and organizations must be cautious to ensure that AI assisted outputs comply with open source licenses, fair use principles, and internal compliance standards to avoid unintended copyright violations or legal exposure.",
+                        "title":
+                        "",
+                        "description":
+                        "     Using AI tools for coding introduces intellectual property (IP) risks, particularly when proprietary or sensitive code is shared with external AI systems. A real world example occurred when Samsung engineers unintentionally exposed confidential source code by submitting it to ChatGPT for assistance, raising concerns that such information could be retained or later surfaced through future queries. This highlights the risk of data leakage and the importance of clear internal policies around what code can be shared with AI tools, especially when those tools are hosted by third parties.                                                                                                                                                                                               There are also licensing and copyright considerations around AI generated code itself. In some cases, generated code may be considered derivative of copyrighted material used during an AI model’s training, which can create legal ambiguity around ownership and usage rights. Developers and organizations must be cautious to ensure that AI assisted outputs comply with open source licenses, fair use principles, and internal compliance standards to avoid unintended copyright violations or legal exposure.",
                     },
                 },
                 "activities": ["activity goes here"],
                 "activityDescriptions": {
-                    "activity goes here": "This activity involves identifying specific code smells and vulnerabilities in AI-generated code. You will be presented with several snippets and must flag issues related to security, efficiency, and logical correctness."
+                    "activity goes here":
+                    "This activity involves identifying specific code smells and vulnerabilities in AI-generated code. You will be presented with several snippets and must flag issues related to security, efficiency, and logical correctness."
                 },
-                "completed": False,
+                "completed":
+                False,
             },
             {
-                "id": "1-3",
-                "title": "AI C.A.R. Prompting Framework",
-                "duration": "75 min",
-                "content": "Master the C.A.R. (Context, Action, Result) prompting framework to get high-quality, relevant code from AI. Learn how to structure your requests for maximum efficiency and accuracy.",
+                "id":
+                "1-3",
+                "title":
+                "AI C.A.R. Prompting Framework",
+                "duration":
+                "75 min",
+                "content":
+                "Master the C.A.R. (Context, Action, Result) prompting framework to get high-quality, relevant code from AI. Learn how to structure your requests for maximum efficiency and accuracy.",
                 "objectives": [
                     "Master the Context-Action-Result structure",
                     "Senior Level Prompts Workflow",
@@ -162,8 +225,10 @@ initial_courses = [
                 ],
                 "objectiveDetails": {
                     "Master the Context-Action-Result structure": {
-                        "title": "LLM Fundamentals",
-                        "description": """The C.A.R. Prompting Method (Context → Action → Result) is a practical framework developers use directly when talking to an LLM to unlock senior-level thinking while still producing junior-friendly execution. The core idea is simple: think like a senior engineer, execute like a junior, and let AI act as the multiplier. Instead of vague, low‑leverage prompts such as “fix this code” or “make this better,” C.A.R. forces structure, intent, and professional standards into the prompt itself. This structure mirrors how experienced developers naturally think about problems and how they communicate expectations during real code reviews.
+                        "title":
+                        "LLM Fundamentals",
+                        "description":
+                        """The C.A.R. Prompting Method (Context → Action → Result) is a practical framework developers use directly when talking to an LLM to unlock senior-level thinking while still producing junior-friendly execution. The core idea is simple: think like a senior engineer, execute like a junior, and let AI act as the multiplier. Instead of vague, low‑leverage prompts such as “fix this code” or “make this better,” C.A.R. forces structure, intent, and professional standards into the prompt itself. This structure mirrors how experienced developers naturally think about problems and how they communicate expectations during real code reviews.
 
 The first part, Context, represents how senior developers frame problems before touching the keyboard. A developer with several years of experience understands where the code lives, why it exists, and what constraints it must operate under. Context includes the programming language, framework, and the purpose of the code, as well as non‑negotiable constraints such as readability, security, performance, and maintainability. It also defines the skill level of the original author, which is critical for shaping explanations. By explicitly stating that the AI should act as a senior engineer mentoring a junior developer, the model is guided to respond with clearer explanations, better judgment, and realistic trade‑offs instead of generic advice.
 
@@ -176,8 +241,10 @@ When combined, Context, Action, and Result form a reusable prompt template that 
 Without C.A.R., a junior developer might ask something like, “Can you fix this React code?” which typically results in shallow fixes, limited reasoning, and little long‑term learning. Using the C.A.R. method, the same developer instead provides structured context about the component’s purpose, constraints such as handling loading and error states, and explicit actions like identifying issues and explaining trade‑offs. The result is a higher‑leverage interaction where the AI delivers senior‑level insights, clearer code, and concrete lessons the junior can apply in future work. In practice, C.A.R. is not hidden logic or backend magic—it is simply a disciplined way of writing prompts that turns AI into a realistic senior engineer sitting next to you during a code review.""",
                     },
                     "Senior Level Prompts Workflow": {
-                        "title": "LLM Fundamentals",
-                        "description": """DAILY WORKFLOW (REALISTIC & HIGH-IMPACT)
+                        "title":
+                        "LLM Fundamentals",
+                        "description":
+                        """DAILY WORKFLOW (REALISTIC & HIGH-IMPACT)
 1️⃣ Context Sync (5–10 min)
 Why seniors do this: avoid thrash & rework.
 What YOU do
@@ -281,31 +348,41 @@ ________________________________________
 “What did I debug this week that reveals a knowledge gap?”""",
                     },
                     "Refine AI output through iterative prompting": {
-                        "title": "LLM Fundamentals",
-                        "description": "Deep dive into how Large Language Models work, tokenization, and their probabilistic nature.",
+                        "title":
+                        "LLM Fundamentals",
+                        "description":
+                        "Deep dive into how Large Language Models work, tokenization, and their probabilistic nature.",
                     },
                     "Build a library of effective developer prompts": {
                         "title": "LLM Fundamentals",
                         "description": "all good.",
                     },
                 },
-                "exampleType": "carPrompt",
+                "exampleType":
+                "carPrompt",
                 "activities": [],
-                "completed": False,
+                "completed":
+                False,
             },
             {
-                "id": "1-4",
-                "title": "AI Tools For Software Development",
-                "duration": "20 min",
-                "content": "",
+                "id":
+                "1-4",
+                "title":
+                "AI Tools For Software Development",
+                "duration":
+                "20 min",
+                "content":
+                "",
                 "objectives": [
                     "Learning the core capabilities of each AI Tool",
                     "Terminology Accuracy",
                 ],
                 "objectiveDetails": {
                     "Learning the core capabilities of each AI Tool": {
-                        "title": "LLM Fundamentals",
-                        "description": """Google Antigravity
+                        "title":
+                        "LLM Fundamentals",
+                        "description":
+                        """Google Antigravity
 Product Overview: Google Antigravity is an "agent-first" integrated development environment (IDE) built on an open-source VS Code foundation. Launched on November 18, 2025, it is designed as a "Mission Control" for managing autonomous AI agents that plan, code, and test software with minimal human intervention.
 
 Key Strengths:
@@ -340,27 +417,36 @@ OpenAI (GPT)
                     },
                 },
                 "activities": ["activity goes here"],
-                "completed": False,
+                "completed":
+                False,
             },
             {
-                "id": "1-5",
-                "title": "AI Generated Testing",
-                "duration": "20 min",
-                "content": "N/A",
-                "objectives": ["Unit Testing", "Integration Testing", "Generating Test"],
+                "id":
+                "1-5",
+                "title":
+                "AI Generated Testing",
+                "duration":
+                "20 min",
+                "content":
+                "N/A",
+                "objectives":
+                ["Unit Testing", "Integration Testing", "Generating Test"],
                 "objectiveDetails": {
                     "Unit Testing": {
-                        "title": "Unit Testing",
-                        "description": "     Unit testing is a software development practice where individual pieces of code usually small functions or methods are tested in isolation to make sure they work as intended. Each unit test focuses on a single behavior, providing specific inputs and checking that the output matches expectations. This isolation is crucial because it helps developers find and fix bugs quickly, without having to worry about how other parts of the system might be interfering. For juniors, writing unit tests is one of the best ways to learn how to write better, more modular code, as it forces them to think about edge cases and clear interfaces. Beyond finding bugs, unit tests also serve as a form of living documentation, showing how code is supposed to behave, which makes the codebase easier to understand and maintain over time.",
+                        "title":
+                        "Unit Testing",
+                        "description":
+                        "     Unit testing is a software development practice where individual pieces of code usually small functions or methods are tested in isolation to make sure they work as intended. Each unit test focuses on a single behavior, providing specific inputs and checking that the output matches expectations. This isolation is crucial because it helps developers find and fix bugs quickly, without having to worry about how other parts of the system might be interfering. For juniors, writing unit tests is one of the best ways to learn how to write better, more modular code, as it forces them to think about edge cases and clear interfaces. Beyond finding bugs, unit tests also serve as a form of living documentation, showing how code is supposed to behave, which makes the codebase easier to understand and maintain over time.",
                     }
                 },
                 "activities": ["activity goes here"],
-                "completed": False,
+                "completed":
+                False,
             },
             {
                 "id": "1-6",
-                "title": "Enter course module here!!!",
-                "duration": "20 min",
+                "title": "AI VS Automation VS Search",
+                "duration": "15 min",
                 "content": "N/A",
                 "objectives": ["N/A", "N/A"],
                 "activities": ["activity goes here"],
@@ -383,6 +469,20 @@ def get_course(course_id):
         return jsonify(course)
     return jsonify({"error": "Course not found"}), 404
 
+
+@app.route("/api/generate_v2", methods=["POST"])
+def generate_code_v2():
+    try:
+        data = request.json
+        prompt = data.get('prompt', '')
+        
+        if not prompt:
+            return jsonify({'error': 'No prompt provided'}), 400
+        
+        response = get_llm_response(prompt)
+        return jsonify({'response': response}), 200
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8000)

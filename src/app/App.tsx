@@ -4,11 +4,6 @@ import {
   GraduationCap,
   LayoutDashboard,
   Search,
-  BookOpen,
-  Clock,
-  TrendingUp,
-  Target,
-  Award,
 } from "lucide-react";
 import { Button } from "./components/ui/button";
 import { Input } from "./components/ui/input";
@@ -20,9 +15,9 @@ import { LessonContent } from "./components/LessonContent";
 import { StatsCard } from "./components/StatsCard";
 import { ObjectiveView } from "./components/ObjectiveView";
 import { ActivityPageView } from "./components/ActivityPageView";
-
 import { ExampleType } from "./components/example/ExampleRegistry";
 import { UserDialog } from "./components/UserDialog";
+
 
 interface ObjectiveDetail {
   title: string;
@@ -57,7 +52,7 @@ const App: React.FC = () => {
   const [userDialogOpen, setUserDialogOpen] = useState(false);
   const [currentUser, setCurrentUser] = useState<{ username: string; email: string } | null>(null);
 
-  useEffect(() => {
+    useEffect(() => {
     fetch("/api/courses")
       .then((res) => {
         if (!res.ok) {
@@ -77,12 +72,15 @@ const App: React.FC = () => {
       });
   }, []);
 
+
   const [activeTab, setActiveTab] = useState("all");
   const [activeView, setActiveView] = useState<"dashboard" | "course" | "lesson" | "objective" | "activity-page">("dashboard");
   const [currentCourse, setCurrentCourse] = useState<Course | null>(null);
   const [currentLesson, setCurrentLesson] = useState<Lesson | null>(null);
   const [currentObjective, setCurrentObjective] = useState<{title: string, description: string} | null>(null);
   const [selectedActivity, setSelectedActivity] = useState<string | null>(null);
+  const [generatedCode, setGeneratedCode] = useState<string>("");
+  const [canGenerate, setCanGenerate] = useState(true);
 
   const stats = [
     { title: "Total Courses", value: courses.length, subtitle: "Available now", icon: "book" as const },
@@ -120,6 +118,7 @@ const App: React.FC = () => {
 
   const handleActivityClick = (activity: string) => {
     setSelectedActivity(activity);
+    setGeneratedCode(""); 
     setActiveView("activity-page");
   };
 
@@ -306,11 +305,18 @@ const App: React.FC = () => {
         )}
 
         {activeView === "activity-page" && currentLesson && selectedActivity && (
-          <ActivityPageView
-            activity={selectedActivity}
-            description={currentLesson.activityDescriptions?.[selectedActivity] || ""}
-            onBack={() => setActiveView("lesson")}
-          />
+          <div>
+            <ActivityPageView
+              activity={selectedActivity}
+              description={
+                currentLesson?.activityDescriptions?.[
+                  selectedActivity
+                ] || ""
+              }
+              onBack={() => setActiveView("lesson")}
+            />
+          </div>
+          
         )}
       </main>
     </div>
